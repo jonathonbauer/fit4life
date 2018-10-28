@@ -4,6 +4,14 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This is the main method that will launch the application.
+ * It contains the mainStage that will be used to host the scenes for each page of the application.
+ * 
+ *
+ */
+
+
 public class Main extends Application {
 
 	// Main Stage to be used globally
