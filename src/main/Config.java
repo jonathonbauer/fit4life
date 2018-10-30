@@ -21,7 +21,7 @@ public class Config {
 	public static final String DB_USER = "";
 	public static final String DB_PASS = "";
 	
-	public static final int APP_WIDTH = 1024;
-	public static final int APP_HEIGHT = 768;
+	public static final double APP_WIDTH = 1024;
+	public static final double APP_HEIGHT = 768;
 	
 }

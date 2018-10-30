@@ -1,0 +1,139 @@
+package pages;
+
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import main.Config;
+
+/**
+ * 
+ * The Main Menu
+ * 
+ *
+ */
+public class MainMenu {
+
+	private Button createButton;
+	private Button updateButton;
+	private Button viewButton;
+	private Button reportsButton;
+	
+	private VBox buttonBox;
+	private MenuBar menuBar;
+	private BorderPane root;
+	private Scene scene;
+	
+	
+	public MainMenu() {
+		this.createButton = new Button("Create A New Membership");
+		this.updateButton = new Button("Update An Existing Membership");
+		this.viewButton = new Button("View Memberships");
+		this.reportsButton = new Button("Reports");
+		
+		// TODO: Replace this with the MenuBar that is to be created
+		this.menuBar = new MenuBar();
+		
+		this.buttonBox = new VBox();
+		this.buttonBox.getChildren().addAll(createButton, updateButton, viewButton, reportsButton);
+		this.buttonBox.setSpacing(5);
+		
+		this.root = new BorderPane();
+		this.root.setTop(this.menuBar);
+		this.root.setCenter(this.buttonBox);
+		
+		this.scene = new Scene(this.root, Config.APP_WIDTH, Config.APP_HEIGHT);
+		
+	}
+
+
+	public Button getCreateButton() {
+		return createButton;
+	}
+
+
+	public void setCreateButton(Button createButton) {
+		this.createButton = createButton;
+	}
+
+
+	public Button getUpdateButton() {
+		return updateButton;
+	}
+
+
+	public void setUpdateButton(Button updateButton) {
+		this.updateButton = updateButton;
+	}
+
+
+	public Button getViewButton() {
+		return viewButton;
+	}
+
+
+	public void setViewButton(Button viewButton) {
+		this.viewButton = viewButton;
+	}
+
+
+	public Button getReportsButton() {
+		return reportsButton;
+	}
+
+
+	public void setReportsButton(Button reportsButton) {
+		this.reportsButton = reportsButton;
+	}
+
+
+	public VBox getButtonBox() {
+		return buttonBox;
+	}
+
+
+	public void setButtonBox(VBox buttonBox) {
+		this.buttonBox = buttonBox;
+	}
+
+
+	public MenuBar getMenuBar() {
+		return menuBar;
+	}
+
+
+	public void setMenuBar(MenuBar menuBar) {
+		this.menuBar = menuBar;
+	}
+
+
+	public BorderPane getRoot() {
+		return root;
+	}
+
+
+	public void setRoot(BorderPane root) {
+		this.root = root;
+	}
+
+
+	public Scene getScene() {
+		return scene;
+	}
+
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+	
+	
+	
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//
+//	}
+
+	
+	
+}
