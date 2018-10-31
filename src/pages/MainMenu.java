@@ -1,10 +1,12 @@
 package pages;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import main.Config;
 
 /**
@@ -21,6 +23,7 @@ public class MainMenu {
 	private Button reportsButton;
 	
 	private VBox buttonBox;
+	private Text currentUser;
 	private MenuBar menuBar;
 	private BorderPane root;
 	private Scene scene;
@@ -32,19 +35,48 @@ public class MainMenu {
 		this.viewButton = new Button("View Memberships");
 		this.reportsButton = new Button("Reports");
 		
+		this.createButton.setMinSize(750, 100);
+		this.updateButton.setMinSize(750, 100);
+		this.viewButton.setMinSize(750, 100);
+		this.reportsButton.setMinSize(750, 100);
+		
+		
 		// TODO: Replace this with the MenuBar that is to be created
 		this.menuBar = new MenuBar();
 		
 		this.buttonBox = new VBox();
 		this.buttonBox.getChildren().addAll(createButton, updateButton, viewButton, reportsButton);
 		this.buttonBox.setSpacing(5);
+		this.buttonBox.setAlignment(Pos.CENTER);
+		
+		// TODO: Change this to the current logged in user
+		this.currentUser = new Text("Logged in as: ");
 		
 		this.root = new BorderPane();
 		this.root.setTop(this.menuBar);
 		this.root.setCenter(this.buttonBox);
+		this.root.setBottom(this.currentUser);
+		this.root.setAlignment(this.currentUser, Pos.CENTER);
+		
+		
+		// TODO: Button event handlers
+		
+		
+		
+		
 		
 		this.scene = new Scene(this.root, Config.APP_WIDTH, Config.APP_HEIGHT);
 		
+	}
+
+
+	public Text getCurrentUser() {
+		return currentUser;
+	}
+
+
+	public void setCurrentUser(Text currentUser) {
+		this.currentUser = currentUser;
 	}
 
 
