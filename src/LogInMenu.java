@@ -17,7 +17,7 @@ public class LogInMenu extends Application {
 		/*
 		 * This section of the code is what will run after the program has launched and has no existing profiles logged in.
 		 * it will prompt the user for their user name and password and attempt to log them into the database.
-		 */
+		 */ 
 		
 		
 		
