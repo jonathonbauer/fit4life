@@ -1,11 +1,19 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -26,6 +34,7 @@ public class LogInMenu extends Application {
 		 * it will prompt the user for their user name and password and attempt to log them into the database.
 		 */ 
 			
+		
 		//BorderPane initialization
 		BorderPane pane = new BorderPane();
 		
@@ -49,6 +58,9 @@ public class LogInMenu extends Application {
 		Text title = new Text("Fit4Life");
 		title.setFont(titleFont);
 		
+		Text errorText = new Text();
+		
+		
 		//Adding in Button Nodes
 		
 		Button login = new Button("Log In");
@@ -59,17 +71,38 @@ public class LogInMenu extends Application {
 		//Setting default checkbox values
 		remember.setIndeterminate(false);
 		
-		//Adding in TextArea's for both the username and password fields
+		//Adding in TextField and PasswordField to store username and password
 		
-		TextArea userName = new TextArea();
-		userName.setMaxHeight(10);
+		TextField userName = new TextField();
+		userName.setMaxHeight(30);
+		userName.setMinHeight(30);
 		userName.setMaxWidth(300);
-		userName.setText("USERNAME");
+		userName.setPromptText("USERNAME");
 		
-		TextArea passWord = new TextArea();
-		passWord.setMaxHeight(10);
+		PasswordField passWord = new PasswordField();
+		passWord.setMinHeight(30);
+		passWord.setMaxHeight(30);
 		passWord.setMaxWidth(300);
-		passWord.setText("PASSWORD");
+		passWord.setPromptText("PASSWORD");
+		
+		
+		/*
+		 * login Button Event Handler
+		 * 
+		 */
+		
+		login.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+			}
+			
+		});
+		
+		
+		
+		
 		
 		/*
 		 * Adding the userName and passWord TextArea fields to the "Middle" VBox
@@ -77,7 +110,7 @@ public class LogInMenu extends Application {
 		
 		top.getChildren().add(title);
 		
-		middle.getChildren().addAll(userName, passWord,remember);
+		middle.getChildren().addAll(userName, passWord,remember, errorText);
 		
 		bottom.getChildren().add(login);
 		
