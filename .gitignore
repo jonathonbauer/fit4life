@@ -135,3 +135,6 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+# Config file that holds database information
+src/main/Config.java
