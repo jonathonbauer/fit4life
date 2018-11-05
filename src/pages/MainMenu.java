@@ -7,7 +7,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import main.Config;
 
 /**
  * 
@@ -65,7 +64,7 @@ public class MainMenu {
 		
 		
 		
-		this.scene = new Scene(this.root, Config.APP_WIDTH, Config.APP_HEIGHT);
+		this.scene = new Scene(this.root, 1024, 768);
 		
 	}
 

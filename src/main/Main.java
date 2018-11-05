@@ -1,9 +1,9 @@
 package main;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pages.MainMenu;
+import pages.LogInMenu;
 
 /**
  * This is the main method that will launch the application.
@@ -19,6 +19,7 @@ public class Main extends Application {
 	public static Stage mainStage;
 	
 	public MainMenu mainMenu;
+	public LogInMenu logInMenu;
 	
 	
 	
@@ -29,10 +30,11 @@ public class Main extends Application {
 	public void start(Stage mainStage) throws Exception {
 		Main.mainStage = mainStage;
 		mainMenu = new MainMenu();
+		logInMenu = new LogInMenu();
 		
 		// TODO: Check if the user has launched the application before and display the appropriate scene
-		Main.mainStage.setScene(mainMenu.getScene());
-		Main.mainStage.setTitle("Fit4Life Member Management");
+		Main.mainStage.setScene(logInMenu.getScene());
+		Main.mainStage.setTitle("Fit4Life Login");
 		Main.mainStage.setResizable(false);
 		Main.mainStage.show();
 		
