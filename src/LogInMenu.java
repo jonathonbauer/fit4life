@@ -97,7 +97,6 @@ public class LogInMenu extends Application {
 			public void handle(ActionEvent arg0) {
 				
 				//Code for Log In Button goes here
-				
 			}
 			
 		});
@@ -120,8 +119,8 @@ public class LogInMenu extends Application {
 		pane.setBottom(bottom);		
 		pane.setCenter(middle);
 
-		Scene scene = new Scene(pane, 1024, 768);
-		primaryStage.setScene(scene);
+		Scene logInScene = new Scene(pane, 1024, 768);
+		primaryStage.setScene(logInScene);
 		primaryStage.setTitle("Fit4Life Login");
 		primaryStage.show();
 		
