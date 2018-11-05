@@ -7,7 +7,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import main.Config;
 
 public class Initialization {
 	private TextField dbNameField;
@@ -74,7 +73,7 @@ public class Initialization {
 		this.root.setTop(this.menuBar);
 		this.root.setCenter(this.centerBox);
 		
-		this.scene = new Scene(this.root, Config.APP_WIDTH, Config.APP_HEIGHT);
+		this.scene = new Scene(this.root, 1024, 768);
 		
 	}
 
