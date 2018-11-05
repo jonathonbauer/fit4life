@@ -144,6 +144,14 @@ public class LogInMenu {
 		
 	}
 
+	public MainMenu getMainMenu() {
+		return mainMenu;
+	}
+
+	public void setMainMenu(MainMenu mainMenu) {
+		this.mainMenu = mainMenu;
+	}
+
 	public BorderPane getPane() {
 		return pane;
 	}
