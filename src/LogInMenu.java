@@ -96,6 +96,8 @@ public class LogInMenu extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				
+				//Code for Log In Button goes here
+				
 			}
 			
 		});
