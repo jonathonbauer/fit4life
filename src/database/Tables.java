@@ -2,11 +2,15 @@ package database;
 
 /**
  * 
- * This class will be used to hold all the constants that represent the table and column_names in the database
+ * This class will be used to hold all the constants that represent the table and column names in the database
  *
  */
 
 public class Tables {
+	
+	// Database Name
+	public static final String DB_NAME = "fit4life";
+	
 	
 	// Members Table
 	public static final String TABLE_MEMBERS = "members";
