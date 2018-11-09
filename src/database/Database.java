@@ -24,7 +24,7 @@ public class Database {
 		if(connection == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://php.scweb.ca/" + Tables.DB_NAME + "?useSSL=false", "user", "password");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
 				System.out.println("Successfully connected to the database.");
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -40,6 +40,7 @@ public class Database {
 			createTable(Tables.TABLE_LOCATION_AMENITIES, Tables.CREATE_TABLE_LOCATION_AMENITIES, connection);
 			createTable(Tables.TABLE_MEMBER_AMENITIES, Tables.CREATE_TABLE_MEMBER_AMENITIES, connection);
 			createTable(Tables.TABLE_MANAGER_LOCATIONS, Tables.CREATE_TABLE_MANAGER_LOCATIONS, connection);
+			createTable(Tables.TABLE_USERS, Tables.CREATE_TABLE_USERS, connection);
 			
 		} catch(SQLException e) {
 			e.printStackTrace();

@@ -1,5 +1,6 @@
 package main;
 
+import database.Database;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import pages.MainMenu;
@@ -30,6 +31,8 @@ public class Main extends Application {
 		Main.mainStage = mainStage;
 		mainMenu = new MainMenu();
 		logInMenu = new LogInMenu();
+		Database db = Database.getInstance();
+		
 		
 		// TODO: Check if the user has launched the application before and display the appropriate scene
 		Main.mainStage.setScene(logInMenu.getScene());
