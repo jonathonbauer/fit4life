@@ -1,5 +1,9 @@
 package pages;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import database.Database;
 import javabeans.UserTable;
 import javafx.geometry.Pos;
@@ -92,8 +96,20 @@ public class Initialization {
 				flag = false;
 			}
 		
-			// If input passes validation, create the user in the database and set the scene to the login page
+			// If input passes validation, change the first time launch flag,
+			// create the user in the database and set the scene to the login page
 			if(flag) {
+				BufferedWriter out;
+				try {
+					out = new BufferedWriter(new FileWriter("src/main/hasLaunched.txt"));
+					out.write("true");
+	            	out.flush();
+	            	out.close();  
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            	
 				UserTable userTable = new UserTable();
 				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
 				LogInMenu loginMenu = new LogInMenu();

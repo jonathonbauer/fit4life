@@ -60,7 +60,7 @@ public class MainMenu {
 		this.root.setTop(this.menuBar);
 		this.root.setCenter(this.buttonBox);
 		this.root.setBottom(this.currentUser);
-		this.root.setAlignment(this.currentUser, Pos.CENTER);
+		BorderPane.setAlignment(this.currentUser, Pos.CENTER);
 		
 		
 		// TODO: Button event handlers
