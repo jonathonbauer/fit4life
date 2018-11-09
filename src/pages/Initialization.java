@@ -1,5 +1,7 @@
 package pages;
 
+import database.Database;
+import javabeans.UserTable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,6 +9,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import tables.User;
 
 public class Initialization {
 	private TextField dbNameField;
@@ -48,7 +51,52 @@ public class Initialization {
 		
 		// TODO: Button handlers with form validation
 		
-		
+		this.submitButton.setOnAction(e->{
+			
+			// Check that all fields are populated and have valid info
+			if(this.dbNameField.getText() == null) {
+				System.out.println("Database Name not entered");
+			}
+			if(this.dbHostField.getText() == null) {
+				System.out.println("Database Host not entered");
+			}
+			if(this.dbUserField.getText() == null) {
+				System.out.println("Database User not entered");
+			}
+			if(this.dbPassField.getText() == null) {
+				System.out.println("Database Password not entered");
+			}
+			if(this.userField.getText() == null) {
+				System.out.println("Username not entered");
+			}
+			if(this.passwordField.getText() == null || this.verifyPasswordField == null || this.passwordField.getText() == this.verifyPasswordField.getText()) {
+				System.out.println("Passwords do not match");
+			}
+			
+			// Set the Database Values to the constants
+			
+			// Initialize the database
+			Database db = Database.getInstance();
+			
+			// Test the connection to the database
+			if(!db.testConnection()) {
+				System.out.println("Connection could not be established");
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				UserTable userTable = new UserTable();
+				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
+				System.out.println("Passwords Match");
+			
+		});
 		
 		
 		// TODO: Replace this with the MenuBar that is to be created
