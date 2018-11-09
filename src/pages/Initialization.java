@@ -9,6 +9,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import main.Main;
 import tables.User;
 
 public class Initialization {
@@ -52,28 +53,35 @@ public class Initialization {
 		// TODO: Button handlers with form validation
 		
 		this.submitButton.setOnAction(e->{
+			Boolean flag = true;
 			
 			// Check that all fields are populated and have valid info
-			if(this.dbNameField.getText() == null) {
+			if(this.dbNameField.getText().isEmpty()) {
 				System.out.println("Database Name not entered");
+				flag = false;
 			}
-			if(this.dbHostField.getText() == null) {
+			if(this.dbHostField.getText().isEmpty()) {
 				System.out.println("Database Host not entered");
+				flag = false;
 			}
-			if(this.dbUserField.getText() == null) {
+			if(this.dbUserField.getText().isEmpty()) {
 				System.out.println("Database User not entered");
+				flag = false;
 			}
-			if(this.dbPassField.getText() == null) {
+			if(this.dbPassField.getText().isEmpty()) {
 				System.out.println("Database Password not entered");
+				flag = false;
 			}
-			if(this.userField.getText() == null) {
+			if(this.userField.getText().isEmpty()) {
 				System.out.println("Username not entered");
+				flag = false;
 			}
-			if(this.passwordField.getText() == null || this.verifyPasswordField == null || this.passwordField.getText() == this.verifyPasswordField.getText()) {
+			if(this.passwordField.getText().isEmpty() || this.verifyPasswordField.getText().isEmpty() || !this.passwordField.getText().equals(this.verifyPasswordField.getText())) {
 				System.out.println("Passwords do not match");
+				flag = false;
 			}
 			
-			// Set the Database Values to the constants
+			// Set the constants in the config to the Database from the text views
 			
 			// Initialize the database
 			Database db = Database.getInstance();
@@ -81,21 +89,16 @@ public class Initialization {
 			// Test the connection to the database
 			if(!db.testConnection()) {
 				System.out.println("Connection could not be established");
+				flag = false;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+		
+			// If input passes validation, create the user in the database and set the scene to the login page
+			if(flag) {
 				UserTable userTable = new UserTable();
 				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
-				System.out.println("Passwords Match");
-			
+				LogInMenu loginMenu = new LogInMenu();
+				Main.mainStage.setScene(loginMenu.getScene());
+			}
 		});
 		
 		

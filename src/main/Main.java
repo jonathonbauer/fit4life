@@ -3,8 +3,9 @@ package main;
 import database.Database;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import pages.MainMenu;
+import pages.Initialization;
 import pages.LogInMenu;
+import pages.MainMenu;
 
 /**
  * This is the main method that will launch the application.
@@ -20,6 +21,7 @@ public class Main extends Application {
 	public static Stage mainStage;
 	public MainMenu mainMenu;
 	public LogInMenu logInMenu;
+	public Initialization init;
 	
 	
 	
@@ -31,11 +33,13 @@ public class Main extends Application {
 		Main.mainStage = mainStage;
 		mainMenu = new MainMenu();
 		logInMenu = new LogInMenu();
+		init = new Initialization();
 		Database db = Database.getInstance();
 		
 		
 		// TODO: Check if the user has launched the application before and display the appropriate scene
-		Main.mainStage.setScene(logInMenu.getScene());
+//		Main.mainStage.setScene(logInMenu.getScene());
+		Main.mainStage.setScene(init.getScene());
 		Main.mainStage.setTitle("Fit4Life Login");
 		Main.mainStage.setResizable(false);
 		Main.mainStage.show();
