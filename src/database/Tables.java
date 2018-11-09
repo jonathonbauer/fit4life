@@ -12,6 +12,13 @@ public class Tables {
 	// Database Name
 	public static final String DB_NAME = "fit4life";
 	
+	// Users Table
+	
+	public static final String TABLE_USERS = "users";
+	public static final String USERS_COLUMN_ID = "id";
+	public static final String USERS_COLUMN_USERNAME = "username";
+	public static final String USERS_COLUMN_PASSWORD = "password";
+	
 	
 	// Members Table
 	public static final String TABLE_MEMBERS = "members";
@@ -73,6 +80,15 @@ public class Tables {
 	
 	
 	// Create Table Queries
+	
+	public static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS +
+			 "(" + USERS_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
+			 	USERS_COLUMN_USERNAME + " VARCHAR(50), " +
+			 // TODO: Revisit the storing of the password to make it secure
+			 	USERS_COLUMN_PASSWORD + " VARCHAR(50), " + 			 	
+			     "PRIMARY KEY(" + USERS_COLUMN_ID + "));";
+	
+	
 	
 	public static final String CREATE_TABLE_MEMBERS = "CREATE TABLE " + TABLE_MEMBERS +
 	 		"(" + MEMBERS_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
