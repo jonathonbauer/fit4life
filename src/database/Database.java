@@ -24,12 +24,17 @@ public class Database {
 		if(connection == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://php.scweb.ca/" + Tables.DB_NAME + "?useSSL=false", "user", "password");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
 				System.out.println("Successfully connected to the database.");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	// Create Tables Method
+	
+	public Boolean createTables() {
 		try {
 			createTable(Tables.TABLE_MEMBERS, Tables.CREATE_TABLE_MEMBERS, connection);
 			createTable(Tables.TABLE_CITIES, Tables.CREATE_TABLE_CITIES, connection);
@@ -40,15 +45,33 @@ public class Database {
 			createTable(Tables.TABLE_LOCATION_AMENITIES, Tables.CREATE_TABLE_LOCATION_AMENITIES, connection);
 			createTable(Tables.TABLE_MEMBER_AMENITIES, Tables.CREATE_TABLE_MEMBER_AMENITIES, connection);
 			createTable(Tables.TABLE_MANAGER_LOCATIONS, Tables.CREATE_TABLE_MANAGER_LOCATIONS, connection);
-			
+			createTable(Tables.TABLE_USERS, Tables.CREATE_TABLE_USERS, connection);
+			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
+	
 	
 	// getConnection method
 	public Connection getConnection() {
 		return connection;
+	}
+	
+	public Boolean testConnection() {
+		if(connection == null) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
+				return true;
+			} catch(Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		} else {
+			return true;
+		}	
 	}
 	
 	
