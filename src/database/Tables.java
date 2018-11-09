@@ -25,7 +25,7 @@ public class Tables {
 	public static final String MEMBERS_COLUMN_REGISTRATION_DATE = "registration_date";	
 	
 	// Cities Table	
-	public static final String TABLE_CITIES = "location";
+	public static final String TABLE_CITIES = "cities";
 	public static final String CITIES_COLUMN_ID = "id";
 	public static final String CITIES_COLUMN_CITY = "city";
 	
