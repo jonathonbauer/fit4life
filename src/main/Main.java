@@ -17,7 +17,6 @@ public class Main extends Application {
 
 	// Main Stage to be used globally
 	public static Stage mainStage;
-	
 	public MainMenu mainMenu;
 	public LogInMenu logInMenu;
 	

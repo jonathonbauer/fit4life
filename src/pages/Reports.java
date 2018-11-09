@@ -1,16 +1,20 @@
 package pages;
 
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-public class Reports extends MainMenu {
+public class Reports {
+	
 	private Button locationReport;
 	private Button cityReport;
 	private Button membershipReport;
 	private Button registrationReport;
 	
 	private VBox reportButtonBox;
+	
+	private Scene scene;
 
 	public Reports() {
 		this.locationReport = new Button("Location Report");
@@ -27,8 +31,21 @@ public class Reports extends MainMenu {
 		this.reportButtonBox.getChildren().addAll(locationReport, cityReport, membershipReport, registrationReport);
 		this.reportButtonBox.setSpacing(5);
 		this.reportButtonBox.setAlignment(Pos.CENTER);
+		
+		this.scene = new Scene(this.reportButtonBox, 1024, 768);
 	}
 	
+
+	public Scene getScene() {
+		return scene;
+	}
+
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+
 	public Button getLocationReport() {
 		return locationReport;
 	}
@@ -68,5 +85,6 @@ public class Reports extends MainMenu {
 	public void setReportButtonBox(VBox reportButtonBox) {
 		this.reportButtonBox = reportButtonBox;
 	}
+
 
 }
