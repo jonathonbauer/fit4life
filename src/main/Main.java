@@ -30,6 +30,7 @@ public class Main extends Application {
 
 	public void start(Stage mainStage) throws Exception {
 		Main.mainStage = mainStage;
+		mainMenu = new MainMenu();
 		credits = new Credits();
 		
 		// TODO: Check if the user has launched the application before and display the appropriate scene

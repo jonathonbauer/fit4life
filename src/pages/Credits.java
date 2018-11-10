@@ -12,6 +12,8 @@ import main.Main;
 
 public class Credits {
 	
+	public MainMenu mainMenu;
+	
 	private Text name1;
 	private Text name2;
 	private Text name3;
@@ -75,8 +77,10 @@ public class Credits {
 	this.menuButton = new Button("Main Menu");
 	this.menuButton.setAlignment(Pos.BOTTOM_RIGHT);
 	
+	//Button functionality
+//	this.mainMenu = new MainMenu();
 //	this.menuButton.setOnAction(e->{
-//	Main.mainStage.setScene(new MainMenu());
+//	Main.mainStage.setScene(mainMenu.getScene());
 //	});
 	
 	//Create The Gridpane
@@ -102,11 +106,11 @@ public class Credits {
 		this.scene = scene;
 	}
 
-	public BorderPane getPane() {
+	public GridPane getPane() {
 		return pane;
 	}
 
-	public void setPane(BorderPane pane) {
+	public void setPane(GridPane pane) {
 		this.pane = pane;
 	}
 
