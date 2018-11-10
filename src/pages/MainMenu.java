@@ -1,5 +1,7 @@
 package pages;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,7 +9,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import main.Config;
+import main.Main;
 
 /**
  * 
@@ -16,6 +18,8 @@ import main.Config;
  *
  */
 public class MainMenu {
+	
+	public Reports reportMenu;
 
 	private Button createButton;
 	private Button updateButton;
@@ -56,17 +60,39 @@ public class MainMenu {
 		this.root.setTop(this.menuBar);
 		this.root.setCenter(this.buttonBox);
 		this.root.setBottom(this.currentUser);
-		this.root.setAlignment(this.currentUser, Pos.CENTER);
+		BorderPane.setAlignment(this.currentUser, Pos.CENTER);
 		
 		
 		// TODO: Button event handlers
+		this.reportsButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				reportMenu = new Reports();
+				
+				Main.mainStage.setScene(reportMenu.getScene());
+				Main.mainStage.setTitle("Fit4Life - Reports");
+				Main.mainStage.setResizable(false);
+				Main.mainStage.show();
+			}
+			
+		});
 		
+
+		this.scene = new Scene(this.root, 1024, 768);
 		
-		
-		
-		
-	this.scene = new Scene(this.root, Config.APP_WIDTH, Config.APP_HEIGHT);
-		
+
+	}
+
+
+	public Reports getReportMenu() {
+		return reportMenu;
+	}
+
+
+	public void setReportMenu(Reports reportMenu) {
+		this.reportMenu = reportMenu;
 	}
 
 
