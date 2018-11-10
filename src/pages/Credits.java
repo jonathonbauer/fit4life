@@ -29,7 +29,7 @@ public class Credits {
 	
 	
 	private Scene scene;
-	private BorderPane pane;
+	private GridPane pane;
 	private HBox developersBox;
 	private HBox emailBox;
 	private VBox infoBox;
@@ -40,7 +40,7 @@ public class Credits {
 	this.name1 = new Text ("Jonny Bauer");
 	this.name2 = new Text ("Cody Pollard");
 	this.name3 = new Text ("Joe B");
-	this.name3 = new Text ("Grant");
+	this.name4 = new Text ("Grant");
 	
 	this.title = new Text ("Fit4Life");
 	
@@ -57,17 +57,17 @@ public class Credits {
 	this.developersBox = new HBox();
 	this.developersBox.getChildren().addAll(name1, name2, name3, name4);
 	this.developersBox.setSpacing(5);
-	//this.developersBox.setAlignment(Pos.BOTTOM_CENTER);
+	this.developersBox.setAlignment(Pos.CENTER);
 
-	//This HBox Holds the Email of Cody, Jonny, & Joe
+	//This HBox Holds the Email of Cody, Jonny, & Joe, Grant
 	this.emailBox = new HBox();
-	this.emailBox.getChildren().addAll(email1, email2, email3, email4);
+	this.emailBox.getChildren().addAll(this.email1, this.email2, this.email3, this.email4);
 	this.emailBox.setSpacing(5);
-	//this.emailBox.setAlignment(Pos.BOTTOM_CENTER);
+	this.emailBox.setAlignment(Pos.CENTER);
 
 	//This VBox Holds the information of the font,logo,images
 	this.infoBox = new VBox();
-	this.infoBox.getChildren().addAll(title, image, logo, font);
+	this.infoBox.getChildren().addAll(this.title, this.image, this.logo, this.font);
 	this.infoBox.setSpacing(5);
 	this.infoBox.setAlignment(Pos.CENTER);
 
@@ -79,10 +79,16 @@ public class Credits {
 //	Main.mainStage.setScene(new MainMenu());
 //	});
 	
-	this.pane = new BorderPane();
-	this.pane.setTop(this.infoBox);
-	this.pane.setCenter(this.developersBox);
-	this.pane.setBottom(this.emailBox);
+	//Create The Gridpane
+	this.pane = new GridPane();
+	//this.pane.setGridLinesVisible(true);
+	
+	this.pane.setAlignment(Pos.CENTER);
+	//Setting all of the information onto the screen
+	this.pane.add(this.infoBox, 1, 1, 1, 1);
+	this.pane.add(this.developersBox, 1, 2, 1, 1);
+	this.pane.add(this.emailBox, 1, 3, 1, 1);
+	this.pane.add(this.menuButton, 1, 4, 1, 1);
 	this.scene = new Scene(this.pane, 1024, 768);
 	
 	
@@ -164,7 +170,7 @@ public class Credits {
 	}
 
 	public void setName4(Text name4) {
-		this.name3 = name4;
+		this.name4 = name4;
 	}
 
 	public Text getTitle() {

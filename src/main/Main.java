@@ -3,6 +3,7 @@ package main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pages.Credits;
 import pages.MainMenu;
 
 /**
@@ -19,6 +20,7 @@ public class Main extends Application {
 	public static Stage mainStage;
 	
 	public MainMenu mainMenu;
+	public Credits credits;
 	
 	
 	
@@ -28,10 +30,10 @@ public class Main extends Application {
 
 	public void start(Stage mainStage) throws Exception {
 		Main.mainStage = mainStage;
-		mainMenu = new MainMenu();
+		credits = new Credits();
 		
 		// TODO: Check if the user has launched the application before and display the appropriate scene
-		Main.mainStage.setScene(mainMenu.getScene());
+		Main.mainStage.setScene(credits.getScene());
 		Main.mainStage.setTitle("Fit4Life Member Management");
 		Main.mainStage.setResizable(false);
 		Main.mainStage.show();
