@@ -5,8 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import pages.Credits;
 import pages.Initialization;
 import pages.LogInMenu;
+
 import pages.MainMenu;
 
 /**
@@ -21,6 +23,7 @@ public class Main extends Application {
 	// Main Stage to be used globally
 	public static Stage mainStage;
 	public MainMenu mainMenu;
+
 	public LogInMenu logInMenu;
 	public Initialization init;
 	
@@ -33,6 +36,12 @@ public class Main extends Application {
 	public void start(Stage mainStage) throws Exception {
 		Main.mainStage = mainStage;
 		mainMenu = new MainMenu();
+
+		
+		// TODO: Check if the user has launched the application before and display the appropriate scene
+		Main.mainStage.setScene(credits.getScene());
+		Main.mainStage.setTitle("Fit4Life Member Management");
+
 		logInMenu = new LogInMenu();
 		init = new Initialization();
 		

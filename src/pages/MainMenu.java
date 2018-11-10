@@ -82,6 +82,7 @@ public class MainMenu {
 
 		this.scene = new Scene(this.root, 1024, 768);
 		
+
 	}
 
 
