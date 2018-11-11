@@ -28,7 +28,7 @@ public class MainMenu {
 	
 	private VBox buttonBox;
 	private Text currentUser;
-	private MenuBar menuBar;
+	private pages.menuBar menuBar;
 	private BorderPane root;
 	private Scene scene;
 	
@@ -46,7 +46,7 @@ public class MainMenu {
 		
 		
 		// TODO: Replace this with the MenuBar that is to be created
-		this.menuBar = new MenuBar();
+		this.menuBar =  new menuBar();
 		
 		this.buttonBox = new VBox();
 		this.buttonBox.getChildren().addAll(createButton, updateButton, viewButton, reportsButton);
@@ -156,12 +156,12 @@ public class MainMenu {
 	}
 
 
-	public MenuBar getMenuBar() {
+	public pages.menuBar getMenuBar() {
 		return menuBar;
 	}
 
 
-	public void setMenuBar(MenuBar menuBar) {
+	public void setMenuBar(pages.menuBar menuBar) {
 		this.menuBar = menuBar;
 	}
 
