@@ -1,8 +1,9 @@
 package pages;
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import java.util.ArrayList;
+
+import javabeans.UserTable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,8 +16,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import pages.MainMenu;
 import main.Main;
+import tables.User;
 
 public class LogInMenu {
 	
@@ -82,10 +83,10 @@ public class LogInMenu {
 		this.login = new Button("Log In");
 		
 		//Adding in CheckBox Nodes
-		this.remember = new CheckBox("Remember me?");
+//		this.remember = new CheckBox("Remember me?");
 		
 		//Setting default checkbox values
-		this.remember.setIndeterminate(false);
+//		this.remember.setIndeterminate(false);
 		
 		//Adding in TextField and PasswordField to store username and password
 		
@@ -107,19 +108,28 @@ public class LogInMenu {
 		 * 
 		 */
 		
-		this.login.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent arg0) {
-				
-				mainMenu = new MainMenu();
-				
-				Main.mainStage.setScene(mainMenu.getScene());
-				Main.mainStage.setTitle("Fit4Life Member Management");
-				Main.mainStage.setResizable(false);
-				Main.mainStage.show();
-			}
+		this.login.setOnAction(e->{
 			
+				// Get the users from the database
+				UserTable userTable = new UserTable();
+				ArrayList<User> users = new ArrayList<>();
+				users = userTable.getAllUsers();
+				
+				for(int i = 0; i < users.size(); i++) {
+					if(this.userName.getText().equals(users.get(i).getUsername())) {
+						if(this.passWord.getText().equals(users.get(i).getPassword())) {
+							System.out.println("Successful login.");
+							mainMenu = new MainMenu();
+							Main.mainStage.setScene(mainMenu.getScene());
+							Main.mainStage.setTitle("Fit4Life Member Management");
+						} else {
+							System.out.println("Incorrect Password");
+						}
+					} else {
+						System.out.println("Does not match " + users.get(i).getUsername());
+					}
+					
+				}
 		});
 		
 		
@@ -132,7 +142,7 @@ public class LogInMenu {
 		
 		this.top.getChildren().add(title);
 		
-		this.middle.getChildren().addAll(userName, passWord,remember, errorText);
+		this.middle.getChildren().addAll(userName, passWord,/*remember,*/ errorText);
 		
 		this.bottom.getChildren().add(login);
 		
