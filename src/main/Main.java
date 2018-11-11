@@ -47,7 +47,7 @@ public class Main extends Application {
 			// If the file has no content, the application has never been launched
             if(in.readLine() == null) {
             	System.out.println("First time launch!");  
-            	Main.mainStage.setScene(init.getScene());
+            	Main.mainStage.setScene(logInMenu.getScene());
             } else {
             	System.out.println("We've been here before");
             	        	

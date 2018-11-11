@@ -109,11 +109,16 @@ public class LogInMenu {
 		 */
 		
 		this.login.setOnAction(e->{
-			
-				// Get the users from the database
+			/*
+			 *  Temporary comment to make testing program easier
+			 *  Removes Login Validation
+			 * 
+				Get the users from the database
 				UserTable userTable = new UserTable();
 				ArrayList<User> users = new ArrayList<>();
 				users = userTable.getAllUsers();
+				
+				
 				
 				for(int i = 0; i < users.size(); i++) {
 					if(this.userName.getText().equals(users.get(i).getUsername())) {
@@ -130,12 +135,13 @@ public class LogInMenu {
 					}
 					
 				}
+			*/
+			
+			 mainMenu = new MainMenu();
+             Main.mainStage.setScene(mainMenu.getScene());
 		});
 		
-		
-		
-		
-		
+	
 		/*
 		 * Adding the userName and passWord TextArea fields to the "Middle" VBox
 		 */
