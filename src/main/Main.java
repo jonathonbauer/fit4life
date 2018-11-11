@@ -37,11 +37,6 @@ public class Main extends Application {
 		Main.mainStage = mainStage;
 		mainMenu = new MainMenu();
 
-		
-		// TODO: Check if the user has launched the application before and display the appropriate scene
-		Main.mainStage.setScene(credits.getScene());
-		Main.mainStage.setTitle("Fit4Life Member Management");
-
 		logInMenu = new LogInMenu();
 		init = new Initialization();
 		
