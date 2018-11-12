@@ -109,11 +109,8 @@ public class LogInMenu {
 		 */
 		
 		this.login.setOnAction(e->{
-			/*
-			 *  Temporary comment to make testing program easier
-			 *  Removes Login Validation
-			 * 
-				Get the users from the database
+			
+				//Get the users from the database
 				UserTable userTable = new UserTable();
 				ArrayList<User> users = new ArrayList<>();
 				users = userTable.getAllUsers();
@@ -135,10 +132,8 @@ public class LogInMenu {
 					}
 					
 				}
-			*/
-			
-			 mainMenu = new MainMenu();
-             Main.mainStage.setScene(mainMenu.getScene());
+		
+		
 		});
 		
 	
