@@ -93,7 +93,7 @@ public class LogInMenu {
 		this.userName = new TextField();
 		this.userName.setMaxHeight(30);
 		this.userName.setMinHeight(30);
-		this.userName.setMaxWidth(300);
+ 		this.userName.setMaxWidth(300);
 		this.userName.setPromptText("USERNAME");
 		
 		this.passWord = new PasswordField();
@@ -110,10 +110,12 @@ public class LogInMenu {
 		
 		this.login.setOnAction(e->{
 			
-				// Get the users from the database
+				//Get the users from the database
 				UserTable userTable = new UserTable();
 				ArrayList<User> users = new ArrayList<>();
 				users = userTable.getAllUsers();
+				
+				
 				
 				for(int i = 0; i < users.size(); i++) {
 					if(this.userName.getText().equals(users.get(i).getUsername())) {
@@ -130,12 +132,11 @@ public class LogInMenu {
 					}
 					
 				}
+		
+		
 		});
 		
-		
-		
-		
-		
+	
 		/*
 		 * Adding the userName and passWord TextArea fields to the "Middle" VBox
 		 */
