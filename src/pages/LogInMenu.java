@@ -93,7 +93,7 @@ public class LogInMenu {
 		this.userName = new TextField();
 		this.userName.setMaxHeight(30);
 		this.userName.setMinHeight(30);
-		this.userName.setMaxWidth(300);
+ 		this.userName.setMaxWidth(300);
 		this.userName.setPromptText("USERNAME");
 		
 		this.passWord = new PasswordField();

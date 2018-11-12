@@ -19,6 +19,8 @@ public class menuBar extends MenuBar {
 		this.menuFile.setOnAction(e->{
 			System.out.println("File Menu Clicked");
 		});
+		
+		this.getMenus().addAll(this.menuFile,this.menuEdit,this.menuView);
 	}
 
 	public Menu getMenuFile() {
