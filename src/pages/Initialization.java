@@ -10,38 +10,59 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import main.Main;
 import tables.User;
 
 public class Initialization {
+	private Text dbInfo;
+	private Text userInfo;
+	
 	private TextField dbNameField;
 	private TextField dbHostField;
 	private TextField dbUserField;
-	private TextField dbPassField;
+	private PasswordField dbPassField;
 	private TextField userField;
-	private TextField passwordField;
-	private TextField verifyPasswordField;
+	private PasswordField passwordField;
+	private PasswordField verifyPasswordField;
 	private Button submitButton;
 	
 	private VBox centerBox;
 	private VBox dbBox;
 	private VBox userBox;
-	private MenuBar menuBar;
+	private menuBar menuBar;
 	private BorderPane root;
 	private Scene scene;
 	
 	public Initialization() {
-		this.dbNameField = new TextField("Database Name");
-		this.dbHostField = new TextField("Database Host");
-		this.dbUserField = new TextField("Database User");
-		this.dbPassField = new TextField("Database Pass");
+		this.dbInfo = new Text("Database Information");
+		this.dbInfo.setFont(Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 25));
+		this.userInfo = new Text("User Information");
+		this.userInfo.setFont(Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 25));
 		
-		this.userField = new TextField("Create User Name");
-		this.passwordField = new TextField("Create Password");
-		this.verifyPasswordField = new TextField("Verify Password");
+		
+		this.dbNameField = new TextField();
+		this.dbNameField.setPromptText("fit4life");
+		this.dbHostField = new TextField();
+		this.dbHostField.setPromptText("localhost");
+		this.dbUserField = new TextField();
+		this.dbUserField.setPromptText("admin");
+		this.dbPassField = new PasswordField();
+		this.dbPassField.setPromptText("password");
+		
+		this.userField = new TextField();
+		this.userField.setPromptText("admin");
+		this.passwordField = new PasswordField();
+		this.passwordField.setPromptText("password");
+		this.verifyPasswordField = new PasswordField();
+		this.verifyPasswordField.setPromptText("password");
 		
 		this.dbNameField.setMaxWidth(150);
 		this.dbHostField.setMaxWidth(150);
@@ -119,15 +140,15 @@ public class Initialization {
 		
 		
 		// TODO: Replace this with the MenuBar that is to be created
-		this.menuBar = new MenuBar();
+		this.menuBar = new menuBar();
 		
 		this.dbBox = new VBox();
-		this.dbBox.getChildren().addAll(this.dbHostField, this.dbNameField, this.dbUserField, this.dbPassField);
+		this.dbBox.getChildren().addAll(this.dbInfo, this.dbHostField, this.dbNameField, this.dbUserField, this.dbPassField);
 		this.dbBox.setSpacing(5);
 		this.dbBox.setAlignment(Pos.CENTER);
 		
 		this.userBox = new VBox();
-		this.userBox.getChildren().addAll(this.userField, this.passwordField, this.verifyPasswordField);
+		this.userBox.getChildren().addAll(this.userInfo, this.userField, this.passwordField, this.verifyPasswordField);
 		this.userBox.setSpacing(5);
 		this.userBox.setAlignment(Pos.CENTER);
 		
@@ -174,7 +195,7 @@ public class Initialization {
 		return dbPassField;
 	}
 
-	public void setDbPassField(TextField dbPassField) {
+	public void setDbPassField(PasswordField dbPassField) {
 		this.dbPassField = dbPassField;
 	}
 
@@ -190,7 +211,7 @@ public class Initialization {
 		return passwordField;
 	}
 
-	public void setPasswordField(TextField passwordField) {
+	public void setPasswordField(PasswordField passwordField) {
 		this.passwordField = passwordField;
 	}
 
@@ -198,7 +219,7 @@ public class Initialization {
 		return verifyPasswordField;
 	}
 
-	public void setVerifyPasswordField(TextField verifyPasswordField) {
+	public void setVerifyPasswordField(PasswordField verifyPasswordField) {
 		this.verifyPasswordField = verifyPasswordField;
 	}
 
@@ -230,7 +251,7 @@ public class Initialization {
 		return menuBar;
 	}
 
-	public void setMenuBar(MenuBar menuBar) {
+	public void setMenuBar(menuBar menuBar) {
 		this.menuBar = menuBar;
 	}
 
