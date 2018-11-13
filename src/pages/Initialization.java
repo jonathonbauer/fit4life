@@ -10,51 +10,116 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import main.Main;
 import tables.User;
 
 public class Initialization {
+	
+	// Headers
+	private Text dbInfo;
+	private Text userInfo;
+	
+	// Database Information
+	private Text dbName;
 	private TextField dbNameField;
+	private Text dbHost;
 	private TextField dbHostField;
+	
+	private Text dbUser;
 	private TextField dbUserField;
-	private TextField dbPassField;
+	
+	private Text dbPass;
+	private PasswordField dbPassField;
+	
+	// User Information
+	private Text user;
 	private TextField userField;
-	private TextField passwordField;
-	private TextField verifyPasswordField;
+	
+	private Text password;
+	private PasswordField passwordField;
+	
+	private Text verifyPassword;
+	private PasswordField verifyPasswordField;
 	private Button submitButton;
 	
+	// Layout Nodes
+	private HBox dbHostBox;
+	private HBox dbNameBox;
+	private HBox dbUserBox;
+	private HBox dbPassBox;
+	private HBox userBox;
+	private HBox passBox;
+	private HBox verifyPassBox;
+	
+	
 	private VBox centerBox;
-	private VBox dbBox;
-	private VBox userBox;
-	private MenuBar menuBar;
+	private VBox dbInfoBox;
+	private VBox userInfoBox;
+	private menuBar menuBar;
 	private BorderPane root;
 	private Scene scene;
 	
 	public Initialization() {
-		this.dbNameField = new TextField("Database Name");
-		this.dbHostField = new TextField("Database Host");
-		this.dbUserField = new TextField("Database User");
-		this.dbPassField = new TextField("Database Pass");
+		// Headers
+		this.dbInfo = new Text("Database Information");
+		this.dbInfo.setFont(Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 25));
+		this.userInfo = new Text("User Information");
+		this.userInfo.setFont(Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 25));
 		
-		this.userField = new TextField("Create User Name");
-		this.passwordField = new TextField("Create Password");
-		this.verifyPasswordField = new TextField("Verify Password");
 		
-		this.dbNameField.setMaxWidth(150);
-		this.dbHostField.setMaxWidth(150);
-		this.dbUserField.setMaxWidth(150);
-		this.dbPassField.setMaxWidth(150);
+		// Database Information
+		this.dbHost = new Text("Database Host");
+		this.dbHostField = new TextField();
+		this.dbHostField.setPromptText("localhost");
 		
-		this.userField.setMaxWidth(150);
-		this.passwordField.setMaxWidth(150);
-		this.verifyPasswordField.setMaxWidth(150);
+		this.dbName = new Text("Database Name");
+		this.dbNameField = new TextField();
+		this.dbNameField.setPromptText("fit4life");
 		
+		
+		// User Information
+		this.dbUser = new Text("Database Username");
+		this.dbUserField = new TextField();
+		this.dbUserField.setPromptText("admin");
+		
+		this.dbPass = new Text("Database Password");
+		this.dbPassField = new PasswordField();
+		this.dbPassField.setPromptText("password");
+		
+		this.user = new Text("Create Username");
+		this.userField = new TextField();
+		this.userField.setPromptText("admin");
+		
+		this.password = new Text("Create Password");
+		this.passwordField = new PasswordField();
+		this.passwordField.setPromptText("password");
+		
+		this.verifyPassword = new Text("Verify Password");
+		this.verifyPasswordField = new PasswordField();
+		this.verifyPasswordField.setPromptText("password");
+		
+		// Style the TextFields
+		
+		this.dbNameField.setMaxWidth(100);
+		this.dbHostField.setMaxWidth(100);
+		this.dbUserField.setMaxWidth(100);
+		this.dbPassField.setMaxWidth(100);
+		
+		this.userField.setMaxWidth(100);
+		this.passwordField.setMaxWidth(100);
+		this.verifyPasswordField.setMaxWidth(100);
+		
+		// Submit Button
 		this.submitButton = new Button("Submit");
-		
-		// TODO: Button handlers with form validation
 		
 		this.submitButton.setOnAction(e->{
 			Boolean flag = true;
@@ -118,28 +183,69 @@ public class Initialization {
 		});
 		
 		
-		// TODO: Replace this with the MenuBar that is to be created
-		this.menuBar = new MenuBar();
 		
-		this.dbBox = new VBox();
-		this.dbBox.getChildren().addAll(this.dbHostField, this.dbNameField, this.dbUserField, this.dbPassField);
-		this.dbBox.setSpacing(5);
-		this.dbBox.setAlignment(Pos.CENTER);
+		this.menuBar = new menuBar();
 		
-		this.userBox = new VBox();
-		this.userBox.getChildren().addAll(this.userField, this.passwordField, this.verifyPasswordField);
-		this.userBox.setSpacing(5);
+		// Add the Text & Fields to the HBoxs, add Spacing and align them to center
+		
+		this.dbHostBox = new HBox();
+		this.dbHostBox.getChildren().addAll(this.dbHost, this.dbHostField);
+		this.dbHostBox.setSpacing(10);
+		this.dbHostBox.setAlignment(Pos.CENTER);
+		
+		this.dbNameBox = new HBox();
+		this.dbNameBox.getChildren().addAll(this.dbName, this.dbNameField);
+		this.dbNameBox.setSpacing(10);
+		this.dbNameBox.setAlignment(Pos.CENTER);
+		
+		this.dbUserBox = new HBox();
+		this.dbUserBox.getChildren().addAll(this.dbUser, this.dbUserField);
+		this.dbUserBox.setSpacing(10);
+		this.dbUserBox.setAlignment(Pos.CENTER);
+		
+		this.dbPassBox = new HBox();
+		this.dbPassBox.getChildren().addAll(this.dbPass, this.dbPassField);
+		this.dbPassBox.setSpacing(10);
+		this.dbPassBox.setAlignment(Pos.CENTER);
+		
+		this.userBox = new HBox();
+		this.userBox.getChildren().addAll(this.user, this.userField);
+		this.userBox.setSpacing(10);
 		this.userBox.setAlignment(Pos.CENTER);
 		
+		this.passBox = new HBox();
+		this.passBox.getChildren().addAll(this.password, this.passwordField);
+		this.passBox.setSpacing(10);
+		this.passBox.setAlignment(Pos.CENTER);
+		
+		this.verifyPassBox = new HBox();
+		this.verifyPassBox.getChildren().addAll(this.verifyPassword, this.verifyPasswordField);
+		this.verifyPassBox.setSpacing(10);
+		this.verifyPassBox.setAlignment(Pos.CENTER);
+		
+		// Add the Hboxs to the VBoxs, add spacing, and align them to the center
+		
+		this.dbInfoBox = new VBox();
+		this.dbInfoBox.getChildren().addAll(this.dbInfo, this.dbHostBox, this.dbNameBox, this.dbUserBox, this.dbPassBox);
+		this.dbInfoBox.setSpacing(10);
+		this.dbInfoBox.setAlignment(Pos.CENTER);
+		
+		this.userInfoBox = new VBox();
+		this.userInfoBox.getChildren().addAll(this.userInfo, this.userBox, this.passBox, this.verifyPassBox);
+		this.userInfoBox.setSpacing(10);
+		this.userInfoBox.setAlignment(Pos.CENTER);
+		
 		this.centerBox = new VBox();
-		this.centerBox.getChildren().addAll(this.dbBox, this.userBox, this.submitButton);
+		this.centerBox.getChildren().addAll(this.dbInfoBox, this.userInfoBox, this.submitButton);
 		this.centerBox.setSpacing(25);
 		this.centerBox.setAlignment(Pos.CENTER);
 		
+		// Create the BorderPane and add the nodes to it
 		this.root = new BorderPane();
 		this.root.setTop(this.menuBar);
 		this.root.setCenter(this.centerBox);
 		
+		// Set the BorderPane to the scene
 		this.scene = new Scene(this.root, 1024, 768);
 		
 	}
@@ -174,7 +280,7 @@ public class Initialization {
 		return dbPassField;
 	}
 
-	public void setDbPassField(TextField dbPassField) {
+	public void setDbPassField(PasswordField dbPassField) {
 		this.dbPassField = dbPassField;
 	}
 
@@ -190,7 +296,7 @@ public class Initialization {
 		return passwordField;
 	}
 
-	public void setPasswordField(TextField passwordField) {
+	public void setPasswordField(PasswordField passwordField) {
 		this.passwordField = passwordField;
 	}
 
@@ -198,7 +304,7 @@ public class Initialization {
 		return verifyPasswordField;
 	}
 
-	public void setVerifyPasswordField(TextField verifyPasswordField) {
+	public void setVerifyPasswordField(PasswordField verifyPasswordField) {
 		this.verifyPasswordField = verifyPasswordField;
 	}
 
@@ -210,27 +316,27 @@ public class Initialization {
 		this.submitButton = submitButton;
 	}
 
-	public VBox getDbBox() {
-		return dbBox;
+	public VBox getDbInfoBox() {
+		return dbInfoBox;
 	}
 
-	public void setDbBox(VBox dbBox) {
-		this.dbBox = dbBox;
+	public void setDbInfoBox(VBox dbInfoBox) {
+		this.dbInfoBox = dbInfoBox;
 	}
 
-	public VBox getUserBox() {
-		return userBox;
+	public VBox getUserInfoBox() {
+		return userInfoBox;
 	}
 
-	public void setUserBox(VBox userBox) {
-		this.userBox = userBox;
+	public void setUserInfoBox(VBox userInfoBox) {
+		this.userInfoBox = userInfoBox;
 	}
 
 	public MenuBar getMenuBar() {
 		return menuBar;
 	}
 
-	public void setMenuBar(MenuBar menuBar) {
+	public void setMenuBar(menuBar menuBar) {
 		this.menuBar = menuBar;
 	}
 

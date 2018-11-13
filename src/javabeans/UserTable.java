@@ -88,7 +88,7 @@ public class UserTable implements UserDAO {
 	public void createUser(User user) {
 		String query = "INSERT INTO " + Tables.TABLE_USERS + "("
 				+ Tables.USERS_COLUMN_USERNAME + ", " 
-				+ Tables.USERS_COLUMN_PASSWORD + ") VALUES (' " 
+				+ Tables.USERS_COLUMN_PASSWORD + ") VALUES ('" 
 				+ user.getUsername() + "','" + user.getPassword() + "');";
 		try {
 			db.getConnection().createStatement().execute(query);
