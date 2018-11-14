@@ -23,7 +23,7 @@ public class Session {
 	}
 	
 	// Get instance method used to create a session with a user at log in
-	public Session getInstance(User user) {
+	public static Session getInstance(User user) {
 		if(session == null) {
 			session = new Session(user);
 			return session;
@@ -33,7 +33,7 @@ public class Session {
 	}
 	
 	// Get instance method used to get the instance that has already been created at log in
-	public Session getInstance() {
+	public static Session getInstance() {
 		if(session == null) {
 			System.out.println("There is no active session.");
 		}
