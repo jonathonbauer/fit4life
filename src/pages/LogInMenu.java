@@ -120,27 +120,25 @@ public class LogInMenu {
 				users = userTable.getAllUsers();
 				
 				
-				
 				for(int i = 0; i < users.size(); i++) {
 					if(this.userName.getText().equals(users.get(i).getUsername())) {
 						if(this.passWord.getText().equals(users.get(i).getPassword())) {
 							System.out.println("Successful login.");
-							Session.getInstance(new User(users.get(i).getUsername(), users.get(i).getPassword()));
+				
+							Session.getInstance().setLoggedInUser(new User(users.get(i).getUsername(), users.get(i).getPassword()));
+							
 							mainMenu = new MainMenu();
 							Main.mainStage.setScene(mainMenu.getScene());
 							Main.mainStage.setTitle("Fit4Life Member Management");
 						} else {
 							System.out.println("Incorrect Password");
 						}
-					} else {
-						System.out.println("Does not match " + users.get(i).getUsername());
-					}
-					
+					} 					
 				}
 			
-			mainMenu = new MainMenu();
-			Main.mainStage.setScene(mainMenu.getScene());
-			Main.mainStage.setTitle("Fit4Life Member Management");
+//			mainMenu = new MainMenu();
+//			Main.mainStage.setScene(mainMenu.getScene());
+//			Main.mainStage.setTitle("Fit4Life Member Management");
 		
 		
 		});

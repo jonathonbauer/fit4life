@@ -36,17 +36,17 @@ public class TabTemplate extends Tab{
 		this.viewButton.setMinSize(750, 100);
 		this.reportsButton.setMinSize(750, 100);
 		
+		this.currentUser = new Text("Current User: " + Session.getInstance().getLoggedInUser().getUsername());
+		
 		this.buttonBox = new VBox();
-		this.buttonBox.getChildren().addAll(createButton, updateButton, viewButton, reportsButton);
+		this.buttonBox.getChildren().addAll(createButton, updateButton, viewButton, reportsButton, this.currentUser);
 		this.buttonBox.setSpacing(5);
 		this.buttonBox.setAlignment(Pos.CENTER);
 		
-		this.currentUser = new Text(Session.getInstance().getLoggedInUser().getUsername());
-		System.out.println(Session.getInstance().getLoggedInUser().getUsername());
+		
 		
 		this.root = new BorderPane();
 		this.root.setCenter(this.buttonBox);
-		this.root.setBottom(this.currentUser);
 		
 		this.setContent(root);
 		

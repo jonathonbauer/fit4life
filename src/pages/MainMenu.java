@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
+import main.Session;
 import tabs.AmenitiesTab;
 import tabs.CitiesTab;
 import tabs.LocationsTab;
@@ -27,21 +28,21 @@ public class MainMenu {
 
 	public MainMenu() {	
 
-		// TODO: Replace this with the MenuBar that is to be created
+		
 		this.menuBar =  new menuBar();
 
 		this.tabPane = new TabPane();
 		this.tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 		
 		this.root = new BorderPane();
-
-		this.tabPane.getTabs().add(MembersTab.getInstance());
-		this.tabPane.getTabs().add(ManagersTab.getInstance());
-		this.tabPane.getTabs().add(LocationsTab.getInstance());
-		this.tabPane.getTabs().add(CitiesTab.getInstance());
-		this.tabPane.getTabs().add(AmenitiesTab.getInstance());
-		this.tabPane.getTabs().add(UsersTab.getInstance());
-		
+		if(Session.isLoggedIn()) {
+			this.tabPane.getTabs().add(MembersTab.getInstance());
+			this.tabPane.getTabs().add(ManagersTab.getInstance());
+			this.tabPane.getTabs().add(LocationsTab.getInstance());
+			this.tabPane.getTabs().add(CitiesTab.getInstance());
+			this.tabPane.getTabs().add(AmenitiesTab.getInstance());
+			this.tabPane.getTabs().add(UsersTab.getInstance());
+		}
 
 		this.root.setTop(this.menuBar);
 		this.root.setCenter(this.tabPane);

@@ -35,6 +35,7 @@ public class Session {
 	// Get instance method used to get the instance that has already been created at log in
 	public static Session getInstance() {
 		if(session == null) {
+			session = new Session(new User("null", "null"));
 			System.out.println("There is no active session.");
 		}
 		return session;
@@ -46,6 +47,16 @@ public class Session {
 
 	public void setLoggedInUser(User loggedInUser) {
 		this.loggedInUser = loggedInUser;
+	}
+	
+	// Method to check if the session is logged in 
+	public static Boolean isLoggedIn() {
+		if(session == null || session.getLoggedInUser().getUsername().equals("null")) {
+			return false;
+		} else {
+			return true;
+		}
+		
 	}
 	
 }
