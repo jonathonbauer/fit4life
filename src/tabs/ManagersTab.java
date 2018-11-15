@@ -6,11 +6,6 @@ public class ManagersTab extends TabTemplate {
 	private ManagersTab() {
 		this.setText("Managers");
 		
-		this.getCreateButton().setText("Create A New Manager");
-		this.getUpdateButton().setText("Update a Manager");
-		this.getViewButton().setText("View Managers");
-		this.getReportsButton().setText("Manager Reports");
-		
 	}
 	
 	public static ManagersTab getInstance() {

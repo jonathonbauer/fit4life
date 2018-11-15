@@ -5,11 +5,7 @@ public class AmenitiesTab extends TabTemplate {
 	
 	private AmenitiesTab() {
 		this.setText("Amenities");
-		
-		this.getCreateButton().setText("Create A New Amenity");
-		this.getUpdateButton().setText("Update an Amenity");
-		this.getViewButton().setText("View Amenities");
-		this.getReportsButton().setText("Amenity Reports");
+
 		
 	}
 	

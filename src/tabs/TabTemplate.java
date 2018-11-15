@@ -1,7 +1,6 @@
 package tabs;
 
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -22,6 +21,9 @@ public class TabTemplate extends Tab{
 	private Button viewButton;
 	private Button reportsButton;
 	private TabPane tabPane;
+	private Tab view;
+	private Tab update;
+	private Tab create;
 	
 	private VBox buttonBox;
 	private BorderPane root;
@@ -29,33 +31,21 @@ public class TabTemplate extends Tab{
 	// Constructor
 	public TabTemplate() {
 		this.setText("Members");
-		
-		this.createButton = new Button("Create");
-		this.updateButton = new Button("Update");
-		this.viewButton = new Button("View");
-		this.reportsButton = new Button("Reports");
 
-		this.createButton.setMinSize(750, 100);
-		this.updateButton.setMinSize(750, 100);
-		this.viewButton.setMinSize(750, 100);
-		this.reportsButton.setMinSize(750, 100);
-		
-		this.currentUser = new Text("Current User: " + Session.getInstance().getLoggedInUser().getUsername());
-		
-		this.buttonBox = new VBox();
-		this.buttonBox.getChildren().addAll(createButton, updateButton, viewButton, reportsButton, this.currentUser);
-		this.buttonBox.setSpacing(5);
-		this.buttonBox.setAlignment(Pos.CENTER);
-		
+//		this.currentUser = new Text("Current User: " + Session.getInstance().getLoggedInUser().getUsername());
+
 		this.tabPane = new TabPane();
 		this.tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
-//		this.tabPane.setSide(Side.LEFT);
+		
+		this.view = new Tab("View");
+		this.update = new Tab("Update");
+		this.create = new Tab("Create");
 		
 		
 		if(Session.isLoggedIn()) {
-			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
-//			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
-//			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
+			this.tabPane.getTabs().add(this.view);
+			this.tabPane.getTabs().add(this.update);
+			this.tabPane.getTabs().add(this.create);			
 			
 		}
 		
@@ -115,6 +105,31 @@ public class TabTemplate extends Tab{
 
 	public void setRoot(BorderPane root) {
 		this.root = root;
+	}
+	
+	
+	public Tab getView() {
+		return view;
+	}
+
+	public void setView(Tab view) {
+		this.view = view;
+	}
+
+	public Tab getUpdate() {
+		return update;
+	}
+
+	public void setUpdate(Tab update) {
+		this.update = update;
+	}
+
+	public Tab getCreate() {
+		return create;
+	}
+
+	public void setCreate(Tab create) {
+		this.create = create;
 	}
 
 	public static TabTemplate getInstance() {

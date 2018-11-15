@@ -5,11 +5,7 @@ public class UsersTab extends TabTemplate {
 	
 	private UsersTab() {
 		this.setText("Users");
-		
-		this.getCreateButton().setText("Create A New User");
-		this.getUpdateButton().setText("Update a User");
-		this.getViewButton().setText("View Users");
-		this.getReportsButton().setText("User Reports");
+
 		
 	}
 	

@@ -37,11 +37,11 @@ public class MainMenu {
 		this.root = new BorderPane();
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(MembersTab.getInstance());
-//			this.tabPane.getTabs().add(ManagersTab.getInstance());
-//			this.tabPane.getTabs().add(LocationsTab.getInstance());
-//			this.tabPane.getTabs().add(CitiesTab.getInstance());
-//			this.tabPane.getTabs().add(AmenitiesTab.getInstance());
-//			this.tabPane.getTabs().add(UsersTab.getInstance());
+			this.tabPane.getTabs().add(ManagersTab.getInstance());
+			this.tabPane.getTabs().add(LocationsTab.getInstance());
+			this.tabPane.getTabs().add(CitiesTab.getInstance());
+			this.tabPane.getTabs().add(AmenitiesTab.getInstance());
+			this.tabPane.getTabs().add(UsersTab.getInstance());
 		}
 
 		this.root.setTop(this.menuBar);

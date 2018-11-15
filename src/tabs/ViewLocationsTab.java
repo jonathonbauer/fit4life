@@ -6,8 +6,6 @@ import java.util.Date;
 import database.Database;
 import javabeans.MemberTable;
 import javafx.collections.FXCollections;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -16,13 +14,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import tables.Member;
 
-public class ViewMemberTab extends Tab {
+public class ViewLocationsTab extends Tab {
 	Database db = Database.getInstance();
 	MemberTable memberTable;
 	ArrayList<Member> members;
 	Member member;	
 
-	public static ViewMemberTab instance = null;
+	public static ViewLocationsTab instance = null;
 	private Button refresh;
 	private TableView<Member> table;
 	private TableColumn<Member, Integer> idCol;
@@ -37,7 +35,7 @@ public class ViewMemberTab extends Tab {
 	private BorderPane root;
 
 
-	public ViewMemberTab() {
+	public ViewLocationsTab() {
 		this.memberTable = new MemberTable();
 		this.members = new ArrayList<>();
 		this.members = this.memberTable.getAllMembers();
@@ -47,7 +45,7 @@ public class ViewMemberTab extends Tab {
 
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");
-		
+
 		this.nameCol = new TableColumn<>();
 		this.nameCol.setText("Name");
 
@@ -72,7 +70,7 @@ public class ViewMemberTab extends Tab {
 
 		this.table = new TableView<>();
 		this.table.setItems(FXCollections.observableArrayList(this.members));
-		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
 		this.nameCol.setCellValueFactory(new PropertyValueFactory("name"));
@@ -102,26 +100,13 @@ public class ViewMemberTab extends Tab {
 		this.root = new BorderPane();
 		this.root.setCenter(this.table);
 		this.root.setBottom(this.refresh);
-		
-		this.root.setPadding(new Insets(10,10,10,10));
-		BorderPane.setAlignment(this.refresh, Pos.CENTER);
-		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
-		
-		// Refresh button action handler
-		
-		this.refresh.setOnAction(e->{
-			this.members = null;
-			this.members = this.memberTable.getAllMembers();
-			this.table.refresh();
-			System.out.println("Table Refreshed");
-		});
 
 		this.setContent(root);
 	}
 
-	public static ViewMemberTab getInstance() {
+	public static ViewLocationsTab getInstance() {
 		if(instance == null) {
-			instance = new ViewMemberTab();
+			instance = new ViewLocationsTab();
 			return instance;
 		} else {
 			return instance;
