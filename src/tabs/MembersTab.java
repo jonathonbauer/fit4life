@@ -4,6 +4,7 @@ public class MembersTab extends TabTemplate {
 	public static MembersTab instance = null;
 	
 	private MembersTab() {
+
 		this.setText("Members");
 		
 		this.getCreateButton().setText("Create A New Member");

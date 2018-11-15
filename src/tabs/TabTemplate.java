@@ -5,12 +5,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import main.Session;
 import pages.Reports;
 
 public class TabTemplate extends Tab{
 	public static TabTemplate instance = null;
 	
-	
+	private Text currentUser;
 	public Reports reportMenu;
 	private Button createButton;
 	private Button updateButton;
@@ -34,14 +36,14 @@ public class TabTemplate extends Tab{
 		this.viewButton.setMinSize(750, 100);
 		this.reportsButton.setMinSize(750, 100);
 		
+		this.currentUser = new Text("Current User: " + Session.getInstance().getLoggedInUser().getUsername());
+		
 		this.buttonBox = new VBox();
-		this.buttonBox.getChildren().addAll(createButton, updateButton, viewButton, reportsButton);
+		this.buttonBox.getChildren().addAll(createButton, updateButton, viewButton, reportsButton, this.currentUser);
 		this.buttonBox.setSpacing(5);
 		this.buttonBox.setAlignment(Pos.CENTER);
 		
 		
-		this.root = new BorderPane();
-		this.root.setCenter(this.buttonBox);
 		
 		this.root = new BorderPane();
 		this.root.setCenter(this.buttonBox);
