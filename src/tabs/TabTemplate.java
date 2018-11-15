@@ -1,8 +1,11 @@
 package tabs;
 
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -18,7 +21,8 @@ public class TabTemplate extends Tab{
 	private Button updateButton;
 	private Button viewButton;
 	private Button reportsButton;
-
+	private TabPane tabPane;
+	
 	private VBox buttonBox;
 	private BorderPane root;
 	
@@ -43,10 +47,21 @@ public class TabTemplate extends Tab{
 		this.buttonBox.setSpacing(5);
 		this.buttonBox.setAlignment(Pos.CENTER);
 		
+		this.tabPane = new TabPane();
+		this.tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
+//		this.tabPane.setSide(Side.LEFT);
+		
+		
+		if(Session.isLoggedIn()) {
+			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
+//			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
+//			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
+			
+		}
 		
 		
 		this.root = new BorderPane();
-		this.root.setCenter(this.buttonBox);
+		this.root.setCenter(this.tabPane);
 		
 		this.setContent(root);
 		
