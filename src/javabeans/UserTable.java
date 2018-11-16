@@ -66,8 +66,8 @@ public class UserTable implements UserDAO {
 				Tables.USERS_COLUMN_PASSWORD + " " + user.getPassword() + "," +
 				" WHERE " + Tables.USERS_COLUMN_ID + " = " + user.getId();
 		try {
-			Statement updateItem = db.getConnection().createStatement();
-			updateItem.executeQuery(query);
+			Statement updateUser = db.getConnection().createStatement();
+			updateUser.executeQuery(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

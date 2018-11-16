@@ -5,11 +5,7 @@ public class CitiesTab extends TabTemplate {
 	
 	private CitiesTab() {
 		this.setText("Cities");
-		
-		this.getCreateButton().setText("Create A New City");
-		this.getUpdateButton().setText("Update a City");
-		this.getViewButton().setText("View Cities");
-		this.getReportsButton().setText("City Reports");
+
 		
 	}
 	

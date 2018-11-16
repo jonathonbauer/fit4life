@@ -5,11 +5,7 @@ public class LocationsTab extends TabTemplate {
 	
 	private LocationsTab() {
 		this.setText("Locations");
-		
-		this.getCreateButton().setText("Create A New Location");
-		this.getUpdateButton().setText("Update a Location");
-		this.getViewButton().setText("View Locations");
-		this.getReportsButton().setText("Location Reports");
+
 		
 	}
 	

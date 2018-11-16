@@ -1,5 +1,122 @@
 package javabeans;
 
-public class MemberTable {
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import daos.MemberDAO;
+import database.Database;
+import database.Tables;
+import tables.Member;
+
+public class MemberTable implements MemberDAO {
+	// Get the database connection
+	Database db = Database.getInstance();
+	ArrayList<Member> members;
+	Member member;
+	
+	
+	@Override
+	public ArrayList<Member> getAllMembers() {
+		String query = "SELECT * FROM " + Tables.TABLE_MEMBERS; 
+		members = new ArrayList<Member>();
+
+		try {
+			Statement getMembers = db.getConnection().createStatement();
+			ResultSet data;
+			data = getMembers.executeQuery(query);
+			while(data.next()) {
+				members.add(new Member(data.getInt(Tables.MEMBERS_COLUMN_ID),
+						data.getString(Tables.MEMBERS_COLUMN_NAME),
+						data.getString(Tables.MEMBERS_COLUMN_ADDRESS),
+						data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
+						data.getString(Tables.MEMBERS_COLUMN_CITY),
+						data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
+						data.getString(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL),
+						data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return members;
+	}
+
+	@Override
+	public Member getMember(int memberID) {
+		String query = "SELECT * FROM " + Tables.TABLE_MEMBERS + 
+				" WHERE " + Tables.MEMBERS_COLUMN_ID + " = " + memberID;
+		try {
+			Statement getMember = db.getConnection().createStatement();
+			ResultSet data = getMember.executeQuery(query);
+			data.next();
+			member = new Member(data.getInt(Tables.MEMBERS_COLUMN_ID),
+					data.getString(Tables.MEMBERS_COLUMN_NAME),
+					data.getString(Tables.MEMBERS_COLUMN_ADDRESS),
+					data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
+					data.getString(Tables.MEMBERS_COLUMN_CITY),
+					data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
+					data.getString(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL),
+					data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+
+	@Override
+	public void updateMember(Member member) {
+		String query = "UPDATE " + Tables.TABLE_MEMBERS + " SET " + 
+				Tables.MEMBERS_COLUMN_NAME + " " + member.getName() + "," +
+				Tables.MEMBERS_COLUMN_ADDRESS + " " + member.getAddress() + "," +
+				Tables.MEMBERS_COLUMN_POSTALCODE + " " + member.getPostalCode() + "," +
+				Tables.MEMBERS_COLUMN_CITY + " " + member.getCity() + "," +
+				Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP + " " + member.getActiveMembership() + "," +
+				Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL + " " + member.getMembershipLevel() + "," +
+				Tables.MEMBERS_COLUMN_REGISTRATION_DATE + " " + member.getRegistrationDate() + "," +
+				" WHERE " + Tables.MEMBERS_COLUMN_ID + " = " + member.getId();
+		try {
+			Statement updateMember = db.getConnection().createStatement();
+			updateMember.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	@Override
+	public void deleteMember(Member member) {
+		String query = "DELETE FROM " + Tables.TABLE_MEMBERS + 
+				" WHERE " + Tables.MEMBERS_COLUMN_ID + " = " + member.getId();
+		System.out.println("Member has been deleted.");
+		try {
+			db.getConnection().createStatement().execute(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void createMember(Member member) {
+		String query = "INSERT INTO " + Tables.TABLE_MEMBERS + "("
+				+ Tables.MEMBERS_COLUMN_NAME + ", "
+				+ Tables.MEMBERS_COLUMN_ADDRESS + ", "
+				+ Tables.MEMBERS_COLUMN_POSTALCODE + ", "
+				+ Tables.MEMBERS_COLUMN_CITY + ", "
+				+ Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP + ", "
+				+ Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL + ", "
+				+ Tables.MEMBERS_COLUMN_REGISTRATION_DATE + ") VALUES ('" 
+				+ member.getName() + "','" + member.getAddress() + "','" + member.getPostalCode()
+				+ member.getCity() + "','" + member.getActiveMembership() + "','" + member.getMembershipLevel()
+				+ "','" + member.getRegistrationDate() +"');";
+		try {
+			db.getConnection().createStatement().execute(query);
+			System.out.println("Member has been created.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }
