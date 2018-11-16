@@ -15,7 +15,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import tables.Member;
-
+/**
+ * 
+ *  This class is used to display the all members in the Member Database
+ *  It utilizes a TableView to display all information
+ *  This class follows the Singleton design pattern
+ *
+ */
 public class ViewMemberTab extends Tab {
 	Database db = Database.getInstance();
 	MemberTable memberTable;
@@ -38,13 +44,15 @@ public class ViewMemberTab extends Tab {
 
 
 	public ViewMemberTab() {
+		// Get all the members from the database
 		this.memberTable = new MemberTable();
 		this.members = new ArrayList<>();
 		this.members = this.memberTable.getAllMembers();
 
+		// Set the title text of the tab
 		this.setText("View Members");
 
-
+		// Declare the Columns and give them titles
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");
 		
@@ -69,11 +77,12 @@ public class ViewMemberTab extends Tab {
 		this.regDateCol = new TableColumn<>();
 		this.regDateCol.setText("Registration Date");
 
-
+		// Declare the table and set the values to the members arraylist
 		this.table = new TableView<>();
 		this.table.setItems(FXCollections.observableArrayList(this.members));
 		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
+		
+		// Get the values for the columns 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
 		this.nameCol.setCellValueFactory(new PropertyValueFactory("name"));
 		this.addressCol.setCellValueFactory(new PropertyValueFactory("address"));
@@ -84,21 +93,20 @@ public class ViewMemberTab extends Tab {
 		this.regDateCol.setCellValueFactory(new PropertyValueFactory("registrationDate"));
 
 
-
-		TableColumn<Member, String> firstNameCol = new TableColumn<Member,String>("Name");
-		firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
-
-
-		TableColumn<Member,String> lastNameCol = new TableColumn<Member,String>("Address");
-		lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
-
+		// Add the columns to the table
 		table.getColumns().setAll(this.idCol, this.nameCol, this.addressCol, this.postalCodeCol, this.cityCol,
 				this.activeMemberCol, this.memberLevelCol, this.regDateCol);
 
-
+		// Declare the refresh button and give it an action handler that refreshes the table
 		this.refresh = new Button("Refresh");
 
-
+		this.refresh.setOnAction(e->{
+			this.members.removeAll(this.members);
+			this.members = this.memberTable.getAllMembers();
+			this.table.setItems(FXCollections.observableArrayList(this.members));
+			System.out.println("Table Refreshed");
+		});
+		
 		this.root = new BorderPane();
 		this.root.setCenter(this.table);
 		this.root.setBottom(this.refresh);
@@ -106,19 +114,12 @@ public class ViewMemberTab extends Tab {
 		this.root.setPadding(new Insets(10,10,10,10));
 		BorderPane.setAlignment(this.refresh, Pos.CENTER);
 		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
-		
-		// Refresh button action handler
-		
-		this.refresh.setOnAction(e->{
-			this.members = null;
-			this.members = this.memberTable.getAllMembers();
-			this.table.refresh();
-			System.out.println("Table Refreshed");
-		});
+			
 
 		this.setContent(root);
 	}
 
+	// getInstance method used to get or create the ViewMemberTab
 	public static ViewMemberTab getInstance() {
 		if(instance == null) {
 			instance = new ViewMemberTab();
