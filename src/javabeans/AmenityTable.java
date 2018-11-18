@@ -10,66 +10,102 @@ import database.Database;
 import database.Tables;
 import tables.Amenity;
 
-public class AmenityTable implements AmenityDAO {
+
+public class AmenityTable implements AmenityDAO{
+
 	//database connection
-		Database db = Database.getInstance();
-		ArrayList<Amenity> amenities;
-		Amenity amenity;
+			Database db = Database.getInstance();
+			ArrayList<Amenity> amenities;
+			Amenity amenity;
 
-	public ArrayList<Amenity> getAllAmenities() {
-		String query = "SELECT * FROM " + Tables.TABLE_AMENITIES;
-		amenities = new ArrayList<Amenity>();
-		
-		try {
-			Statement getAmenities = db.getConnection().createStatement();
-			ResultSet data;
-			data = getAmenities.executeQuery(query);
-			while(data.next()) {
-				amenities.add(new Amenity(data.getInt(Tables.AMENITIES_COLUMN_ID),
-										data.getString(Tables.AMENITIES_COLUMN_AMENITY)
-						));
-			}
-		} catch (SQLException e) {
+	//Get All Amenities
+		@Override
+		public ArrayList<Amenity> getAllAmenities() {
+			String query = "SELECT * FROM " + Tables.TABLE_AMENITIES;
+			amenities = new ArrayList<Amenity>();
 			
-			e.printStackTrace();
-		} 
-		return amenities;
-	}
-
-	public Amenity getAmenity(int amenityID) {
-		String query = "SELECT * FROM " + Tables.TABLE_AMENITIES + " WHERE "
-				+ Tables.AMENITIES_COLUMN_ID + " = " + amenityID;
-		amenities = new ArrayList<Amenity>();
+			try {
+				Statement getAmenities = db.getConnection().createStatement();
+				ResultSet data;
+				data = getAmenities.executeQuery(query);
+				while(data.next()) {
+					amenities.add(new Amenity(data.getInt(Tables.AMENITIES_COLUMN_ID),
+											data.getString(Tables.AMENITIES_COLUMN_AMENITY)
+							));
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} 
+			return amenities;
+		}
 		
-		try {
-			Statement getAmenities = db.getConnection().createStatement();
-			ResultSet data;
-			data = getAmenities.executeQuery(query);
-			while(data.next()) {
-				amenities.add(new Amenity(data.getInt(Tables.AMENITIES_COLUMN_ID),
-										data.getString(Tables.AMENITIES_COLUMN_AMENITY)
-						));
-			}
-		} catch (SQLException e) {
+		//Get a single Amenity
+		@Override
+		public Amenity getAmenity(int amenityID) {
+			String query = "SELECT * FROM " + Tables.TABLE_AMENITIES + " WHERE "
+					+ Tables.AMENITIES_COLUMN_ID + " = " + amenityID;
 			
-			e.printStackTrace();
-		} 
-		return amenity;
-	}
-
-	public void updateAmenity(Amenity amenity) {
-
+			try {
+				Statement getAmenities = db.getConnection().createStatement();
+				ResultSet data;
+				data = getAmenities.executeQuery(query);
+				while(data.next()) {
+					amenities.add(new Amenity(data.getInt(Tables.AMENITIES_COLUMN_ID),
+											data.getString(Tables.AMENITIES_COLUMN_AMENITY)
+							));
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			} 
+			return amenity;
+		}
 		
-	}
+		//Update an amenity
+		@Override
+		public void updateAmenity(Amenity amenity) {
+			String query = "UPDATE " + Tables.TABLE_AMENITIES + " SET "
+					+ Tables.AMENITIES_COLUMN_AMENITY + " " + amenity.getAmenity();
+			try {
+				Statement updateAmenities = db.getConnection().createStatement();
+				ResultSet data;
+				data = updateAmenities.executeQuery(query);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
 
-	public void deleteAmenity(Amenity amenity) {
-
+			
+		}
 		
-	}
-
-	public void createAmenity(Amenity amenity) {
-
+		//Delete an Amenity
+		@Override
+		public void deleteAmenity(Amenity amenity) {
+			String query = "SELECT * FROM " + Tables.TABLE_AMENITIES + " WHERE "
+					+ Tables.AMENITIES_COLUMN_ID + " = " + amenity.getId();
+			System.out.println("Amenity has been deleted.");
+			try {
+				db.getConnection().createStatement().execute(query);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
-	}
+		//Create an amenity
+		@Override
+		public void createAmenity(Amenity amenity) {
+			String query = "INSERT INTO " + Tables.TABLE_AMENITIES + "("
+										+ Tables.AMENITIES_COLUMN_AMENITY
+										+ ") VALUES ('" + amenity.getAmenity() + "');"
+					+ Tables.AMENITIES_COLUMN_ID + " = " + amenity.getId();
+			System.out.println("Amenity has been deleted.");
+			try {
+				db.getConnection().createStatement().execute(query);
+				System.out.println("Amenity successfully created.");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-}
+		}
+
+	}
