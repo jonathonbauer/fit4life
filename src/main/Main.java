@@ -3,12 +3,11 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
-import pages.Credits;
 import pages.Initialization;
 import pages.LogInMenu;
-
 import pages.MainMenu;
 
 /**
@@ -47,7 +46,7 @@ public class Main extends Application {
 			// If the file has no content, the application has never been launched
             if(in.readLine() == null) {
             	System.out.println("First time launch!");  
-            	Main.mainStage.setScene(logInMenu.getScene());
+            	Main.mainStage.setScene(init.getScene());
             } else {
             	System.out.println("We've been here before");
             	        	
