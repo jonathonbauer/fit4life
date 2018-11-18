@@ -1,9 +1,15 @@
 package tabs;
 
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TabPane.TabClosingPolicy;
+import javafx.scene.layout.BorderPane;
 import main.Session;
 
 public class ManagersTab extends TabTemplate {
 	public static ManagersTab instance = null;
+	
+	private TabPane tabPane;
+	private BorderPane root;
 	
 	private ManagersTab() {
 		this.setText("Managers");

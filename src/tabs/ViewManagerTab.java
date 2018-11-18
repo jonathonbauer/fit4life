@@ -84,7 +84,7 @@ public class ViewManagerTab extends Tab {
 		this.refresh = new Button("Refresh");
 		
 		this.refresh.setOnAction(e->{
-			this.managers.removeAll(this.managerss);
+			this.managers.removeAll(this.managers);
 			this.managers = this.managerTable.getAllManagers();
 			this.table.setItems(FXCollections.observableArrayList(this.managers));
 			System.out.println("Table Refreshed");

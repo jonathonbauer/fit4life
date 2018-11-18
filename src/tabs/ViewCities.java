@@ -33,7 +33,7 @@ public class ViewCities extends Tab {
 	public ViewCities() {
 		this.CityTable = new CityTable();
 		this.Citys = new ArrayList<>();
-		this.Citys = this.CityTable.getAllCitys();
+		this.Citys = this.CityTable.getAllCities();
 
 		this.setText("View Citys");
 
