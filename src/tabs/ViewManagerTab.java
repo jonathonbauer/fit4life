@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import database.Database;
-import javabeans.MemberTable;
+import javabeans.ManagerTable;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
@@ -12,35 +12,33 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import tables.Member;
+import tables.Manager;
 
 public class ViewManagerTab extends Tab {
 	Database db = Database.getInstance();
-	MemberTable memberTable;
-	ArrayList<Member> members;
-	Member member;	
+	ManagerTable managerTable;
+	ArrayList<Manager> managers;
+	Manager manager;	
 
 	public static ViewManagerTab instance = null;
 	private Button refresh;
-	private TableView<Member> table;
-	private TableColumn<Member, Integer> idCol;
-	private TableColumn<Member, String> nameCol;
-	private TableColumn<Member, String> addressCol;
-	private TableColumn<Member, String> postalCodeCol;
-	private TableColumn<Member, String> cityCol;
-	private TableColumn<Member, Boolean> activeMemberCol;
-	private TableColumn<Member, String> memberLevelCol;
-	private TableColumn<Member, Date> regDateCol;
+	private TableView<Manager> table;
+	private TableColumn<Manager, Integer> idCol;
+	private TableColumn<Manager, String> nameCol;
+	private TableColumn<Manager, String> addressCol;
+	private TableColumn<Manager, String> postalCodeCol;
+	private TableColumn<Manager, String> cityCol;
+	
 
 	private BorderPane root;
 
 
 	public ViewManagerTab() {
-		this.memberTable = new MemberTable();
-		this.members = new ArrayList<>();
-		this.members = this.memberTable.getAllMembers();
+		this.managerTable = new ManagerTable();
+		this.managers = new ArrayList<>();
+		this.managers = this.managerTable.getAllManagers();
 
-		this.setText("View Members");
+		this.setText("View Managers");
 
 
 		this.idCol = new TableColumn<>();
@@ -58,18 +56,11 @@ public class ViewManagerTab extends Tab {
 		this.cityCol = new TableColumn<>();
 		this.cityCol.setText("City");
 
-		this.activeMemberCol = new TableColumn<>();
-		this.activeMemberCol.setText("Active Membership");
-
-		this.memberLevelCol = new TableColumn<>();
-		this.memberLevelCol.setText("Membership Level");
-
-		this.regDateCol = new TableColumn<>();
-		this.regDateCol.setText("Registration Date");
+		
 
 
 		this.table = new TableView<>();
-		this.table.setItems(FXCollections.observableArrayList(this.members));
+		this.table.setItems(FXCollections.observableArrayList(this.managers));
 
 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
@@ -77,24 +68,27 @@ public class ViewManagerTab extends Tab {
 		this.addressCol.setCellValueFactory(new PropertyValueFactory("address"));
 		this.postalCodeCol.setCellValueFactory(new PropertyValueFactory("postalCode"));
 		this.cityCol.setCellValueFactory(new PropertyValueFactory("city"));
-		this.activeMemberCol.setCellValueFactory(new PropertyValueFactory("activeMembership"));
-		this.memberLevelCol.setCellValueFactory(new PropertyValueFactory("membershipLevel"));
-		this.regDateCol.setCellValueFactory(new PropertyValueFactory("registrationDate"));
+		
 
 
-
-		TableColumn<Member, String> firstNameCol = new TableColumn<Member,String>("Name");
+		TableColumn<Manager, String> firstNameCol = new TableColumn<Manager,String>("Name");
 		firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
 
 
-		TableColumn<Member,String> lastNameCol = new TableColumn<Member,String>("Address");
+		TableColumn<Manager,String> lastNameCol = new TableColumn<Manager,String>("Address");
 		lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
 
-		table.getColumns().setAll(this.idCol, this.nameCol, this.addressCol, this.postalCodeCol, this.cityCol,
-				this.activeMemberCol, this.memberLevelCol, this.regDateCol);
+		table.getColumns().setAll(this.idCol, this.nameCol, this.addressCol, this.postalCodeCol, this.cityCol);
 
 
 		this.refresh = new Button("Refresh");
+		
+		this.refresh.setOnAction(e->{
+			this.managers.removeAll(this.managerss);
+			this.managers = this.managerTable.getAllManagers();
+			this.table.setItems(FXCollections.observableArrayList(this.managers));
+			System.out.println("Table Refreshed");
+		});
 
 
 		this.root = new BorderPane();
