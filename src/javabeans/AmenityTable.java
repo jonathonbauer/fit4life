@@ -78,7 +78,7 @@ public class AmenityTable implements AmenityDAO{
 			@Override
 			public void deleteAmenity(Amenity amenity) {
 				// TODO Auto-generated method stub
-				String query = "SELECT * FROM " + Tables.TABLE_AMENITIES + " WHERE "
+				String query = "DELETE FROM " + Tables.TABLE_AMENITIES + " WHERE "
 	                    + Tables.AMENITIES_COLUMN_ID + " = " + amenity.getId();
 	            System.out.println("Amenity has been deleted.");
 	            try {
@@ -93,9 +93,7 @@ public class AmenityTable implements AmenityDAO{
 				// TODO Auto-generated method stub
 				 String query = "INSERT INTO " + Tables.TABLE_AMENITIES + "("
                          + Tables.AMENITIES_COLUMN_AMENITY
-                         + ") VALUES ('" + amenity.getAmenity() + "');"
-                         + Tables.AMENITIES_COLUMN_ID + " = " + amenity.getId();
-				 	System.out.println("Amenity has been deleted.");
+                         + ") VALUES ('" + amenity.getAmenity() + "');";
 				 	try {
 				 		db.getConnection().createStatement().execute(query);
 				 		System.out.println("Amenity successfully created.");

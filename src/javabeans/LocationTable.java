@@ -88,7 +88,7 @@ public class LocationTable implements LocationDAO {
 	@Override
 	public void deleteLocation(Location location) {
 		// TODO Auto-generated method stub
-		String query = "DELETED * FROM " + Tables.TABLE_LOCATIONS + " WHERE "
+		String query = "DELETE FROM " + Tables.TABLE_LOCATIONS + " WHERE "
                 + Tables.LOCATIONS_COLUMN_ID + " = " + location.getId();
         System.out.println("Location has been deleted.");
         try {
@@ -102,17 +102,16 @@ public class LocationTable implements LocationDAO {
 	@Override
 	public void createLocation(Location location) {
 		// TODO Auto-generated method stub
-		 String query = "INSERT INTO " + Tables.TABLE_AMENITIES + "("
+		 String query = "INSERT INTO " + Tables.TABLE_LOCATIONS + "("
                  + Tables.LOCATIONS_COLUMN_NAME
                  + Tables.LOCATIONS_COLUMN_ADDRESS
                  + Tables.LOCATIONS_COLUMN_POSTAL
                  + Tables.LOCATIONS_COLUMN_CITY
                  + ") VALUES ('" + location.getName() + "," + location.getAddress() + ","  
                  + location.getPostalCode() + "," + location.getCity() + "');";
-		 	System.out.println("Amenity has been deleted.");
 		 	try {
 		 		db.getConnection().createStatement().execute(query);
-		 		System.out.println("Amenity successfully created.");
+		 		System.out.println("Location successfully created.");
 		 	} catch (SQLException e) {
 		 		e.printStackTrace();
 		 	}
