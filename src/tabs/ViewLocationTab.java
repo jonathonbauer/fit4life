@@ -3,7 +3,6 @@ package tabs;
 import java.util.ArrayList;
 
 import database.Database;
-import javabeans.AmenityTable;
 import javabeans.LocationTable;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -38,6 +37,8 @@ public class ViewLocationTab extends Tab {
 		this.locationTable = new LocationTable();
 		//this.locations = ArrayList<>;
 		this.locations = this.locationTable.getAllLocations();
+		
+		this.setText("View a Location");
 		
 		// Declare columns & Give columns names
 		this.idCol = new TableColumn<>();
