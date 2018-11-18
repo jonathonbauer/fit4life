@@ -131,8 +131,8 @@ public class LogInMenu {
 						System.out.println("Does not match " + users.get(i).getUsername());
 					}
 					
+				
 				}
-		
 		
 		});
 		

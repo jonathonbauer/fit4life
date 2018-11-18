@@ -13,8 +13,7 @@ public class menuBar extends MenuBar {
 	public Credits creditsPage;
 	
 	private Menu menuFile;
-	private Menu menuEdit;
-	private Menu menuView;
+	private Menu menuGoto;
 	
 	private MenuItem exit;
 	private MenuItem logOut;
@@ -27,8 +26,7 @@ public class menuBar extends MenuBar {
 		
 		//Adding Values to Menus
 		this.menuFile = new Menu("File");
-		this.menuEdit = new Menu("Edit");
-		this.menuView = new Menu("View");
+		this.menuGoto = new Menu("Go To");
 		
 		
 		//Adding Values to MenuItems
@@ -39,8 +37,10 @@ public class menuBar extends MenuBar {
 		this.credits = new MenuItem("Credits");
 		
 		
-		//Adding MenuItems to Menu "File"
-		this.menuFile.getItems().addAll(exit, logOut, back, settings, credits);
+		//Adding MenuItems to Menus
+		this.menuFile.getItems().addAll(exit, back);
+		
+		this.menuGoto.getItems().addAll(logOut, credits, settings);
 		
 		/* EVENT HANDLERS
 		 *  this represents blocks of code that is only run  once the desired MenuItem is clicked
@@ -87,7 +87,7 @@ public class menuBar extends MenuBar {
 			Main.mainStage.setTitle("Fit4Life Member Management");
 		});
 		
-		this.getMenus().addAll(this.menuFile,this.menuEdit,this.menuView);
+		this.getMenus().addAll(this.menuFile,this.menuGoto);
 	}
 	
 	public Credits getCreditsPage() {
@@ -122,19 +122,12 @@ public class menuBar extends MenuBar {
 		this.menuFile = menuFile;
 	}
 
-	public Menu getMenuEdit() {
-		return menuEdit;
+	public Menu getMenuGoto() {
+		return menuGoto;
 	}
 
-	public void setMenuEdit(Menu menuEdit) {
-		this.menuEdit = menuEdit;
+	public void setMenuGoto(Menu menuGoto) {
+		this.menuGoto = menuGoto;
 	}
 
-	public Menu getMenuView() {
-		return menuView;
-	}
-
-	public void setMenuView(Menu menuView) {
-		this.menuView = menuView;
-	}
 }
