@@ -6,8 +6,11 @@
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
+=======
 
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.39/mysql-connector-java-5.1.43-bin.jar"/>
 
+>>>>>>> staging
 	<classpathentry kind="output" path="bin"/>
 </classpath>
