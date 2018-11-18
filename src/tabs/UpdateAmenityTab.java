@@ -15,13 +15,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import tables.Amenity;
 
-public class ViewAmenityTab extends Tab {
+public class UpdateAmenityTab extends Tab {
+
 	Database db = Database.getInstance();
 	AmenityTable amenityTable;
 	ArrayList<Amenity> amenities;
 	Amenity amenity;
 	
-	public static ViewAmenityTab instance = null;
+	public static UpdateAmenityTab instance = null;
 	private TableView<Amenity> table;
 	private TableColumn<Amenity, Integer> idCol;
 	private TableColumn<Amenity, String> amenityCol;
@@ -29,14 +30,14 @@ public class ViewAmenityTab extends Tab {
 	private Button refresh;
 	private BorderPane root;
 	
-	public ViewAmenityTab() {
+	public UpdateAmenityTab() {
 		
 		//Get All Amenities from the Table
 		this.amenityTable = new AmenityTable();
 		//this.amenities = ArrayList<>();
 		this.amenities = this.amenityTable.getAllAmenities();
 		
-		this.setText("View Amenities");
+		this.setText("Update Amenities");
 		
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");
@@ -47,7 +48,6 @@ public class ViewAmenityTab extends Tab {
 		
 		this.table = new TableView<>();
 		this.table.setItems(FXCollections.observableArrayList(this.amenities));
-		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		//Get columns values
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
@@ -60,26 +60,19 @@ public class ViewAmenityTab extends Tab {
 
 		//Refreshes the page to get any added/removes records
 		this.refresh.setOnAction(e->{
-			this.amenities.removeAll(this.amenities);
-			this.amenities = this.amenityTable.getAllAmenities();
-			this.table.setItems(FXCollections.observableArrayList(this.amenities));
+		//Code for refresh button
 		});
 		
 		this.root = new BorderPane();
 		this.root.setCenter(this.table);
 		this.root.setBottom(this.refresh);
 		
-		this.root.setPadding(new Insets(10,10,10,10));
-		BorderPane.setAlignment(this.refresh, Pos.CENTER);
-		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
-			
-
 		this.setContent(root);
 	}
-	
-	public static ViewAmenityTab getInstance() {
+
+	public static UpdateAmenityTab getInstance() {
 		if(instance == null) {
-			instance = new ViewAmenityTab();
+			instance = new UpdateAmenityTab();
 			return instance;
 		} else {
 			return instance;
@@ -87,5 +80,6 @@ public class ViewAmenityTab extends Tab {
 		
 	}
 	}
+
 
 
