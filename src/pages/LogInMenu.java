@@ -119,6 +119,7 @@ public class LogInMenu {
 				ArrayList<User> users = new ArrayList<>();
 				users = userTable.getAllUsers();
 				
+				
 				for(int i = 0; i < users.size(); i++) {
 					if(this.userName.getText().equals(users.get(i).getUsername())) {
 						if(this.passWord.getText().equals(users.get(i).getPassword())) {
@@ -132,18 +133,13 @@ public class LogInMenu {
 						} else {
 							System.out.println("Incorrect Password");
 						}
-
-					} else {
-						System.out.println("Does not match " + users.get(i).getUsername());
-					}
-					
-				
-
 					} 					
+				}
 			
 //			mainMenu = new MainMenu();
 //			Main.mainStage.setScene(mainMenu.getScene());
 //			Main.mainStage.setTitle("Fit4Life Member Management");
+		
 		
 		});
 		
