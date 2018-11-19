@@ -60,6 +60,12 @@ public class ViewCities extends Tab {
 
 
 		this.refresh = new Button("Refresh");
+		this.refresh.setOnAction(e->{
+			this.managers.removeAll(this.Citys);
+			this.managers = this.managerTable.getAllCitys();
+			this.table.setItems(FXCollections.observableArrayList(this.Citys));
+			System.out.println("Table Refreshed");
+		});
 
 
 		this.root = new BorderPane();
