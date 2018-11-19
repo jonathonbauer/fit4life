@@ -29,6 +29,7 @@ public class ViewAmenityTab extends Tab {
 	private Button refresh;
 	private BorderPane root;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ViewAmenityTab() {
 		
 		//Get All Amenities from the Table

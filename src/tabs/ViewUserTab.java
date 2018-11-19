@@ -37,6 +37,7 @@ public class ViewUserTab extends Tab {
 	private BorderPane root;
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ViewUserTab() {
 		// Set the title text of the tab
 		this.setText("View Users");
