@@ -66,8 +66,8 @@ public class UserTable implements UserDAO {
 				Tables.USERS_COLUMN_PASSWORD + " " + user.getPassword() + "," +
 				" WHERE " + Tables.USERS_COLUMN_ID + " = " + user.getId();
 		try {
-			Statement updateItem = db.getConnection().createStatement();
-			updateItem.executeQuery(query);
+			Statement updateUser = db.getConnection().createStatement();
+			updateUser.executeQuery(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -88,7 +88,7 @@ public class UserTable implements UserDAO {
 	public void createUser(User user) {
 		String query = "INSERT INTO " + Tables.TABLE_USERS + "("
 				+ Tables.USERS_COLUMN_USERNAME + ", " 
-				+ Tables.USERS_COLUMN_PASSWORD + ") VALUES (' " 
+				+ Tables.USERS_COLUMN_PASSWORD + ") VALUES ('" 
 				+ user.getUsername() + "','" + user.getPassword() + "');";
 		try {
 			db.getConnection().createStatement().execute(query);

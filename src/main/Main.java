@@ -3,12 +3,11 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
-import pages.Credits;
 import pages.Initialization;
 import pages.LogInMenu;
-
 import pages.MainMenu;
 
 /**
