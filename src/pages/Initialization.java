@@ -109,14 +109,14 @@ public class Initialization {
 		
 		// Style the TextFields
 		
-		this.dbNameField.setMaxWidth(100);
-		this.dbHostField.setMaxWidth(100);
-		this.dbUserField.setMaxWidth(100);
-		this.dbPassField.setMaxWidth(100);
+		this.dbNameField.setMaxWidth(250);
+		this.dbHostField.setMaxWidth(250);
+		this.dbUserField.setMaxWidth(250);
+		this.dbPassField.setMaxWidth(250);
 		
-		this.userField.setMaxWidth(100);
-		this.passwordField.setMaxWidth(100);
-		this.verifyPasswordField.setMaxWidth(100);
+		this.userField.setMaxWidth(250);
+		this.passwordField.setMaxWidth(250);
+		this.verifyPasswordField.setMaxWidth(250);
 		
 		// Submit Button
 		this.submitButton = new Button("Submit");
@@ -174,7 +174,8 @@ public class Initialization {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-            	
+				
+				db.createTables();
 				UserTable userTable = new UserTable();
 				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
 				LogInMenu loginMenu = new LogInMenu();

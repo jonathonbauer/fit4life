@@ -34,6 +34,7 @@ public class ViewManagerTab extends Tab {
 	private BorderPane root;
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ViewManagerTab() {
 		this.managerTable = new ManagerTable();
 		this.managers = new ArrayList<>();

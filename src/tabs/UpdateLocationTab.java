@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import database.Database;
 import javabeans.LocationTable;
 import javafx.collections.FXCollections;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -33,6 +31,7 @@ public class UpdateLocationTab extends Tab {
 	private BorderPane root;
 	private Button refresh;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public UpdateLocationTab() {
 		this.locationTable = new LocationTable();
 		//this.locations = ArrayList<>;

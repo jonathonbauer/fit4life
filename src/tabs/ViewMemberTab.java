@@ -43,6 +43,7 @@ public class ViewMemberTab extends Tab {
 	private BorderPane root;
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ViewMemberTab() {
 		// Get all the members from the database
 		this.memberTable = new MemberTable();

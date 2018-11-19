@@ -33,6 +33,7 @@ public class ViewLocationTab extends Tab {
 	private BorderPane root;
 	private Button refresh;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ViewLocationTab() {
 		this.locationTable = new LocationTable();
 		//this.locations = ArrayList<>;
