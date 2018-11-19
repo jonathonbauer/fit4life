@@ -174,7 +174,8 @@ public class Initialization {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-            	
+				
+				db.createTables();
 				UserTable userTable = new UserTable();
 				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
 				LogInMenu loginMenu = new LogInMenu();
