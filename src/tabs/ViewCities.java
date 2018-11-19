@@ -16,7 +16,7 @@ import tables.City;
 
 public class ViewCities extends Tab {
 	Database db = Database.getInstance();
-	CityTable CityTable;
+	CityTable cityTable;
 	ArrayList<City> citys;
 	City city;	
 
@@ -31,9 +31,9 @@ public class ViewCities extends Tab {
 
 
 	public ViewCities() {
-		this.CityTable = new CityTable();
-		this.Citys = new ArrayList<>();
-		this.Citys = this.CityTable.getAllCities();
+		this.cityTable = new CityTable();
+		this.citys = new ArrayList<>();
+		this.citys = this.cityTable.getAllCities();
 
 		this.setText("View Citys");
 
@@ -47,7 +47,7 @@ public class ViewCities extends Tab {
 
 
 		this.table = new TableView<>();
-		this.table.setItems(FXCollections.observableArrayList(this.Citys));
+		this.table.setItems(FXCollections.observableArrayList(this.citys));
 
 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
@@ -62,7 +62,7 @@ public class ViewCities extends Tab {
 		this.refresh = new Button("Refresh");
 		this.refresh.setOnAction(e->{
 			this.citys.removeAll(this.citys);
-			this.citys = this.managerTable.getAllCitys();
+			this.citys = this.cityTable.getAllCities();
 			this.table.setItems(FXCollections.observableArrayList(this.citys));
 			System.out.println("Table Refreshed");
 		});
