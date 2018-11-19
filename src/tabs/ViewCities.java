@@ -31,6 +31,7 @@ public class ViewCities extends Tab {
 	private BorderPane root;
 
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ViewCities() {
 		this.cityTable = new CityTable();
 		this.citys = new ArrayList<>();

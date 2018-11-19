@@ -24,7 +24,7 @@ public class Database {
 		if(connection == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306" + Tables.DB_NAME + "?useSSL=false", "root", "password");
 				System.out.println("Successfully connected to the database.");
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -36,11 +36,11 @@ public class Database {
 	
 	public Boolean createTables() {
 		try {
-			createTable(Tables.TABLE_MEMBERS, Tables.CREATE_TABLE_MEMBERS, connection);
 			createTable(Tables.TABLE_CITIES, Tables.CREATE_TABLE_CITIES, connection);
-			createTable(Tables.TABLE_LOCATIONS, Tables.CREATE_TABLE_LOCATIONS, connection);
 			createTable(Tables.TABLE_AMENITIES, Tables.CREATE_TABLE_AMENITIES, connection);
 			createTable(Tables.TABLE_MEMBER_LEVEL, Tables.CREATE_TABLE_MEMBER_LEVEL, connection);
+			createTable(Tables.TABLE_MEMBERS, Tables.CREATE_TABLE_MEMBERS, connection);
+			createTable(Tables.TABLE_LOCATIONS, Tables.CREATE_TABLE_LOCATIONS, connection);
 			createTable(Tables.TABLE_MANAGERS, Tables.CREATE_TABLE_MANAGERS, connection);
 			createTable(Tables.TABLE_LOCATION_AMENITIES, Tables.CREATE_TABLE_LOCATION_AMENITIES, connection);
 			createTable(Tables.TABLE_MEMBER_AMENITIES, Tables.CREATE_TABLE_MEMBER_AMENITIES, connection);
@@ -63,7 +63,8 @@ public class Database {
 		if(connection == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
+//				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
+				connection = DriverManager.getConnection("jdbc:mysql://php.scweb.ca/" + "jbauerdb" + "?useSSL=false", "jbauer", "x3gw6x3gw60whvk0whvk");
 				return true;
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -106,11 +107,11 @@ public class Database {
 		
 		// Test if the table exists, create it if it does not
 		if(result.next()) {
-			System.out.println(table + "already exists.");
+			System.out.println(table + " table already exists.");
 		} else {
 			statement = connection.createStatement();
 			statement.execute(query);
-			System.out.println(table + " has been successfully created.");
+			System.out.println(table + " table has been successfully created.");
 		}
 		
 		

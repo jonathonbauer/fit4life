@@ -35,6 +35,7 @@ public class UpdateMemberTab extends Tab {
 	private BorderPane root;
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public UpdateMemberTab() {
 		this.memberTable = new MemberTable();
 		this.members = new ArrayList<>();

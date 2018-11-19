@@ -35,6 +35,7 @@ public class ViewLocationsTab extends Tab {
 	private BorderPane root;
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ViewLocationsTab() {
 		this.memberTable = new MemberTable();
 		this.members = new ArrayList<>();

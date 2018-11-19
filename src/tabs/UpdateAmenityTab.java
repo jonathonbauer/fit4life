@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import database.Database;
 import javabeans.AmenityTable;
 import javafx.collections.FXCollections;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -30,6 +28,7 @@ public class UpdateAmenityTab extends Tab {
 	private Button refresh;
 	private BorderPane root;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public UpdateAmenityTab() {
 		
 		//Get All Amenities from the Table
