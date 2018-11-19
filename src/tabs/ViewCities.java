@@ -48,7 +48,7 @@ public class ViewCities extends Tab {
 
 		this.table = new TableView<>();
 		this.table.setItems(FXCollections.observableArrayList(this.Citys));
-
+		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
 		
@@ -71,6 +71,9 @@ public class ViewCities extends Tab {
 		this.root = new BorderPane();
 		this.root.setCenter(this.table);
 		this.root.setBottom(this.refresh);
+		this.root.setPadding(new Insets(10,10,10,10));
+		BorderPane.setAlignment(this.refresh, Pos.CENTER);
+		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
 
 		this.setContent(root);
 	}

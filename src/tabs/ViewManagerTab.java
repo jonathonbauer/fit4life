@@ -61,7 +61,7 @@ public class ViewManagerTab extends Tab {
 
 		this.table = new TableView<>();
 		this.table.setItems(FXCollections.observableArrayList(this.managers));
-
+		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
 		this.nameCol.setCellValueFactory(new PropertyValueFactory("name"));
@@ -94,6 +94,9 @@ public class ViewManagerTab extends Tab {
 		this.root = new BorderPane();
 		this.root.setCenter(this.table);
 		this.root.setBottom(this.refresh);
+		this.root.setPadding(new Insets(10,10,10,10));
+		BorderPane.setAlignment(this.refresh, Pos.CENTER);
+		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
 
 		this.setContent(root);
 	}
