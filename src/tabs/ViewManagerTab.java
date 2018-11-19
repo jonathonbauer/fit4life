@@ -1,11 +1,12 @@
 package tabs;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import database.Database;
 import javabeans.ManagerTable;
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -94,6 +95,7 @@ public class ViewManagerTab extends Tab {
 		this.root = new BorderPane();
 		this.root.setCenter(this.table);
 		this.root.setBottom(this.refresh);
+		
 		this.root.setPadding(new Insets(10,10,10,10));
 		BorderPane.setAlignment(this.refresh, Pos.CENTER);
 		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
