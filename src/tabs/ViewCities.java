@@ -1,11 +1,12 @@
 package tabs;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import database.Database;
 import javabeans.CityTable;
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -16,9 +17,9 @@ import tables.City;
 
 public class ViewCities extends Tab {
 	Database db = Database.getInstance();
-	CityTable CityTable;
-	ArrayList<City> Citys;
-	City City;	
+	CityTable cityTable;
+	ArrayList<City> citys;
+	City city;	
 
 	public static ViewCities instance = null;
 	private Button refresh;
@@ -31,9 +32,9 @@ public class ViewCities extends Tab {
 
 
 	public ViewCities() {
-		this.CityTable = new CityTable();
-		this.Citys = new ArrayList<>();
-		this.Citys = this.CityTable.getAllCitys();
+		this.cityTable = new CityTable();
+		this.citys = new ArrayList<>();
+		this.citys = this.cityTable.getAllCities();
 
 		this.setText("View Citys");
 
@@ -47,7 +48,12 @@ public class ViewCities extends Tab {
 
 
 		this.table = new TableView<>();
-		this.table.setItems(FXCollections.observableArrayList(this.Citys));
+		this.table.setItems(FXCollections.observableArrayList(this.citys));
+
+
+		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+		
 
 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
@@ -60,11 +66,21 @@ public class ViewCities extends Tab {
 
 
 		this.refresh = new Button("Refresh");
+		this.refresh.setOnAction(e->{
+			this.citys.removeAll(this.citys);
+			this.citys = this.cityTable.getAllCities();
+			this.table.setItems(FXCollections.observableArrayList(this.citys));
+			System.out.println("Table Refreshed");
+		});
 
 
 		this.root = new BorderPane();
 		this.root.setCenter(this.table);
 		this.root.setBottom(this.refresh);
+		
+		this.root.setPadding(new Insets(10,10,10,10));
+		BorderPane.setAlignment(this.refresh, Pos.CENTER);
+		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
 
 		this.setContent(root);
 	}

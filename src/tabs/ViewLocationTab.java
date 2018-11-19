@@ -3,7 +3,7 @@ package tabs;
 import java.util.ArrayList;
 
 import database.Database;
-import javabeans.ManagerTable;
+import javabeans.LocationTable;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,38 +13,37 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import tables.Manager;
+import tables.Location;
 
-public class ViewManagerTab extends Tab {
+public class ViewLocationTab extends Tab {
 	Database db = Database.getInstance();
-	ManagerTable managerTable;
-	ArrayList<Manager> managers;
-	Manager manager;	
+	LocationTable locationTable;
+	ArrayList<Location> locations;
+	Location location;	
 
-	public static ViewManagerTab instance = null;
-	private Button refresh;
-	private TableView<Manager> table;
-	private TableColumn<Manager, Integer> idCol;
-	private TableColumn<Manager, String> nameCol;
-	private TableColumn<Manager, String> addressCol;
-	private TableColumn<Manager, String> postalCodeCol;
-	private TableColumn<Manager, String> cityCol;
+	public static ViewLocationTab instance = null;
 	
-
+	private TableView<Location> table;
+	private TableColumn<Location, Integer> idCol;
+	private TableColumn<Location, String> nameCol;
+	private TableColumn<Location, String> addressCol;
+	private TableColumn<Location, String> postalCodeCol;
+	private TableColumn<Location, String> cityCol;
+	
 	private BorderPane root;
-
-
-	public ViewManagerTab() {
-		this.managerTable = new ManagerTable();
-		this.managers = new ArrayList<>();
-		this.managers = this.managerTable.getAllManagers();
-
-		this.setText("View Managers");
-
-
+	private Button refresh;
+	
+	public ViewLocationTab() {
+		this.locationTable = new LocationTable();
+		//this.locations = ArrayList<>;
+		this.locations = this.locationTable.getAllLocations();
+		
+		this.setText("View a Location");
+		
+		// Declare columns & Give columns names
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");
-
+				
 		this.nameCol = new TableColumn<>();
 		this.nameCol.setText("Name");
 
@@ -56,42 +55,27 @@ public class ViewManagerTab extends Tab {
 
 		this.cityCol = new TableColumn<>();
 		this.cityCol.setText("City");
-
 		
-
-
 		this.table = new TableView<>();
-		this.table.setItems(FXCollections.observableArrayList(this.managers));
+		this.table.setItems(FXCollections.observableArrayList(this.locations));
 		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
+		
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
 		this.nameCol.setCellValueFactory(new PropertyValueFactory("name"));
 		this.addressCol.setCellValueFactory(new PropertyValueFactory("address"));
 		this.postalCodeCol.setCellValueFactory(new PropertyValueFactory("postalCode"));
 		this.cityCol.setCellValueFactory(new PropertyValueFactory("city"));
 		
-
-
-		TableColumn<Manager, String> firstNameCol = new TableColumn<Manager,String>("Name");
-		firstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
-
-
-		TableColumn<Manager,String> lastNameCol = new TableColumn<Manager,String>("Address");
-		lastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
-
 		table.getColumns().setAll(this.idCol, this.nameCol, this.addressCol, this.postalCodeCol, this.cityCol);
-
-
-		this.refresh = new Button("Refresh");
 		
+		this.refresh = new Button("Refresh");
+
+		//Refreshes the page to get any added/removes records
 		this.refresh.setOnAction(e->{
-			this.managers.removeAll(this.managers);
-			this.managers = this.managerTable.getAllManagers();
-			this.table.setItems(FXCollections.observableArrayList(this.managers));
-			System.out.println("Table Refreshed");
+			this.locations.removeAll(this.locations);
+			this.locations = this.locationTable.getAllLocations();
+			this.table.setItems(FXCollections.observableArrayList(this.locations));
 		});
-
-
 		this.root = new BorderPane();
 		this.root.setCenter(this.table);
 		this.root.setBottom(this.refresh);
@@ -99,18 +83,19 @@ public class ViewManagerTab extends Tab {
 		this.root.setPadding(new Insets(10,10,10,10));
 		BorderPane.setAlignment(this.refresh, Pos.CENTER);
 		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
+			
 
 		this.setContent(root);
+		
 	}
-
-	public static ViewManagerTab getInstance() {
+	public static ViewLocationTab getInstance() {
 		if(instance == null) {
-			instance = new ViewManagerTab();
+			instance = new ViewLocationTab();
 			return instance;
 		} else {
 			return instance;
 		}
-
+		
 	}
 
 }
