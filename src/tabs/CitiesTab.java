@@ -1,9 +1,15 @@
 package tabs;
 
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TabPane.TabClosingPolicy;
+import javafx.scene.layout.BorderPane;
 import main.Session;
 
 public class CitiesTab extends TabTemplate {
 	public static CitiesTab instance = null;
+	
+	private TabPane tabPane;
+	private BorderPane root;
 	
 	private CitiesTab() {
 		this.setText("Cities");
@@ -27,7 +33,6 @@ public class CitiesTab extends TabTemplate {
 		
 	}
 		
-	}
 	
 	public static CitiesTab getInstance() {
 		if(instance == null) {
