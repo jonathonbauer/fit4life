@@ -24,7 +24,7 @@ public class Database {
 		if(connection == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306" + Tables.DB_NAME + "?useSSL=false", "root", "password");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
 				System.out.println("Successfully connected to the database.");
 			} catch(Exception e) {
 				e.printStackTrace();
