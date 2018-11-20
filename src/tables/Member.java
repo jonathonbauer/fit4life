@@ -8,14 +8,14 @@ public class Member {
 	private String address;
 	private String postalCode;
 //	TODO: Change to appropriate classes
-	private String city;
+	private City city;
 	private Boolean activeMembership;
-	private String membershipLevel;
+	private MemberLevel membershipLevel;
 	private Date registrationDate;
 	
 	// Constructors
-	public Member(int id, String name, String address, String postalCode, String city, Boolean activeMembership,
-			String membershipLevel, Date registrationDate) {
+	public Member(int id, String name, String address, String postalCode, City city, Boolean activeMembership,
+			MemberLevel membershipLevel, Date registrationDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -27,8 +27,8 @@ public class Member {
 		this.registrationDate = registrationDate;
 	}
 
-	public Member(String name, String address, String postalCode, String city, Boolean activeMembership,
-			String membershipLevel, Date registrationDate) {
+	public Member(String name, String address, String postalCode, City city, Boolean activeMembership,
+			MemberLevel membershipLevel, Date registrationDate) {
 		super();
 		this.name = name;
 		this.address = address;
@@ -37,6 +37,10 @@ public class Member {
 		this.activeMembership = activeMembership;
 		this.membershipLevel = membershipLevel;
 		this.registrationDate = registrationDate;
+	}
+	
+	public Member() {
+		
 	}
 	
 	// Getters and Setters
@@ -73,11 +77,11 @@ public class Member {
 		this.postalCode = postalCode;
 	}
 
-	public String getCity() {
+	public City getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(City city) {
 		this.city = city;
 	}
 
@@ -89,11 +93,11 @@ public class Member {
 		this.activeMembership = activeMembership;
 	}
 
-	public String getMembershipLevel() {
+	public MemberLevel getMembershipLevel() {
 		return membershipLevel;
 	}
 
-	public void setMembershipLevel(String membershipLevel) {
+	public void setMembershipLevel(MemberLevel membershipLevel) {
 		this.membershipLevel = membershipLevel;
 	}
 
@@ -103,6 +107,15 @@ public class Member {
 
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	public void setActiveMembership(String selectedItem) {
+		if(selectedItem.equals("true")) {
+			this.activeMembership = true;
+		} else {
+			this.activeMembership = false;
+		}
+		
 	}
 	
 	

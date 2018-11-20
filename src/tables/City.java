@@ -34,5 +34,9 @@ public class City {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	
+	public String toString() {
+		return this.city;
+	}
 
 }

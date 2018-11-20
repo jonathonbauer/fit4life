@@ -23,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.City;
 import tables.Member;
+import tables.MemberLevel;
 /**
  * 
  *  This class is used to display the all members in the Member Database
@@ -48,38 +49,38 @@ public class ViewMemberTab extends Tab {
 	private TableColumn<Member, Boolean> activeMemberCol;
 	private TableColumn<Member, String> memberLevelCol;
 	private TableColumn<Member, Date> regDateCol;
-	
+
 	private GridPane memberInfo;
-	
+
 	private Text id;
 	private Text memberId;
-	
+
 	private Text name;
 	private TextField nameTf;
-	
+
 	private Text address;
 	private TextField addressTf;
-	
+
 	private Text postalCode;
 	private TextField postalCodeTF;
-	
+
 	private Text city;
-	private ComboBox cityCombo;
-	
+	private ComboBox<City> cityCombo;
+
 	private Text active;
-	private ComboBox activeCombo;
-	
+	private ComboBox<Boolean> activeCombo;
+
 	private Text level;
-	private ComboBox levelCombo;
-	
+	private ComboBox<MemberLevel> levelCombo;
+
 	private Text date;
 	private Text regDate;
-	
+
 	private Button update;
 	private Button delete;
-	
+
 	private HBox buttons;
-	
+
 	private BorderPane root;
 
 
@@ -96,7 +97,7 @@ public class ViewMemberTab extends Tab {
 		// Declare the Columns and give them titles
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");
-		
+
 		this.nameCol = new TableColumn<>();
 		this.nameCol.setText("Name");
 
@@ -122,7 +123,7 @@ public class ViewMemberTab extends Tab {
 		this.table = new TableView<>();
 		this.table.setItems(FXCollections.observableArrayList(this.members));
 		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		
+
 		// Get the values for the columns 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
 		this.nameCol.setCellValueFactory(new PropertyValueFactory("name"));
@@ -138,49 +139,49 @@ public class ViewMemberTab extends Tab {
 		table.getColumns().setAll(this.idCol, this.nameCol, this.addressCol, this.postalCodeCol, this.cityCol,
 				this.activeMemberCol, this.memberLevelCol, this.regDateCol);
 
-	
-		
+
+
 		// Information Beneath Table
 		this.memberInfo = new GridPane();
-		
-		
+
+
 		// Column 1
 		this.id = new Text("Member ID:");
 		this.memberId = new Text("0");
-		
+
 		this.name = new Text("Name:");
 		this.nameTf = new TextField();
-		
+
 		this.date = new Text("Registration Date:");
 		this.regDate = new Text("0000-00-00");
-		
+
 		this.memberLevelTable = new MemberLevelTable();
 		this.level = new Text("Membership Level:");
-		this.levelCombo = new ComboBox(FXCollections.observableArrayList(this.memberLevelTable.getAllLevelNames()));
-		
+		this.levelCombo = new ComboBox(FXCollections.observableArrayList(this.memberLevelTable.getAllMemberLevels()));
+
 		// Column 2
 		this.address = new Text("Address:");
 		this.addressTf = new TextField();
-		
+
 		this.cityTable = new CityTable();
 		ArrayList<City> cities = this.cityTable.getAllCities();
 		ArrayList<String> cityValues = new ArrayList<>();
 		for(int i=0; i<cities.size(); i++) {
 			cityValues.add(cities.get(i).getCity());
 		}
-		
+
 		this.city = new Text("City:");
-		this.cityCombo = new ComboBox(FXCollections.observableArrayList(this.cityTable.getAllCityNames()));
-		
+		this.cityCombo = new ComboBox(FXCollections.observableArrayList(this.cityTable.getAllCities()));
+
 		this.postalCode = new Text("Postal Code:");
 		this.postalCodeTF = new TextField();
-		
-		ArrayList<String> activeValues = new ArrayList<>();
-		activeValues.add("Yes");
-		activeValues.add("No");
+
+		ArrayList<Boolean> activeValues = new ArrayList<>();
+		activeValues.add(true);
+		activeValues.add(false);
 		this.active = new Text("Active Membership:");
 		this.activeCombo = new ComboBox(FXCollections.observableArrayList(activeValues));
-		
+
 		// Add the Member Information Boxes to the Screen
 		this.memberInfo.add(this.id, 0, 0);
 		this.memberInfo.add(this.memberId, 1, 0);
@@ -190,7 +191,7 @@ public class ViewMemberTab extends Tab {
 		this.memberInfo.add(this.regDate, 1, 2);
 		this.memberInfo.add(this.level, 0, 3);
 		this.memberInfo.add(this.levelCombo, 1, 3);
-	
+
 		this.memberInfo.add(this.address, 2, 0);
 		this.memberInfo.add(this.addressTf, 3, 0);
 		this.memberInfo.add(this.city, 2, 1);
@@ -199,51 +200,83 @@ public class ViewMemberTab extends Tab {
 		this.memberInfo.add(this.postalCodeTF, 3, 2);
 		this.memberInfo.add(this.active, 2, 3);
 		this.memberInfo.add(this.activeCombo, 3, 3);
-				
-		
+
+
 		// Create the buttons and add them to the HBox
 		this.update = new Button("Update");
 		this.delete = new Button("Delete");
-		
+
 		this.buttons = new HBox();
 		this.buttons.getChildren().addAll(this.update, this.delete);
 		this.buttons.setAlignment(Pos.CENTER);
 		this.buttons.setSpacing(50);
-		
+
 		// Set the values when a user is selected
 		this.table.getSelectionModel().selectedItemProperty().addListener(e->{
 			Member selected = this.table.getSelectionModel().getSelectedItem();
-			this.nameTf.setText(selected.getName());
-			this.memberId.setText(selected.getId() + "");
-			this.regDate.setText(selected.getRegistrationDate() + "");
-			this.levelCombo.getSelectionModel().select("Gold");
-			this.addressTf.setText(selected.getAddress());
-			this.cityCombo.getSelectionModel().select("Windsor");
-			this.postalCodeTF.setText(selected.getPostalCode());
-			if(selected.getActiveMembership()) {
-				this.activeCombo.getSelectionModel().select(0);
-			} else {
-				this.activeCombo.getSelectionModel().select(1);
+			if(selected != null) {
+				this.nameTf.setText(selected.getName());
+				this.memberId.setText(selected.getId() + "");
+				this.regDate.setText(selected.getRegistrationDate() + "");
+				this.levelCombo.getSelectionModel().select(selected.getMembershipLevel());
+				this.addressTf.setText(selected.getAddress());
+				this.cityCombo.getSelectionModel().select(selected.getCity());
+				this.postalCodeTF.setText(selected.getPostalCode());
+				this.activeCombo.getSelectionModel().select(selected.getActiveMembership());
 			}
 		});
-		
+
+
+		// Button Event Handlers
+
+		this.update.setOnAction(e->{
+			Member selected = this.table.getSelectionModel().getSelectedItem();
+			if(selected != null) {
+				selected.setName(this.nameTf.getText());
+				selected.setMembershipLevel(this.levelCombo.getSelectionModel().getSelectedItem());
+				selected.setAddress(this.addressTf.getText());
+				selected.setCity(this.cityCombo.getSelectionModel().getSelectedItem());
+				selected.setPostalCode(this.postalCodeTF.getText());
+				selected.setActiveMembership(this.activeCombo.getSelectionModel().getSelectedItem());
+
+				this.memberTable.updateMember(selected);
+				this.members.removeAll(this.members);
+				this.members = this.memberTable.getAllMembers();
+				this.table.setItems(FXCollections.observableArrayList(this.members));
+				this.table.getSelectionModel().select(selected);
+			} else {
+				System.out.println("Nothing was selected!");
+			}
+		});
+
+
+
+
+
+
+
+
+
+
+
+
 		// Add the items to the root borderpane
 		this.root = new BorderPane();
 		this.root.setTop(this.table);
 		this.root.setCenter(this.memberInfo);
 		this.root.setBottom(this.buttons);
-		
+
 		// Styling
 		this.memberInfo.setHgap(25);
 		this.memberInfo.setVgap(10);
 		this.memberInfo.setPadding(new Insets(10,10,10,10));
 		this.memberInfo.setAlignment(Pos.TOP_CENTER);
-		
+
 		BorderPane.setAlignment(this.memberInfo, Pos.CENTER);
 		BorderPane.setAlignment(this.buttons, Pos.TOP_CENTER);
 		BorderPane.setMargin(this.buttons, new Insets(50,50,50,50));
 		BorderPane.setMargin(this.table, new Insets(10,10,10,10));
-		
+
 		this.setContent(root);
 	}
 

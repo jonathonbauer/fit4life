@@ -4,14 +4,14 @@ public class MemberLevel {
 	private int id;
 	private String level;
 	
-	public MemberLevel(int id, String amenity) {
+	public MemberLevel(int id, String level) {
 		super();
 		this.id = id;
-		this.level = amenity;
+		this.level = level;
 	}
-	public MemberLevel(String amenity) {
+	public MemberLevel(String level) {
 		super();
-		this.level = amenity;
+		this.level = level;
 	}
 	
 	public int getId() {
@@ -28,5 +28,9 @@ public class MemberLevel {
 	
 	public void setLevel(String level) {
 		this.level = level;
+	}
+	
+	public String toString() {
+		return this.level;
 	}
 }
