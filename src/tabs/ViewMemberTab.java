@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.City;
 import tables.Member;
@@ -38,7 +39,6 @@ public class ViewMemberTab extends Tab {
 	Member member;	
 
 	public static ViewMemberTab instance = null;
-	private Button refresh;
 	private TableView<Member> table;
 	private TableColumn<Member, Integer> idCol;
 	private TableColumn<Member, String> nameCol;
@@ -75,6 +75,10 @@ public class ViewMemberTab extends Tab {
 	private Text date;
 	private Text regDate;
 	
+	private Button update;
+	private Button delete;
+	
+	private HBox buttons;
 	
 	private BorderPane root;
 
@@ -118,7 +122,6 @@ public class ViewMemberTab extends Tab {
 		this.table = new TableView<>();
 		this.table.setItems(FXCollections.observableArrayList(this.members));
 		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-//		this.table.setMaxHeight(350);
 		
 		// Get the values for the columns 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
@@ -196,7 +199,18 @@ public class ViewMemberTab extends Tab {
 		this.memberInfo.add(this.postalCodeTF, 3, 2);
 		this.memberInfo.add(this.active, 2, 3);
 		this.memberInfo.add(this.activeCombo, 3, 3);
+				
 		
+		// Create the buttons and add them to the HBox
+		this.update = new Button("Update");
+		this.delete = new Button("Delete");
+		
+		this.buttons = new HBox();
+		this.buttons.getChildren().addAll(this.update, this.delete);
+		this.buttons.setAlignment(Pos.CENTER);
+		this.buttons.setSpacing(50);
+		
+		// Set the values when a user is selected
 		this.table.getSelectionModel().selectedItemProperty().addListener(e->{
 			Member selected = this.table.getSelectionModel().getSelectedItem();
 			this.nameTf.setText(selected.getName());
@@ -213,21 +227,23 @@ public class ViewMemberTab extends Tab {
 			}
 		});
 		
-	
-
-		
 		// Add the items to the root borderpane
 		this.root = new BorderPane();
 		this.root.setTop(this.table);
-		root.setCenter(this.memberInfo);
+		this.root.setCenter(this.memberInfo);
+		this.root.setBottom(this.buttons);
 		
 		// Styling
-		this.root.setPadding(new Insets(10,10,10,10));
-		this.memberInfo.setGridLinesVisible(true);
+		this.memberInfo.setHgap(25);
+		this.memberInfo.setVgap(10);
+		this.memberInfo.setPadding(new Insets(10,10,10,10));
+		this.memberInfo.setAlignment(Pos.TOP_CENTER);
+		
 		BorderPane.setAlignment(this.memberInfo, Pos.CENTER);
-//		BorderPane.setMargin(this.refresh, new Insets(5,5,5,5));
-			
-
+		BorderPane.setAlignment(this.buttons, Pos.TOP_CENTER);
+		BorderPane.setMargin(this.buttons, new Insets(50,50,50,50));
+		BorderPane.setMargin(this.table, new Insets(10,10,10,10));
+		
 		this.setContent(root);
 	}
 
