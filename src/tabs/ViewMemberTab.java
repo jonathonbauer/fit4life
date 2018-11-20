@@ -153,8 +153,7 @@ public class ViewMemberTab extends Tab {
 		
 		this.memberLevelTable = new MemberLevelTable();
 		this.level = new Text("Membership Level:");
-//		this.levelCombo = new ComboBox(FXCollections.observableArrayList(this.memberLevelTable.getAllMemberLevels()));
-		this.levelCombo = new ComboBox();
+		this.levelCombo = new ComboBox(FXCollections.observableArrayList(this.memberLevelTable.getAllLevelNames()));
 		
 		// Column 2
 		this.address = new Text("Address:");
@@ -168,7 +167,7 @@ public class ViewMemberTab extends Tab {
 		}
 		
 		this.city = new Text("City:");
-		this.cityCombo = new ComboBox(FXCollections.observableArrayList(cityValues));
+		this.cityCombo = new ComboBox(FXCollections.observableArrayList(this.cityTable.getAllCityNames()));
 		
 		this.postalCode = new Text("Postal Code:");
 		this.postalCodeTF = new TextField();

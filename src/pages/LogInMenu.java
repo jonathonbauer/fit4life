@@ -136,7 +136,7 @@ public class LogInMenu {
 //					} 					
 //				}
 
-				Session.getInstance().setLoggedInUser(new User(users.get(1).getUsername(), users.get(1).getPassword()));
+			Session.getInstance().setLoggedInUser(new User(users.get(0).getUsername(), users.get(0).getPassword()));
 			mainMenu = new MainMenu();
 			Main.mainStage.setScene(mainMenu.getScene());
 			Main.mainStage.setTitle("Fit4Life Member Management");

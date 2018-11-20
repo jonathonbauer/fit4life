@@ -15,7 +15,7 @@ public class MemberTable implements MemberDAO {
 	Database db = Database.getInstance();
 	ArrayList<Member> members;
 	Member member;
-	
+	CityTable cityTable = new CityTable();
 	
 	@Override
 	public ArrayList<Member> getAllMembers() {
@@ -23,6 +23,7 @@ public class MemberTable implements MemberDAO {
 		members = new ArrayList<Member>();
 
 		try {
+			
 			Statement getMembers = db.getConnection().createStatement();
 			ResultSet data;
 			data = getMembers.executeQuery(query);
@@ -31,7 +32,7 @@ public class MemberTable implements MemberDAO {
 						data.getString(Tables.MEMBERS_COLUMN_NAME),
 						data.getString(Tables.MEMBERS_COLUMN_ADDRESS),
 						data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
-						data.getString(Tables.MEMBERS_COLUMN_CITY),
+						cityTable.getCityName(data.getInt(Tables.MEMBERS_COLUMN_CITY)),
 						data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 						data.getString(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL),
 						data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)
@@ -55,7 +56,7 @@ public class MemberTable implements MemberDAO {
 					data.getString(Tables.MEMBERS_COLUMN_NAME),
 					data.getString(Tables.MEMBERS_COLUMN_ADDRESS),
 					data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
-					data.getString(Tables.MEMBERS_COLUMN_CITY),
+					cityTable.getCityName(data.getInt(Tables.MEMBERS_COLUMN_CITY)),
 					data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 					data.getString(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL),
 					data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE));
