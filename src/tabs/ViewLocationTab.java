@@ -36,7 +36,7 @@ public class ViewLocationTab extends Tab {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ViewLocationTab() {
 		this.locationTable = new LocationTable();
-		//this.locations = ArrayList<>;
+		//this.locations = ArrayList<>();
 		this.locations = this.locationTable.getAllLocations();
 		
 		this.setText("View a Location");

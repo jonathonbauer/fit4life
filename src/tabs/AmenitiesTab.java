@@ -24,6 +24,7 @@ public class AmenitiesTab extends TabTemplate {
 			this.tabPane.getTabs().add(ViewAmenityTab.getInstance());
 			this.tabPane.getTabs().add(CreateAmenityTab.getInstance());
 			this.tabPane.getTabs().add(UpdateAmenityTab.getInstance());
+//			this.tabPane.getTabs().add(ReportAmenityTab.getInstance());
 			}
 		
 		
