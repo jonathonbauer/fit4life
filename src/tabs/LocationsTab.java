@@ -24,6 +24,7 @@ public class LocationsTab extends TabTemplate {
 		this.tabPane.getTabs().add(ViewLocationTab.getInstance());
 		this.tabPane.getTabs().add(CreateLocationTab.getInstance());
 		this.tabPane.getTabs().add(UpdateLocationTab.getInstance());
+		this.tabPane.getTabs().add(ReportLocationTab.getInstance());
 		}
 	
 	this.root = new BorderPane();
