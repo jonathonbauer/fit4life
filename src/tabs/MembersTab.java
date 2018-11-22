@@ -29,7 +29,6 @@ public class MembersTab extends Tab{
 		// If there is a session logged in, then display the CRUD tabs for the users
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
-			this.tabPane.getTabs().add(UpdateMemberTab.getInstance());
 			this.tabPane.getTabs().add(CreateMemberTab.getInstance());	
 //			this.tabPane.getTabs().add(ReportMemberTab.getInstance());
 		}
