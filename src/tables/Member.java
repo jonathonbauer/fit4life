@@ -4,41 +4,47 @@ import java.util.Date;
 
 public class Member {
 	private int id;
-	private String name;
+	private String fname;
+	private String lname;
 	private String address;
 	private String postalCode;
-//	TODO: Change to appropriate classes
 	private City city;
 	private Boolean activeMembership;
 	private MemberLevel membershipLevel;
+	private Location location;
 	private Date registrationDate;
 	
 	// Constructors
-	public Member(int id, String name, String address, String postalCode, City city, Boolean activeMembership,
-			MemberLevel membershipLevel, Date registrationDate) {
+	public Member(int id, String fname, String lname, String address, String postalCode, City city, Boolean activeMembership,
+			MemberLevel membershipLevel, Location location, Date registrationDate) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.fname = fname;
+		this.lname = lname;
 		this.address = address;
 		this.postalCode = postalCode;
 		this.city = city;
 		this.activeMembership = activeMembership;
 		this.membershipLevel = membershipLevel;
+		this.location = location;
 		this.registrationDate = registrationDate;
 	}
 
-	public Member(String name, String address, String postalCode, City city, Boolean activeMembership,
-			MemberLevel membershipLevel, Date registrationDate) {
+	public Member(String fname, String lname, String address, String postalCode, City city, Boolean activeMembership,
+			MemberLevel membershipLevel, Location location, Date registrationDate) {
 		super();
-		this.name = name;
+		this.fname = fname;
+		this.lname = lname;
 		this.address = address;
 		this.postalCode = postalCode;
 		this.city = city;
 		this.activeMembership = activeMembership;
 		this.membershipLevel = membershipLevel;
+		this.location = location;
 		this.registrationDate = registrationDate;
 	}
 	
+
 	public Member() {
 		
 	}
@@ -53,12 +59,20 @@ public class Member {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFName() {
+		return fname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFName(String fname) {
+		this.fname = fname;
+	}
+	
+	public String getLName() {
+		return lname;
+	}
+
+	public void setLName(String lname) {
+		this.lname = lname;
 	}
 
 	public String getAddress() {
@@ -99,6 +113,14 @@ public class Member {
 
 	public void setMembershipLevel(MemberLevel membershipLevel) {
 		this.membershipLevel = membershipLevel;
+	}
+	
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	public Date getRegistrationDate() {

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import daos.LocationDAO;
 import database.Database;
 import database.Tables;
-import tables.Amenity;
 import tables.Location;
 
 public class LocationTable implements LocationDAO {
@@ -53,7 +52,7 @@ public class LocationTable implements LocationDAO {
             ResultSet data;
             data = getLocations.executeQuery(query);
             while(data.next()) {
-                locations.add(new Location(data.getInt(Tables.LOCATIONS_COLUMN_ID),
+                this.locations.add(new Location(data.getInt(Tables.LOCATIONS_COLUMN_ID),
                                         data.getString(Tables.LOCATIONS_COLUMN_NAME),
                                         data.getString(Tables.LOCATIONS_COLUMN_ADDRESS),
                                         data.getString(Tables.LOCATIONS_COLUMN_POSTAL),

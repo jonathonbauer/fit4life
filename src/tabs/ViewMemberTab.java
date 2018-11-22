@@ -5,6 +5,7 @@ import java.util.Date;
 
 import database.Database;
 import javabeans.CityTable;
+import javabeans.LocationTable;
 import javabeans.MemberLevelTable;
 import javabeans.MemberTable;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.City;
+import tables.Location;
 import tables.Member;
 import tables.MemberLevel;
 /**
@@ -36,18 +38,21 @@ public class ViewMemberTab extends Tab {
 	MemberTable memberTable;
 	CityTable cityTable;
 	MemberLevelTable memberLevelTable;
+	LocationTable locationTable;
 	ArrayList<Member> members;
 	Member member;	
 
 	public static ViewMemberTab instance = null;
 	private TableView<Member> table;
 	private TableColumn<Member, Integer> idCol;
-	private TableColumn<Member, String> nameCol;
+	private TableColumn<Member, String> fnameCol;
+	private TableColumn<Member, String> lnameCol;
 	private TableColumn<Member, String> addressCol;
 	private TableColumn<Member, String> postalCodeCol;
 	private TableColumn<Member, String> cityCol;
 	private TableColumn<Member, Boolean> activeMemberCol;
 	private TableColumn<Member, String> memberLevelCol;
+	private TableColumn<Member, String> locationCol;
 	private TableColumn<Member, Date> regDateCol;
 
 	private GridPane memberInfo;
@@ -55,8 +60,11 @@ public class ViewMemberTab extends Tab {
 	private Text id;
 	private Text memberId;
 
-	private Text name;
-	private TextField nameTf;
+	private Text fname;
+	private TextField fnameTf;
+
+	private Text lname;
+	private TextField lnameTf;
 
 	private Text address;
 	private TextField addressTf;
@@ -72,6 +80,9 @@ public class ViewMemberTab extends Tab {
 
 	private Text level;
 	private ComboBox<MemberLevel> levelCombo;
+
+	private Text location;
+	private ComboBox<Location> locationCombo;
 
 	private Text date;
 	private Text regDate;
@@ -98,8 +109,11 @@ public class ViewMemberTab extends Tab {
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");
 
-		this.nameCol = new TableColumn<>();
-		this.nameCol.setText("Name");
+		this.fnameCol = new TableColumn<>();
+		this.fnameCol.setText("First Name");
+
+		this.lnameCol = new TableColumn<>();
+		this.lnameCol.setText("Last Name");
 
 		this.addressCol = new TableColumn<>();
 		this.addressCol.setText("Address");
@@ -116,6 +130,9 @@ public class ViewMemberTab extends Tab {
 		this.memberLevelCol = new TableColumn<>();
 		this.memberLevelCol.setText("Membership Level");
 
+		this.locationCol = new TableColumn<>();
+		this.locationCol.setText("Location");
+
 		this.regDateCol = new TableColumn<>();
 		this.regDateCol.setText("Registration Date");
 
@@ -126,18 +143,20 @@ public class ViewMemberTab extends Tab {
 
 		// Get the values for the columns 
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
-		this.nameCol.setCellValueFactory(new PropertyValueFactory("name"));
+		this.fnameCol.setCellValueFactory(new PropertyValueFactory("fname"));
+		this.lnameCol.setCellValueFactory(new PropertyValueFactory("lname"));
 		this.addressCol.setCellValueFactory(new PropertyValueFactory("address"));
 		this.postalCodeCol.setCellValueFactory(new PropertyValueFactory("postalCode"));
 		this.cityCol.setCellValueFactory(new PropertyValueFactory("city"));
 		this.activeMemberCol.setCellValueFactory(new PropertyValueFactory("activeMembership"));
 		this.memberLevelCol.setCellValueFactory(new PropertyValueFactory("membershipLevel"));
+		this.locationCol.setCellValueFactory(new PropertyValueFactory("location"));
 		this.regDateCol.setCellValueFactory(new PropertyValueFactory("registrationDate"));
 
 
 		// Add the columns to the table
-		table.getColumns().setAll(this.idCol, this.nameCol, this.addressCol, this.postalCodeCol, this.cityCol,
-				this.activeMemberCol, this.memberLevelCol, this.regDateCol);
+		table.getColumns().setAll(this.idCol, this.fnameCol, this.lnameCol, this.addressCol, this.postalCodeCol, this.cityCol,
+				this.activeMemberCol, this.memberLevelCol, this.locationCol, this.regDateCol);
 
 
 
@@ -149,8 +168,11 @@ public class ViewMemberTab extends Tab {
 		this.id = new Text("Member ID:");
 		this.memberId = new Text("0");
 
-		this.name = new Text("Name:");
-		this.nameTf = new TextField();
+		this.fname = new Text("Name:");
+		this.fnameTf = new TextField();
+
+		this.lname = new Text("Name:");
+		this.lnameTf = new TextField();
 
 		this.date = new Text("Registration Date:");
 		this.regDate = new Text("0000-00-00");
@@ -169,10 +191,19 @@ public class ViewMemberTab extends Tab {
 		for(int i=0; i<cities.size(); i++) {
 			cityValues.add(cities.get(i).getCity());
 		}
-
+		
 		this.city = new Text("City:");
 		this.cityCombo = new ComboBox(FXCollections.observableArrayList(this.cityTable.getAllCities()));
 
+		this.locationTable = new LocationTable();
+		ArrayList<Location> locations = this.locationTable.getAllLocations();
+		ArrayList<String> locationValues = new ArrayList<>();
+		for(int i=0; i<locations.size(); i++) {
+			locationValues.add(locations.get(i).getName());
+		}
+		
+		this.location = new Text("Location");
+		this.locationCombo = new ComboBox(FXCollections.observableArrayList(this.locationTable.getAllLocations()));
 		this.postalCode = new Text("Postal Code:");
 		this.postalCodeTF = new TextField();
 
@@ -185,12 +216,14 @@ public class ViewMemberTab extends Tab {
 		// Add the Member Information Boxes to the Screen
 		this.memberInfo.add(this.id, 0, 0);
 		this.memberInfo.add(this.memberId, 1, 0);
-		this.memberInfo.add(this.name, 0, 1);
-		this.memberInfo.add(this.nameTf, 1, 1);
-		this.memberInfo.add(this.date, 0, 2);
-		this.memberInfo.add(this.regDate, 1, 2);
-		this.memberInfo.add(this.level, 0, 3);
-		this.memberInfo.add(this.levelCombo, 1, 3);
+		this.memberInfo.add(this.fname, 0, 1);
+		this.memberInfo.add(this.fnameTf, 1, 1);
+		this.memberInfo.add(this.lname, 0, 2);
+		this.memberInfo.add(this.lnameTf, 1, 2);
+		this.memberInfo.add(this.date, 0, 3);
+		this.memberInfo.add(this.regDate, 1, 3);
+		this.memberInfo.add(this.level, 0, 4);
+		this.memberInfo.add(this.levelCombo, 1, 4);
 
 		this.memberInfo.add(this.address, 2, 0);
 		this.memberInfo.add(this.addressTf, 3, 0);
@@ -200,6 +233,8 @@ public class ViewMemberTab extends Tab {
 		this.memberInfo.add(this.postalCodeTF, 3, 2);
 		this.memberInfo.add(this.active, 2, 3);
 		this.memberInfo.add(this.activeCombo, 3, 3);
+		this.memberInfo.add(this.location, 2, 4);
+		this.memberInfo.add(this.locationCombo, 3, 4);
 
 
 		// Create the buttons and add them to the HBox
@@ -215,7 +250,8 @@ public class ViewMemberTab extends Tab {
 		this.table.getSelectionModel().selectedItemProperty().addListener(e->{
 			Member selected = this.table.getSelectionModel().getSelectedItem();
 			if(selected != null) {
-				this.nameTf.setText(selected.getName());
+				this.fnameTf.setText(selected.getFName());
+				this.lnameTf.setText(selected.getLName());
 				this.memberId.setText(selected.getId() + "");
 				this.regDate.setText(selected.getRegistrationDate() + "");
 				this.levelCombo.getSelectionModel().select(selected.getMembershipLevel());
@@ -223,6 +259,7 @@ public class ViewMemberTab extends Tab {
 				this.cityCombo.getSelectionModel().select(selected.getCity());
 				this.postalCodeTF.setText(selected.getPostalCode());
 				this.activeCombo.getSelectionModel().select(selected.getActiveMembership());
+				this.locationCombo.getSelectionModel().select(selected.getLocation());
 			}
 		});
 
@@ -232,13 +269,15 @@ public class ViewMemberTab extends Tab {
 		this.update.setOnAction(e->{
 			Member selected = this.table.getSelectionModel().getSelectedItem();
 			if(selected != null) {
-				selected.setName(this.nameTf.getText());
+				selected.setFName(this.fnameTf.getText());
+				selected.setLName(this.lnameTf.getText());
 				selected.setMembershipLevel(this.levelCombo.getSelectionModel().getSelectedItem());
 				selected.setAddress(this.addressTf.getText());
 				selected.setCity(this.cityCombo.getSelectionModel().getSelectedItem());
 				selected.setPostalCode(this.postalCodeTF.getText());
 				selected.setActiveMembership(this.activeCombo.getSelectionModel().getSelectedItem());
-
+				selected.setLocation(this.locationCombo.getSelectionModel().getSelectedItem());
+				
 				this.memberTable.updateMember(selected);
 				this.members.removeAll(this.members);
 				this.members = this.memberTable.getAllMembers();

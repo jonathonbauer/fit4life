@@ -17,6 +17,7 @@ public class MemberTable implements MemberDAO {
 	Member member;
 	CityTable cityTable = new CityTable();
 	MemberLevelTable memberLevelTable = new MemberLevelTable();
+	LocationTable locationTable = new LocationTable();
 	
 	@Override
 	public ArrayList<Member> getAllMembers() {
@@ -30,12 +31,14 @@ public class MemberTable implements MemberDAO {
 			data = getMembers.executeQuery(query);
 			while(data.next()) {
 				members.add(new Member(data.getInt(Tables.MEMBERS_COLUMN_ID),
-						data.getString(Tables.MEMBERS_COLUMN_NAME),
+						data.getString(Tables.MEMBERS_COLUMN_FNAME),
+						data.getString(Tables.MEMBERS_COLUMN_LNAME),
 						data.getString(Tables.MEMBERS_COLUMN_ADDRESS),
 						data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
 						this.cityTable.getCity(data.getInt(Tables.MEMBERS_COLUMN_CITY)),
 						data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 						this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
+						this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
 						data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)
 						));
 			}
@@ -54,12 +57,14 @@ public class MemberTable implements MemberDAO {
 			ResultSet data = getMember.executeQuery(query);
 			data.next();
 			member = new Member(data.getInt(Tables.MEMBERS_COLUMN_ID),
-					data.getString(Tables.MEMBERS_COLUMN_NAME),
+					data.getString(Tables.MEMBERS_COLUMN_FNAME),
+					data.getString(Tables.MEMBERS_COLUMN_LNAME),
 					data.getString(Tables.MEMBERS_COLUMN_ADDRESS),
 					data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
 					this.cityTable.getCity(data.getInt(Tables.MEMBERS_COLUMN_CITY)),
 					data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 					this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
+					this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
 					data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE));
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,12 +75,14 @@ public class MemberTable implements MemberDAO {
 	@Override
 	public void updateMember(Member member) {
 		String query = "UPDATE " + Tables.TABLE_MEMBERS + " SET " + 
-				Tables.MEMBERS_COLUMN_NAME + " = '" + member.getName() + "'," +
+				Tables.MEMBERS_COLUMN_FNAME + " = '" + member.getFName() + "'," +
+				Tables.MEMBERS_COLUMN_LNAME + " = '" + member.getLName() + "'," +
 				Tables.MEMBERS_COLUMN_ADDRESS + " = '" + member.getAddress() + "'," +
 				Tables.MEMBERS_COLUMN_POSTALCODE + " = '" + member.getPostalCode() + "'," +
 				Tables.MEMBERS_COLUMN_CITY + " = '" + member.getCity().getId() + "'," +
 				Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP + " = " + member.getActiveMembership() + "," +
 				Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL + " = '" + member.getMembershipLevel().getId() + "'," +
+				Tables.MEMBERS_COLUMN_LOCATION + " = '" + member.getLocation().getId() + "'," +
 				Tables.MEMBERS_COLUMN_REGISTRATION_DATE + " = '" + member.getRegistrationDate() + "'" +
 				" WHERE " + Tables.MEMBERS_COLUMN_ID + " = " + member.getId();
 		try {
@@ -104,14 +111,15 @@ public class MemberTable implements MemberDAO {
 	@Override
 	public void createMember(Member member) {
 		String query = "INSERT INTO " + Tables.TABLE_MEMBERS + "("
-				+ Tables.MEMBERS_COLUMN_NAME + ", "
+				+ Tables.MEMBERS_COLUMN_FNAME + ", "
+				+ Tables.MEMBERS_COLUMN_LNAME + ", "
 				+ Tables.MEMBERS_COLUMN_ADDRESS + ", "
 				+ Tables.MEMBERS_COLUMN_POSTALCODE + ", "
 				+ Tables.MEMBERS_COLUMN_CITY + ", "
 				+ Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP + ", "
 				+ Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL + ", "
 				+ Tables.MEMBERS_COLUMN_REGISTRATION_DATE + ") VALUES ('" 
-				+ member.getName() + "','" + member.getAddress() + "','" + member.getPostalCode()
+				+ member.getFName() + "','" + member.getLName() + "','" + member.getAddress() + "','" + member.getPostalCode()
 				+ member.getCity() + "','" + member.getActiveMembership() + "','" + member.getMembershipLevel()
 				+ "','" + member.getRegistrationDate() +"');";
 		try {
