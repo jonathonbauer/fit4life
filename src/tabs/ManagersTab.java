@@ -21,7 +21,8 @@ public class ManagersTab extends TabTemplate {
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(ViewManagerTab.getInstance());
 //			this.tabPane.getTabs().add(UpdateManagerTab.getInstance());
-//			this.tabPane.getTabs().add(CreateManagerTab.getInstance());				
+//			this.tabPane.getTabs().add(CreateManagerTab.getInstance());	
+//			this.tabPane.getTabs().add(ReportManagerTab.getInstance());
 		}
 		
 		// Declare the borderpane and set the inner tabPane to its center
