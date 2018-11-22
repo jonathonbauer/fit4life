@@ -39,8 +39,8 @@ public class Database {
 			createTable(Tables.TABLE_CITIES, Tables.CREATE_TABLE_CITIES, connection);
 			createTable(Tables.TABLE_AMENITIES, Tables.CREATE_TABLE_AMENITIES, connection);
 			createTable(Tables.TABLE_MEMBER_LEVEL, Tables.CREATE_TABLE_MEMBER_LEVEL, connection);
-			createTable(Tables.TABLE_MEMBERS, Tables.CREATE_TABLE_MEMBERS, connection);
 			createTable(Tables.TABLE_LOCATIONS, Tables.CREATE_TABLE_LOCATIONS, connection);
+			createTable(Tables.TABLE_MEMBERS, Tables.CREATE_TABLE_MEMBERS, connection);
 			createTable(Tables.TABLE_MANAGERS, Tables.CREATE_TABLE_MANAGERS, connection);
 			createTable(Tables.TABLE_LOCATION_AMENITIES, Tables.CREATE_TABLE_LOCATION_AMENITIES, connection);
 			createTable(Tables.TABLE_MEMBER_AMENITIES, Tables.CREATE_TABLE_MEMBER_AMENITIES, connection);

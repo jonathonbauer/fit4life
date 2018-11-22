@@ -108,7 +108,8 @@ public class ViewMemberTab extends Tab {
 		// Declare the Columns and give them titles
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");
-
+		this.idCol.setMaxWidth(1500);		
+		
 		this.fnameCol = new TableColumn<>();
 		this.fnameCol.setText("First Name");
 
@@ -168,10 +169,10 @@ public class ViewMemberTab extends Tab {
 		this.id = new Text("Member ID:");
 		this.memberId = new Text("0");
 
-		this.fname = new Text("Name:");
+		this.fname = new Text("First Name:");
 		this.fnameTf = new TextField();
 
-		this.lname = new Text("Name:");
+		this.lname = new Text("Last Name:");
 		this.lnameTf = new TextField();
 
 		this.date = new Text("Registration Date:");
@@ -202,7 +203,7 @@ public class ViewMemberTab extends Tab {
 			locationValues.add(locations.get(i).getName());
 		}
 		
-		this.location = new Text("Location");
+		this.location = new Text("Location:");
 		this.locationCombo = new ComboBox(FXCollections.observableArrayList(this.locationTable.getAllLocations()));
 		this.postalCode = new Text("Postal Code:");
 		this.postalCodeTF = new TextField();
@@ -250,8 +251,8 @@ public class ViewMemberTab extends Tab {
 		this.table.getSelectionModel().selectedItemProperty().addListener(e->{
 			Member selected = this.table.getSelectionModel().getSelectedItem();
 			if(selected != null) {
-				this.fnameTf.setText(selected.getFName());
-				this.lnameTf.setText(selected.getLName());
+				this.fnameTf.setText(selected.getFname());
+				this.lnameTf.setText(selected.getLname());
 				this.memberId.setText(selected.getId() + "");
 				this.regDate.setText(selected.getRegistrationDate() + "");
 				this.levelCombo.getSelectionModel().select(selected.getMembershipLevel());
@@ -269,8 +270,8 @@ public class ViewMemberTab extends Tab {
 		this.update.setOnAction(e->{
 			Member selected = this.table.getSelectionModel().getSelectedItem();
 			if(selected != null) {
-				selected.setFName(this.fnameTf.getText());
-				selected.setLName(this.lnameTf.getText());
+				selected.setFname(this.fnameTf.getText());
+				selected.setLname(this.lnameTf.getText());
 				selected.setMembershipLevel(this.levelCombo.getSelectionModel().getSelectedItem());
 				selected.setAddress(this.addressTf.getText());
 				selected.setCity(this.cityCombo.getSelectionModel().getSelectedItem());

@@ -59,19 +59,19 @@ public class Member {
 		this.id = id;
 	}
 
-	public String getFName() {
+	public String getFname() {
 		return fname;
 	}
 
-	public void setFName(String fname) {
+	public void setFname(String fname) {
 		this.fname = fname;
 	}
 	
-	public String getLName() {
+	public String getLname() {
 		return lname;
 	}
 
-	public void setLName(String lname) {
+	public void setLname(String lname) {
 		this.lname = lname;
 	}
 
@@ -139,10 +139,5 @@ public class Member {
 		}
 		
 	}
-	
-	
-	
-	
-	
 	
 }

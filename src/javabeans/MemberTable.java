@@ -75,8 +75,8 @@ public class MemberTable implements MemberDAO {
 	@Override
 	public void updateMember(Member member) {
 		String query = "UPDATE " + Tables.TABLE_MEMBERS + " SET " + 
-				Tables.MEMBERS_COLUMN_FNAME + " = '" + member.getFName() + "'," +
-				Tables.MEMBERS_COLUMN_LNAME + " = '" + member.getLName() + "'," +
+				Tables.MEMBERS_COLUMN_FNAME + " = '" + member.getFname() + "'," +
+				Tables.MEMBERS_COLUMN_LNAME + " = '" + member.getLname() + "'," +
 				Tables.MEMBERS_COLUMN_ADDRESS + " = '" + member.getAddress() + "'," +
 				Tables.MEMBERS_COLUMN_POSTALCODE + " = '" + member.getPostalCode() + "'," +
 				Tables.MEMBERS_COLUMN_CITY + " = '" + member.getCity().getId() + "'," +
@@ -119,7 +119,7 @@ public class MemberTable implements MemberDAO {
 				+ Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP + ", "
 				+ Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL + ", "
 				+ Tables.MEMBERS_COLUMN_REGISTRATION_DATE + ") VALUES ('" 
-				+ member.getFName() + "','" + member.getLName() + "','" + member.getAddress() + "','" + member.getPostalCode()
+				+ member.getFname() + "','" + member.getLname() + "','" + member.getAddress() + "','" + member.getPostalCode()
 				+ member.getCity() + "','" + member.getActiveMembership() + "','" + member.getMembershipLevel()
 				+ "','" + member.getRegistrationDate() +"');";
 		try {
