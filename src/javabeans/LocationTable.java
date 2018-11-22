@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import daos.LocationDAO;
 import database.Database;
 import database.Tables;
-import tables.Amenity;
 import tables.Location;
+import tables.User;
 
 public class LocationTable implements LocationDAO {
 	
@@ -45,27 +45,41 @@ public class LocationTable implements LocationDAO {
 
 	@Override
 	public Location getLocation(int locationID) {
-		// TODO Auto-generated method stub
 		String query = "SELECT * FROM " + Tables.TABLE_LOCATIONS + " WHERE "
                 + Tables.LOCATIONS_COLUMN_ID + " = " + locationID;
+
 		try {
             Statement getLocations = db.getConnection().createStatement();
             ResultSet data;
             data = getLocations.executeQuery(query);
-            while(data.next()) {
-                locations.add(new Location(data.getInt(Tables.LOCATIONS_COLUMN_ID),
+           data.next();
+                location = new Location(data.getInt(Tables.LOCATIONS_COLUMN_ID),
                                         data.getString(Tables.LOCATIONS_COLUMN_NAME),
                                         data.getString(Tables.LOCATIONS_COLUMN_ADDRESS),
                                         data.getString(Tables.LOCATIONS_COLUMN_POSTAL),
-                                        data.getString(Tables.LOCATIONS_COLUMN_CITY)
-                        ));
-            }
+                                        data.getString(Tables.LOCATIONS_COLUMN_CITY));
         } catch (SQLException e) {
-
             e.printStackTrace();
         } 
 		return location;
 	}
+	
+//	public User getUser(int userID) {
+//		String query = "SELECT * FROM " + Tables.TABLE_LOCATIONS + 
+//				" WHERE " + Tables.LOCATIONS_COLUMN_ID + " = " + userID;
+//		try {
+//			Statement getItem = db.getConnection().createStatement();
+//			ResultSet data = getItem.executeQuery(query);
+//			data.next();
+//			user = new User(data.getInt(Tables.USERS_COLUMN_ID),
+//					data.getString(Tables.USERS_COLUMN_USERNAME),
+//					data.getString(Tables.USERS_COLUMN_PASSWORD));
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return user;
+//	}
+
 
 	@Override
 	public void updateLocation(Location location) {
