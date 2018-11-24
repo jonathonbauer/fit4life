@@ -36,7 +36,6 @@ public class Session {
 	public static Session getInstance() {
 		if(session == null) {
 			session = new Session(new User("null", "null"));
-			System.out.println("There is no active session.");
 		}
 		return session;
 	}
