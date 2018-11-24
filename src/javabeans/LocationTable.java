@@ -9,7 +9,6 @@ import daos.LocationDAO;
 import database.Database;
 import database.Tables;
 import tables.Location;
-import tables.User;
 
 public class LocationTable implements LocationDAO {
 	
@@ -17,6 +16,7 @@ public class LocationTable implements LocationDAO {
 	Database db = Database.getInstance();
 	ArrayList<Location> locations;
 	Location location;
+	CityTable cityTable = new CityTable();
 
 	@Override
 	public ArrayList<Location> getAllLocations() {
@@ -33,8 +33,7 @@ public class LocationTable implements LocationDAO {
                                         data.getString(Tables.LOCATIONS_COLUMN_NAME),
                                         data.getString(Tables.LOCATIONS_COLUMN_ADDRESS),
                                         data.getString(Tables.LOCATIONS_COLUMN_POSTAL),
-                                        data.getString(Tables.LOCATIONS_COLUMN_CITY)
-                        ));
+                                        this.cityTable.getCity(data.getInt(Tables.MEMBERS_COLUMN_CITY))));
             }
         } catch (SQLException e) {
 
@@ -57,7 +56,7 @@ public class LocationTable implements LocationDAO {
                                         data.getString(Tables.LOCATIONS_COLUMN_NAME),
                                         data.getString(Tables.LOCATIONS_COLUMN_ADDRESS),
                                         data.getString(Tables.LOCATIONS_COLUMN_POSTAL),
-                                        data.getString(Tables.LOCATIONS_COLUMN_CITY));
+                                        this.cityTable.getCity(data.getInt(Tables.LOCATIONS_COLUMN_CITY)));
         } catch (SQLException e) {
             e.printStackTrace();
         } 
@@ -85,15 +84,14 @@ public class LocationTable implements LocationDAO {
 	public void updateLocation(Location location) {
 		// TODO Auto-generated method stub
 		String query = "UPDATE " + Tables.TABLE_LOCATIONS + " SET "
-                + Tables.LOCATIONS_COLUMN_NAME + " " + location.getName() + "," 
-                + Tables.LOCATIONS_COLUMN_ADDRESS + " " + location.getAddress() + ","
-                + Tables.LOCATIONS_COLUMN_POSTAL + " " + location.getPostalCode() + ","
-                + Tables.LOCATIONS_COLUMN_CITY + " " + location.getCity() + ","
-                + " WHERE " + Tables.LOCATIONS_COLUMN_ID + " " + location.getId();
+                + Tables.LOCATIONS_COLUMN_NAME + " = '" + location.getName() + "'," 
+                + Tables.LOCATIONS_COLUMN_ADDRESS + " = '" + location.getAddress() + "',"
+                + Tables.LOCATIONS_COLUMN_POSTAL + " = '" + location.getPostalCode() + "',"
+                + Tables.LOCATIONS_COLUMN_CITY + " = '" + location.getCity().getId() + "'"
+                + " WHERE " + Tables.LOCATIONS_COLUMN_ID + " = " + location.getId();
         try {
             Statement updateLocation = db.getConnection().createStatement();
-            ResultSet data;
-            data = updateLocation.executeQuery(query);
+            updateLocation.execute(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
