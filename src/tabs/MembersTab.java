@@ -30,7 +30,7 @@ public class MembersTab extends Tab{
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
 			this.tabPane.getTabs().add(CreateMemberTab.getInstance());	
-//			this.tabPane.getTabs().add(ReportMemberTab.getInstance());
+			this.tabPane.getTabs().add(MemberRegistrationReport.getInstance());
 		}
 		
 		// Declare the borderpane and set the inner tabPane to its center
