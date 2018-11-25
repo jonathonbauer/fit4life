@@ -59,7 +59,8 @@ public class Tables {
 	// Managers Table	
 	public static final String TABLE_MANAGERS = "managers";
 	public static final String MANAGERS_COLUMN_ID = "id";
-	public static final String MANAGERS_COLUMN_NAME = "name";
+	public static final String MANAGERS_COLUMN_FNAME = "first_name";
+	public static final String MANAGERS_COLUMN_LNAME = "last_name";
 	public static final String MANAGERS_COLUMN_ADDRESS = "address";
 	public static final String MANAGERS_COLUMN_POSTALCODE = "postal_code";
 	public static final String MANAGERS_COLUMN_CITY = "city";
@@ -134,7 +135,8 @@ public class Tables {
 	
 	public static final String CREATE_TABLE_MANAGERS = "CREATE TABLE " + TABLE_MANAGERS +
 			 "(" + MANAGERS_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
-			 	   MANAGERS_COLUMN_NAME + " VARCHAR(50), " + 
+			 	   MANAGERS_COLUMN_FNAME + " VARCHAR(50), " + 
+			 	   MANAGERS_COLUMN_LNAME + " VARCHAR(50), " + 
 			 	   MANAGERS_COLUMN_ADDRESS + " VARCHAR(50), " + 
 			 	   MANAGERS_COLUMN_POSTALCODE + " VARCHAR(50), " +
 					MANAGERS_COLUMN_CITY + " int NOT NULL, " + 

@@ -23,7 +23,6 @@ public class AmenitiesTab extends TabTemplate {
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(ViewAmenityTab.getInstance());
 			this.tabPane.getTabs().add(CreateAmenityTab.getInstance());
-			this.tabPane.getTabs().add(UpdateAmenityTab.getInstance());
 //			this.tabPane.getTabs().add(ReportAmenityTab.getInstance());
 			}
 		
@@ -42,6 +41,5 @@ public class AmenitiesTab extends TabTemplate {
 		} else {
 			return instance;
 		}
-		
 	}
 }
