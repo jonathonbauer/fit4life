@@ -21,7 +21,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.City;
 import tables.Location;
-import tables.Member;
 
 public class ViewLocationTab extends Tab {
 	Database db = Database.getInstance();

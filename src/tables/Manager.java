@@ -3,27 +3,30 @@ public class Manager {
 
 	
 		private int id;
-		private String name;
+		private String fname;
+		private String lname;
 		private String address;
 		private String postalCode;
 //		TODO: Change to appropriate classes
-		private String city;
+		private City city;
 
 		
 		// Constructors
-		public Manager(int id, String name, String address, String postalCode, String city) {
+		public Manager(int id, String fname, String lname, String address, String postalCode, City city) {
 			super();
 			this.id = id;
-			this.name = name;
+			this.fname = fname;
+			this.lname = lname;
 			this.address = address;
 			this.postalCode = postalCode;
 			this.city = city;
 			
 		}
 
-		public Manager(String name, String address, String postalCode, String city) {
+		public Manager(String fname, String lname, String address, String postalCode, City city) {
 			super();
-			this.name = name;
+			this.fname = fname;
+			this.lname = lname;
 			this.address = address;
 			this.postalCode = postalCode;
 			this.city = city;
@@ -40,12 +43,20 @@ public class Manager {
 			this.id = id;
 		}
 
-		public String getName() {
-			return name;
+		public String getFname() {
+			return fname;
 		}
 
-		public void setName(String name) {
-			this.name = name;
+		public void setFname(String fname) {
+			this.fname = fname;
+		}
+		
+		public String getLname() {
+			return lname;
+		}
+
+		public void setLname(String lname) {
+			this.lname = lname;
 		}
 
 		public String getAddress() {
@@ -64,11 +75,11 @@ public class Manager {
 			this.postalCode = postalCode;
 		}
 
-		public String getCity() {
+		public City getCity() {
 			return city;
 		}
 
-		public void setCity(String city) {
+		public void setCity(City city) {
 			this.city = city;
 		}
 

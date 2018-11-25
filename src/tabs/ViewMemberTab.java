@@ -289,17 +289,6 @@ public class ViewMemberTab extends Tab {
 			}
 		});
 
-
-
-
-
-
-
-
-
-
-
-
 		// Add the items to the root borderpane
 		this.root = new BorderPane();
 		this.root.setTop(this.table);
