@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
@@ -198,22 +201,24 @@ public class Initialization {
 			// If input passes validation, change the first time launch flag,
 			// create the user in the database and set the scene to the login page
 			if(flag) {
-				BufferedWriter out;
-				try {
-					out = new BufferedWriter(new FileWriter("src/main/hasLaunched.txt"));
-					out.write("true");
-					out.flush();
-					out.close();  
-				} catch (IOException e1) {
-					System.out.println("File could not be modified");
-					e1.printStackTrace();
-				}
-
-				db.createTables();
+//				BufferedWriter out;
+//				try {
+//					out = new BufferedWriter(new FileWriter("src/main/hasLaunched.txt"));
+//					out.write("true");
+//					out.flush();
+//					out.close();  
+//				} catch (IOException e1) {
+//					System.out.println("File could not be modified");
+//					e1.printStackTrace();
+//				}
+//
+//				db.createTables();
+				
 				UserTable userTable = new UserTable();
-				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
-				LogInMenu loginMenu = new LogInMenu();
-				Main.mainStage.setScene(loginMenu.getScene());
+				System.out.println(hashPassword(this.passwordField.getText(), getSalt()));
+//				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
+//				LogInMenu loginMenu = new LogInMenu();
+//				Main.mainStage.setScene(loginMenu.getScene());
 			}
 		});
 
@@ -288,87 +293,41 @@ public class Initialization {
 
 	}
 
-	// Getters & Setters
+	// Password encryption
+	public static String hashPassword(String password, byte[] salt) {
+		// Declare the string builder - this will be used to build the hashed password from bytes into a string
+		StringBuilder stringBuild = new StringBuilder();
 
-	public TextField getDbNameField() {
-		return dbNameField;
+		try {
+			MessageDigest msgDig = MessageDigest.getInstance("sha-256");
+			msgDig.update(salt);
+			byte[] hashBytes = msgDig.digest(password.getBytes());
+
+			for(int i=0; i < hashBytes.length; i++) {
+				stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+
+		return stringBuild.toString();
 	}
 
-	public void setDbNameField(TextField dbNameField) {
-		this.dbNameField = dbNameField;
+	public static byte[] getSalt() {
+		// Declare the byte array - this is the salt
+		byte[] salt = new byte[16];
+
+		// Use an instance of SecureRandom to create the random salt and store it in the byte array salt
+		try {
+			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
+		} catch (NoSuchAlgorithmException e1) {
+			e1.printStackTrace();
+		}
+		return salt;
 	}
 
-	public TextField getDbHostField() {
-		return dbHostField;
-	}
-
-	public void setDbHostField(TextField dbHostField) {
-		this.dbHostField = dbHostField;
-	}
-
-	public TextField getDbUserField() {
-		return dbUserField;
-	}
-
-	public void setDbUserField(TextField dbUserField) {
-		this.dbUserField = dbUserField;
-	}
-
-	public TextField getDbPassField() {
-		return dbPassField;
-	}
-
-	public void setDbPassField(PasswordField dbPassField) {
-		this.dbPassField = dbPassField;
-	}
-
-	public TextField getUserField() {
-		return userField;
-	}
-
-	public void setUserField(TextField userField) {
-		this.userField = userField;
-	}
-
-	public TextField getPasswordField() {
-		return passwordField;
-	}
-
-	public void setPasswordField(PasswordField passwordField) {
-		this.passwordField = passwordField;
-	}
-
-	public TextField getVerifyPasswordField() {
-		return verifyPasswordField;
-	}
-
-	public void setVerifyPasswordField(PasswordField verifyPasswordField) {
-		this.verifyPasswordField = verifyPasswordField;
-	}
-
-	public Button getSubmitButton() {
-		return submitButton;
-	}
-
-	public void setSubmitButton(Button submitButton) {
-		this.submitButton = submitButton;
-	}
-
-	public MenuBar getMenuBar() {
-		return menuBar;
-	}
-
-	public void setMenuBar(menuBar menuBar) {
-		this.menuBar = menuBar;
-	}
-
-	public BorderPane getRoot() {
-		return root;
-	}
-
-	public void setRoot(BorderPane root) {
-		this.root = root;
-	}
+	// Getters & Setter for the scene
 
 	public Scene getScene() {
 		return scene;
@@ -377,6 +336,7 @@ public class Initialization {
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
+
 
 
 }
