@@ -52,10 +52,7 @@ public class CityTable implements CityDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		
 		return cities;
-		
 	}
 	
 
@@ -92,11 +89,11 @@ public class CityTable implements CityDAO {
 	@Override
 	public void updateCity(City city) {
 		String query = "UPDATE " + Tables.TABLE_CITIES + " SET " + 
-				Tables.CITIES_COLUMN_CITY + " " + city.getCity() + "," +
+				Tables.CITIES_COLUMN_CITY + " = '" + city.getCity() + "'" +
 				" WHERE " + Tables.CITIES_COLUMN_ID + " = " + city.getId();
 		try {
 			Statement updateMember = db.getConnection().createStatement();
-			updateMember.executeQuery(query);
+			updateMember.execute(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
