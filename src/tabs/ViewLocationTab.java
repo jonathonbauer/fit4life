@@ -164,7 +164,7 @@ public class ViewLocationTab extends Tab {
 			if(selected != null) {
 				selected.setName(this.nameTf.getText());
 				selected.setAddress(this.addressTf.getText());
-				selected.setPostalCode(this.postalCode.getText());
+				selected.setPostalCode(this.postalCodeTf.getText());
 				selected.setCity(this.cityCombo.getSelectionModel().getSelectedItem());
 
 				this.locationTable.updateLocation(selected);
