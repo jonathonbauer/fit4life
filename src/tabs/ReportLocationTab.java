@@ -57,8 +57,11 @@ public class ReportLocationTab extends Tab {
 		
 		//Getting the info to the Chart
 		XYChart.Series chart = new XYChart.Series<>();
-		chart.getData().add(new XYChart.Data(this.locations, this.members));
-
+		for(int i = 0; i < this.locations.size(); i++) {
+		chart.getData().add(new XYChart.Data(this.locations.get(i).getName(), 
+				this.memberTable.getMemberLocation(this.locations.get(i).getId()).size()));
+		}
+		barChart.getData().add(chart);
 		//Displaying the info on the screen
 		root = new BorderPane();
 		this.root.setCenter(barChart);

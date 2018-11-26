@@ -52,10 +52,7 @@ public class CityTable implements CityDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		
 		return cities;
-		
 	}
 	
 

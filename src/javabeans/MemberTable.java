@@ -18,6 +18,7 @@ public class MemberTable implements MemberDAO {
 	CityTable cityTable = new CityTable();
 	MemberLevelTable memberLevelTable = new MemberLevelTable();
 	LocationTable locationTable = new LocationTable();
+	Member memberLocation;
 	
 	@Override
 	public ArrayList<Member> getAllMembers() {
@@ -130,5 +131,28 @@ public class MemberTable implements MemberDAO {
 		}
 		
 	}
-
+	public ArrayList<Member> getMemberLocation(int locationID) {
+		String query = "SELECT * FROM " + Tables.TABLE_MEMBERS + 
+				" WHERE " + Tables.MEMBERS_COLUMN_LOCATION + " = " + locationID;
+		try {
+			Statement getMemberLocation = db.getConnection().createStatement();
+			ResultSet data = getMemberLocation.executeQuery(query);
+			//data.next();
+			while(data.next()) {
+			 members.add(new Member(data.getInt(Tables.MEMBERS_COLUMN_ID),
+					data.getString(Tables.MEMBERS_COLUMN_FNAME),
+					data.getString(Tables.MEMBERS_COLUMN_LNAME),
+					data.getString(Tables.MEMBERS_COLUMN_ADDRESS),
+					data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
+					this.cityTable.getCity(data.getInt(Tables.MEMBERS_COLUMN_CITY)),
+					data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
+					this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
+					this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
+					data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return members;
+	}
 }
