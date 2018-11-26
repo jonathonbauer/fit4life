@@ -59,7 +59,11 @@ public class ReportCitiesTab extends Tab {
 		
 		//Getting the info to the Chart
 		XYChart.Series chart = new XYChart.Series<>();
-		chart.getData().add(new XYChart.Data(this.cities, this.members));
+		for(int i = 0; i < this.cities.size(); i++) {
+		chart.getData().add(new XYChart.Data(this.cities.get(i).getCity(), 
+				this.memberTable.getMemberLocation(this.cities.get(i).getId()).size()));
+		}
+		barChart.getData().add(chart);
 
 		//Displaying the info on the screen
 		root = new BorderPane();
