@@ -23,7 +23,6 @@ public class LocationsTab extends TabTemplate {
 	if(Session.isLoggedIn()) {
 		this.tabPane.getTabs().add(ViewLocationTab.getInstance());
 		this.tabPane.getTabs().add(CreateLocationTab.getInstance());
-		this.tabPane.getTabs().add(UpdateLocationTab.getInstance());
 		this.tabPane.getTabs().add(ReportLocationTab.getInstance());
 		}
 	

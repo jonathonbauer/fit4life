@@ -30,9 +30,4 @@ public class Amenity {
 	public void setAmenity(String amenity) {
 		this.amenity = amenity;
 	}
-	
-	
-
-	
-
 }

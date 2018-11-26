@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import daos.LocationDAO;
 import database.Database;
 import database.Tables;
-import tables.Amenity;
 import tables.Location;
 
 public class LocationTable implements LocationDAO {
@@ -17,6 +16,7 @@ public class LocationTable implements LocationDAO {
 	Database db = Database.getInstance();
 	ArrayList<Location> locations;
 	Location location;
+	CityTable cityTable = new CityTable();
 
 	@Override
 	public ArrayList<Location> getAllLocations() {
@@ -33,8 +33,7 @@ public class LocationTable implements LocationDAO {
                                         data.getString(Tables.LOCATIONS_COLUMN_NAME),
                                         data.getString(Tables.LOCATIONS_COLUMN_ADDRESS),
                                         data.getString(Tables.LOCATIONS_COLUMN_POSTAL),
-                                        data.getString(Tables.LOCATIONS_COLUMN_CITY)
-                        ));
+                                        this.cityTable.getCity(data.getInt(Tables.MEMBERS_COLUMN_CITY))));
             }
         } catch (SQLException e) {
 
@@ -45,41 +44,54 @@ public class LocationTable implements LocationDAO {
 
 	@Override
 	public Location getLocation(int locationID) {
-		// TODO Auto-generated method stub
 		String query = "SELECT * FROM " + Tables.TABLE_LOCATIONS + " WHERE "
                 + Tables.LOCATIONS_COLUMN_ID + " = " + locationID;
+
 		try {
             Statement getLocations = db.getConnection().createStatement();
             ResultSet data;
             data = getLocations.executeQuery(query);
-            while(data.next()) {
-                locations.add(new Location(data.getInt(Tables.LOCATIONS_COLUMN_ID),
+           data.next();
+                location = new Location(data.getInt(Tables.LOCATIONS_COLUMN_ID),
                                         data.getString(Tables.LOCATIONS_COLUMN_NAME),
                                         data.getString(Tables.LOCATIONS_COLUMN_ADDRESS),
                                         data.getString(Tables.LOCATIONS_COLUMN_POSTAL),
-                                        data.getString(Tables.LOCATIONS_COLUMN_CITY)
-                        ));
-            }
+                                        this.cityTable.getCity(data.getInt(Tables.LOCATIONS_COLUMN_CITY)));
         } catch (SQLException e) {
-
             e.printStackTrace();
         } 
 		return location;
 	}
+	
+//	public User getUser(int userID) {
+//		String query = "SELECT * FROM " + Tables.TABLE_LOCATIONS + 
+//				" WHERE " + Tables.LOCATIONS_COLUMN_ID + " = " + userID;
+//		try {
+//			Statement getItem = db.getConnection().createStatement();
+//			ResultSet data = getItem.executeQuery(query);
+//			data.next();
+//			user = new User(data.getInt(Tables.USERS_COLUMN_ID),
+//					data.getString(Tables.USERS_COLUMN_USERNAME),
+//					data.getString(Tables.USERS_COLUMN_PASSWORD));
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return user;
+//	}
+
 
 	@Override
 	public void updateLocation(Location location) {
 		// TODO Auto-generated method stub
 		String query = "UPDATE " + Tables.TABLE_LOCATIONS + " SET "
-                + Tables.LOCATIONS_COLUMN_NAME + " " + location.getName() + "," 
-                + Tables.LOCATIONS_COLUMN_ADDRESS + " " + location.getAddress() + ","
-                + Tables.LOCATIONS_COLUMN_POSTAL + " " + location.getPostalCode() + ","
-                + Tables.LOCATIONS_COLUMN_CITY + " " + location.getCity() + ","
-                + " WHERE " + Tables.LOCATIONS_COLUMN_ID + " " + location.getId();
+                + Tables.LOCATIONS_COLUMN_NAME + " = '" + location.getName() + "'," 
+                + Tables.LOCATIONS_COLUMN_ADDRESS + " = '" + location.getAddress() + "',"
+                + Tables.LOCATIONS_COLUMN_POSTAL + " = '" + location.getPostalCode() + "',"
+                + Tables.LOCATIONS_COLUMN_CITY + " = '" + location.getCity().getId() + "'"
+                + " WHERE " + Tables.LOCATIONS_COLUMN_ID + " = " + location.getId();
         try {
             Statement updateLocation = db.getConnection().createStatement();
-            ResultSet data;
-            data = updateLocation.executeQuery(query);
+            updateLocation.execute(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }

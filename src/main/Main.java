@@ -48,7 +48,7 @@ public class Main extends Application {
             	System.out.println("First time launch!");  
             	Main.mainStage.setScene(init.getScene());
             } else {
-            	System.out.println("We've been here before");
+            	System.out.println("Application starting.");
             	        	
             	Main.mainStage.setScene(logInMenu.getScene());
             }

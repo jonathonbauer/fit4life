@@ -15,6 +15,7 @@ public class CityTable implements CityDAO {
 	Database db = Database.getInstance();
 	ArrayList<City> citys;
 	City city;
+	String cityName;
 	
 	
 	@Override
@@ -36,6 +37,27 @@ public class CityTable implements CityDAO {
 		}
 		return citys;
 	}
+	
+	public ArrayList<String> getAllCityNames() {
+		String query = "SELECT " + Tables.CITIES_COLUMN_CITY + " FROM " + Tables.TABLE_CITIES; 
+		ArrayList<String> cities = new ArrayList<String>();
+
+		try {
+			Statement getCitys = db.getConnection().createStatement();
+			ResultSet data;
+			data = getCitys.executeQuery(query);
+			while(data.next()) {
+				cities.add(data.getString(Tables.CITIES_COLUMN_CITY));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
+		return cities;
+		
+	}
+	
 
 	@Override
 	public City getCity(int cityID) {
@@ -53,14 +75,28 @@ public class CityTable implements CityDAO {
 		return city;
 	}
 
+	public String getCityName(int cityID) {
+		String query = "SELECT " + Tables.CITIES_COLUMN_CITY + " FROM " + Tables.TABLE_CITIES +
+				" WHERE " + Tables.CITIES_COLUMN_ID + " = " + cityID;
+		try {
+			Statement getCity = db.getConnection().createStatement();
+			ResultSet data = getCity.executeQuery(query);
+			data.next();
+				cityName = data.getString(Tables.CITIES_COLUMN_CITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cityName;
+	}
+	
 	@Override
 	public void updateCity(City city) {
 		String query = "UPDATE " + Tables.TABLE_CITIES + " SET " + 
-				Tables.CITIES_COLUMN_CITY + " " + city.getCity() + "," +
+				Tables.CITIES_COLUMN_CITY + " = '" + city.getCity() + "'" +
 				" WHERE " + Tables.CITIES_COLUMN_ID + " = " + city.getId();
 		try {
 			Statement updateMember = db.getConnection().createStatement();
-			updateMember.executeQuery(query);
+			updateMember.execute(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
