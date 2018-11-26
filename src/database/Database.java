@@ -1,11 +1,15 @@
 package database;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  * 
@@ -21,10 +25,25 @@ public class Database {
 	
 	// Constructor
 	private Database() {
+		// Get the connection info from the config file and put it in an arraylist
+		ArrayList<String> config = new ArrayList<>();
+		try {
+			BufferedReader in = new BufferedReader(new FileReader("src/main/config.txt"));
+            	config.add(in.readLine());
+            	config.add(in.readLine());
+            	config.add(in.readLine());
+            	config.add(in.readLine());            
+            in.close();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+		
+		
 		if(connection == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
+//				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
+				connection = DriverManager.getConnection("jdbc:mysql://" + config.get(0) + "/" + config.get(1) + "?useSSL=false", config.get(2), config.get(3));
 				System.out.println("Successfully connected to the database.");
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -61,15 +80,8 @@ public class Database {
 	
 	public Boolean testConnection() {
 		if(connection == null) {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-//				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Tables.DB_NAME + "?useSSL=false", "root", "password");
-				connection = DriverManager.getConnection("jdbc:mysql://php.scweb.ca/" + "jbauerdb" + "?useSSL=false", "jbauer", "x3gw6x3gw60whvk0whvk");
-				return true;
-			} catch(Exception e) {
-				e.printStackTrace();
-				return false;
-			}
+			System.out.println("There is no connection");
+			return false;
 		} else {
 			return true;
 		}	
