@@ -65,12 +65,12 @@ public class AmenityTable implements AmenityDAO{
 	@Override
 	public void updateAmenity(Amenity amenity) {
 		// TODO Auto-generated method stub
-		String query = "UPDATE " + Tables.TABLE_AMENITIES + " SET "
-				+ Tables.AMENITIES_COLUMN_AMENITY + " " + amenity.getAmenity();
+		String query = "UPDATE " + Tables.TABLE_AMENITIES + " SET " + 
+				Tables.AMENITIES_COLUMN_AMENITY + " = '" + amenity.getAmenity() + "'" +
+				" WHERE " + Tables.AMENITIES_COLUMN_ID + " = " + amenity.getId();
 		try {
 			Statement updateAmenities = db.getConnection().createStatement();
-			ResultSet data;
-			data = updateAmenities.executeQuery(query);
+			updateAmenities.execute(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
