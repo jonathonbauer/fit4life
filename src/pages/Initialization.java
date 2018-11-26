@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import database.Database;
 import javabeans.UserTable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -50,20 +52,18 @@ public class Initialization {
 	private Text verifyPassword;
 	private PasswordField verifyPasswordField;
 	private Button submitButton;
+	private Button testButton;
+		
+	private GridPane dbGP;
+	private GridPane userGP;
 	
-	// Layout Nodes
-	private HBox dbHostBox;
-	private HBox dbNameBox;
-	private HBox dbUserBox;
-	private HBox dbPassBox;
-	private HBox userBox;
-	private HBox passBox;
-	private HBox verifyPassBox;
-	
-	
+	private VBox dbTextBox;
+	private VBox dbFieldBox;
+	private VBox userTextBox;
+	private VBox userFieldBox;
 	private VBox centerBox;
-	private VBox dbInfoBox;
-	private VBox userInfoBox;
+	private HBox dbInfoBox;
+	private HBox userInfoBox;
 	private menuBar menuBar;
 	private BorderPane root;
 	private Scene scene;
@@ -171,7 +171,7 @@ public class Initialization {
 	            	out.flush();
 	            	out.close();  
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+					System.out.println("File could not be modified");
 					e1.printStackTrace();
 				}
 				
@@ -183,61 +183,58 @@ public class Initialization {
 			}
 		});
 		
+		this.testButton = new Button("Test Connection");
 		
 		
 		this.menuBar = new menuBar();
 		
 		// Add the Text & Fields to the HBoxs, add Spacing and align them to center
 		
-		this.dbHostBox = new HBox();
-		this.dbHostBox.getChildren().addAll(this.dbHost, this.dbHostField);
-		this.dbHostBox.setSpacing(10);
-		this.dbHostBox.setAlignment(Pos.CENTER);
+		this.dbGP = new GridPane();
+		this.dbGP.setAlignment(Pos.CENTER);
+		this.dbGP.setHgap(25);
+		this.dbGP.setVgap(10);
 		
-		this.dbNameBox = new HBox();
-		this.dbNameBox.getChildren().addAll(this.dbName, this.dbNameField);
-		this.dbNameBox.setSpacing(10);
-		this.dbNameBox.setAlignment(Pos.CENTER);
+		this.dbGP.add(this.dbHost, 0, 0);
+		this.dbGP.add(this.dbHostField, 1, 0);
 		
-		this.dbUserBox = new HBox();
-		this.dbUserBox.getChildren().addAll(this.dbUser, this.dbUserField);
-		this.dbUserBox.setSpacing(10);
-		this.dbUserBox.setAlignment(Pos.CENTER);
+		this.dbGP.add(this.dbName, 0, 1);
+		this.dbGP.add(this.dbNameField, 1, 1);
 		
-		this.dbPassBox = new HBox();
-		this.dbPassBox.getChildren().addAll(this.dbPass, this.dbPassField);
-		this.dbPassBox.setSpacing(10);
-		this.dbPassBox.setAlignment(Pos.CENTER);
+		this.dbGP.add(this.dbUser, 0, 2);
+		this.dbGP.add(this.dbUserField, 1, 2);
 		
-		this.userBox = new HBox();
-		this.userBox.getChildren().addAll(this.user, this.userField);
-		this.userBox.setSpacing(10);
-		this.userBox.setAlignment(Pos.CENTER);
+		this.dbGP.add(this.dbPass, 0, 3);
+		this.dbGP.add(this.dbPassField, 1, 3);
 		
-		this.passBox = new HBox();
-		this.passBox.getChildren().addAll(this.password, this.passwordField);
-		this.passBox.setSpacing(10);
-		this.passBox.setAlignment(Pos.CENTER);
+		this.userGP = new GridPane();
+		this.userGP.setAlignment(Pos.CENTER);
+		this.userGP.setHgap(25);
+		this.userGP.setVgap(10);
 		
-		this.verifyPassBox = new HBox();
-		this.verifyPassBox.getChildren().addAll(this.verifyPassword, this.verifyPasswordField);
-		this.verifyPassBox.setSpacing(10);
-		this.verifyPassBox.setAlignment(Pos.CENTER);
+		this.userGP.add(this.user, 0, 0);
+		this.userGP.add(this.userField, 1, 0);
 		
+		this.userGP.add(this.password, 0, 1);
+		this.userGP.add(this.passwordField, 1, 1);
+		
+		this.userGP.add(this.verifyPassword, 0, 2);
+		this.userGP.add(this.verifyPasswordField, 1, 2);
+						
 		// Add the Hboxs to the VBoxs, add spacing, and align them to the center
 		
-		this.dbInfoBox = new VBox();
-		this.dbInfoBox.getChildren().addAll(this.dbInfo, this.dbHostBox, this.dbNameBox, this.dbUserBox, this.dbPassBox);
-		this.dbInfoBox.setSpacing(10);
-		this.dbInfoBox.setAlignment(Pos.CENTER);
-		
-		this.userInfoBox = new VBox();
-		this.userInfoBox.getChildren().addAll(this.userInfo, this.userBox, this.passBox, this.verifyPassBox);
-		this.userInfoBox.setSpacing(10);
-		this.userInfoBox.setAlignment(Pos.CENTER);
+//		this.dbInfoBox = new HBox();
+//		this.dbInfoBox.getChildren().addAll(this.dbTextBox, this.dbFieldBox);
+//		this.dbInfoBox.setSpacing(10);
+//		this.dbInfoBox.setAlignment(Pos.CENTER);
+//		
+//		this.userInfoBox = new HBox();
+//		this.userInfoBox.getChildren().addAll(this.userTextBox, this.userFieldBox);
+//		this.userInfoBox.setSpacing(10);
+//		this.userInfoBox.setAlignment(Pos.CENTER);
 		
 		this.centerBox = new VBox();
-		this.centerBox.getChildren().addAll(this.dbInfoBox, this.userInfoBox, this.submitButton);
+		this.centerBox.getChildren().addAll(this.dbInfo, this.dbGP, this.testButton, this.userInfo,  this.userGP, this.submitButton);
 		this.centerBox.setSpacing(25);
 		this.centerBox.setAlignment(Pos.CENTER);
 		
@@ -315,22 +312,6 @@ public class Initialization {
 
 	public void setSubmitButton(Button submitButton) {
 		this.submitButton = submitButton;
-	}
-
-	public VBox getDbInfoBox() {
-		return dbInfoBox;
-	}
-
-	public void setDbInfoBox(VBox dbInfoBox) {
-		this.dbInfoBox = dbInfoBox;
-	}
-
-	public VBox getUserInfoBox() {
-		return userInfoBox;
-	}
-
-	public void setUserInfoBox(VBox userInfoBox) {
-		this.userInfoBox = userInfoBox;
 	}
 
 	public MenuBar getMenuBar() {
