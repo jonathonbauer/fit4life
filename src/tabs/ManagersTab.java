@@ -20,7 +20,7 @@ public class ManagersTab extends TabTemplate {
 		// If there is a session logged in, then display the CRUD tabs for the users
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(ViewManagerTab.getInstance());
-//			this.tabPane.getTabs().add(CreateManagerTab.getInstance());	
+			this.tabPane.getTabs().add(CreateManagersTab.getInstance());	
 //			this.tabPane.getTabs().add(ReportManagerTab.getInstance());
 		}
 		
