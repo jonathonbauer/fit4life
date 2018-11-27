@@ -65,6 +65,7 @@ public class Database {
 			createTable(Tables.TABLE_MEMBER_AMENITIES, Tables.CREATE_TABLE_MEMBER_AMENITIES, connection);
 			createTable(Tables.TABLE_MANAGER_LOCATIONS, Tables.CREATE_TABLE_MANAGER_LOCATIONS, connection);
 			createTable(Tables.TABLE_USERS, Tables.CREATE_TABLE_USERS, connection);
+			createTable(Tables.TABLE_PASSWORDS, Tables.CREATE_TABLE_PASSWORDS, connection);
 			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();

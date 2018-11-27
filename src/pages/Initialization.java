@@ -8,11 +8,11 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 
 import database.Database;
+import javabeans.PasswordTable;
 import javabeans.UserTable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -78,6 +78,7 @@ public class Initialization {
 
 	// Constructor
 	public Initialization() {
+//		PasswordTable pwTable = new PasswordTable();
 		// Initialize the console Text so it can be set later
 		this.message = new Text();
 
@@ -210,8 +211,17 @@ public class Initialization {
 				}
 
 				db.createTables();
+				
 				UserTable userTable = new UserTable();
-				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
+				
+				
+				String username = this.userField.getText();
+				byte[] salt = PasswordTable.getSalt();
+				String password = PasswordTable.hashPassword(this.passwordField.getText(), new String(salt));
+				
+				userTable.createUser(new User(username));								
+				PasswordTable.insertPassword(password, new String(salt), userTable.newestUser());
+				
 				LogInMenu loginMenu = new LogInMenu();
 				Main.mainStage.setScene(loginMenu.getScene());
 			}
@@ -288,87 +298,42 @@ public class Initialization {
 
 	}
 
-	// Getters & Setters
+//	// Password encryption
+//	public static String hashPassword(String password, byte[] salt) {
+//		// Declare the string builder - this will be used to build the hashed password from bytes into a string
+//		StringBuilder stringBuild = new StringBuilder();
+//
+//		try {
+//			MessageDigest msgDig = MessageDigest.getInstance("sha-256");
+//			msgDig.update(salt);
+//			byte[] hashBytes = msgDig.digest(password.getBytes());
+//
+//			for(int i=0; i < hashBytes.length; i++) {
+//				stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
+//			}
+//
+//		} catch (NoSuchAlgorithmException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return stringBuild.toString();
+//	}
+//
+//	public static byte[] getSalt() {
+//		// Declare the byte array - this is the salt
+//		byte[] salt = new byte[16];
+//
+//		// Use an instance of SecureRandom to create the random salt and store it in the byte array salt
+//		try {
+//			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
+//		} catch (NoSuchAlgorithmException e1) {
+//			e1.printStackTrace();
+//		}
+//		System.out.println(salt);
+//		return salt;
+//	}
 
-	public TextField getDbNameField() {
-		return dbNameField;
-	}
-
-	public void setDbNameField(TextField dbNameField) {
-		this.dbNameField = dbNameField;
-	}
-
-	public TextField getDbHostField() {
-		return dbHostField;
-	}
-
-	public void setDbHostField(TextField dbHostField) {
-		this.dbHostField = dbHostField;
-	}
-
-	public TextField getDbUserField() {
-		return dbUserField;
-	}
-
-	public void setDbUserField(TextField dbUserField) {
-		this.dbUserField = dbUserField;
-	}
-
-	public TextField getDbPassField() {
-		return dbPassField;
-	}
-
-	public void setDbPassField(PasswordField dbPassField) {
-		this.dbPassField = dbPassField;
-	}
-
-	public TextField getUserField() {
-		return userField;
-	}
-
-	public void setUserField(TextField userField) {
-		this.userField = userField;
-	}
-
-	public TextField getPasswordField() {
-		return passwordField;
-	}
-
-	public void setPasswordField(PasswordField passwordField) {
-		this.passwordField = passwordField;
-	}
-
-	public TextField getVerifyPasswordField() {
-		return verifyPasswordField;
-	}
-
-	public void setVerifyPasswordField(PasswordField verifyPasswordField) {
-		this.verifyPasswordField = verifyPasswordField;
-	}
-
-	public Button getSubmitButton() {
-		return submitButton;
-	}
-
-	public void setSubmitButton(Button submitButton) {
-		this.submitButton = submitButton;
-	}
-
-	public MenuBar getMenuBar() {
-		return menuBar;
-	}
-
-	public void setMenuBar(menuBar menuBar) {
-		this.menuBar = menuBar;
-	}
-
-	public BorderPane getRoot() {
-		return root;
-	}
-
-	public void setRoot(BorderPane root) {
-		this.root = root;
-	}
+	// Getters & Setter for the scene
 
 	public Scene getScene() {
 		return scene;
@@ -377,6 +342,7 @@ public class Initialization {
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
+
 
 
 }

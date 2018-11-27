@@ -35,7 +35,7 @@ public class Session {
 	// Get instance method used to get the instance that has already been created at log in
 	public static Session getInstance() {
 		if(session == null) {
-			session = new Session(new User("null", "null"));
+			session = new Session(new User("null"));
 		}
 		return session;
 	}
