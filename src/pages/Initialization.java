@@ -4,18 +4,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
 import database.Database;
+import javabeans.PasswordTable;
 import javabeans.UserTable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -81,6 +78,7 @@ public class Initialization {
 
 	// Constructor
 	public Initialization() {
+//		PasswordTable pwTable = new PasswordTable();
 		// Initialize the console Text so it can be set later
 		this.message = new Text();
 
@@ -201,24 +199,31 @@ public class Initialization {
 			// If input passes validation, change the first time launch flag,
 			// create the user in the database and set the scene to the login page
 			if(flag) {
-//				BufferedWriter out;
-//				try {
-//					out = new BufferedWriter(new FileWriter("src/main/hasLaunched.txt"));
-//					out.write("true");
-//					out.flush();
-//					out.close();  
-//				} catch (IOException e1) {
-//					System.out.println("File could not be modified");
-//					e1.printStackTrace();
-//				}
-//
-//				db.createTables();
+				BufferedWriter out;
+				try {
+					out = new BufferedWriter(new FileWriter("src/main/hasLaunched.txt"));
+					out.write("true");
+					out.flush();
+					out.close();  
+				} catch (IOException e1) {
+					System.out.println("File could not be modified");
+					e1.printStackTrace();
+				}
+
+				db.createTables();
 				
 				UserTable userTable = new UserTable();
-				System.out.println(hashPassword(this.passwordField.getText(), getSalt()));
-//				userTable.createUser(new User(this.userField.getText(), this.passwordField.getText()));
-//				LogInMenu loginMenu = new LogInMenu();
-//				Main.mainStage.setScene(loginMenu.getScene());
+				
+				
+				String username = this.userField.getText();
+				byte[] salt = PasswordTable.getSalt();
+				String password = PasswordTable.hashPassword(this.passwordField.getText(), new String(salt));
+				
+				userTable.createUser(new User(username));								
+				PasswordTable.insertPassword(password, new String(salt), userTable.newestUser());
+				
+				LogInMenu loginMenu = new LogInMenu();
+				Main.mainStage.setScene(loginMenu.getScene());
 			}
 		});
 
@@ -293,39 +298,40 @@ public class Initialization {
 
 	}
 
-	// Password encryption
-	public static String hashPassword(String password, byte[] salt) {
-		// Declare the string builder - this will be used to build the hashed password from bytes into a string
-		StringBuilder stringBuild = new StringBuilder();
-
-		try {
-			MessageDigest msgDig = MessageDigest.getInstance("sha-256");
-			msgDig.update(salt);
-			byte[] hashBytes = msgDig.digest(password.getBytes());
-
-			for(int i=0; i < hashBytes.length; i++) {
-				stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
-			}
-
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-
-		return stringBuild.toString();
-	}
-
-	public static byte[] getSalt() {
-		// Declare the byte array - this is the salt
-		byte[] salt = new byte[16];
-
-		// Use an instance of SecureRandom to create the random salt and store it in the byte array salt
-		try {
-			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
-		} catch (NoSuchAlgorithmException e1) {
-			e1.printStackTrace();
-		}
-		return salt;
-	}
+//	// Password encryption
+//	public static String hashPassword(String password, byte[] salt) {
+//		// Declare the string builder - this will be used to build the hashed password from bytes into a string
+//		StringBuilder stringBuild = new StringBuilder();
+//
+//		try {
+//			MessageDigest msgDig = MessageDigest.getInstance("sha-256");
+//			msgDig.update(salt);
+//			byte[] hashBytes = msgDig.digest(password.getBytes());
+//
+//			for(int i=0; i < hashBytes.length; i++) {
+//				stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
+//			}
+//
+//		} catch (NoSuchAlgorithmException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return stringBuild.toString();
+//	}
+//
+//	public static byte[] getSalt() {
+//		// Declare the byte array - this is the salt
+//		byte[] salt = new byte[16];
+//
+//		// Use an instance of SecureRandom to create the random salt and store it in the byte array salt
+//		try {
+//			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
+//		} catch (NoSuchAlgorithmException e1) {
+//			e1.printStackTrace();
+//		}
+//		System.out.println(salt);
+//		return salt;
+//	}
 
 	// Getters & Setter for the scene
 
