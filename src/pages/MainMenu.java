@@ -10,7 +10,6 @@ import tabs.CitiesTab;
 import tabs.LocationsTab;
 import tabs.ManagersTab;
 import tabs.MembersTab;
-import tabs.UsersTab;
 
 /**
  * 
@@ -35,13 +34,14 @@ public class MainMenu {
 		this.tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 		
 		this.root = new BorderPane();
+		this.root.setMaxHeight(750);
+		
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(MembersTab.getInstance());
 			this.tabPane.getTabs().add(ManagersTab.getInstance());
 			this.tabPane.getTabs().add(LocationsTab.getInstance());
 			this.tabPane.getTabs().add(CitiesTab.getInstance());
 			this.tabPane.getTabs().add(AmenitiesTab.getInstance());
-			this.tabPane.getTabs().add(UsersTab.getInstance());
 		}
 
 		this.root.setTop(this.menuBar);

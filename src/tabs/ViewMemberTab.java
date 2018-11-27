@@ -246,6 +246,8 @@ public class ViewMemberTab extends Tab {
 		this.buttons.getChildren().addAll(this.update, this.delete);
 		this.buttons.setAlignment(Pos.CENTER);
 		this.buttons.setSpacing(50);
+		
+		this.memberInfo.add(this.buttons, 0, 5, 5, 1);
 
 		// Set the values when a user is selected
 		this.table.getSelectionModel().selectedItemProperty().addListener(e->{
@@ -280,9 +282,11 @@ public class ViewMemberTab extends Tab {
 				selected.setLocation(this.locationCombo.getSelectionModel().getSelectedItem());
 				
 				this.memberTable.updateMember(selected);
+				
 				this.members.removeAll(this.members);
 				this.members = this.memberTable.getAllMembers();
 				this.table.setItems(FXCollections.observableArrayList(this.members));
+				
 				this.table.getSelectionModel().select(selected);
 			} else {
 				System.out.println("Nothing was selected!");
@@ -293,14 +297,15 @@ public class ViewMemberTab extends Tab {
 		this.root = new BorderPane();
 		this.root.setTop(this.table);
 		this.root.setCenter(this.memberInfo);
-		this.root.setBottom(this.buttons);
-
+		this.root.setMaxHeight(600);
+		
 		// Styling
 		this.memberInfo.setHgap(25);
 		this.memberInfo.setVgap(10);
 		this.memberInfo.setPadding(new Insets(10,10,10,10));
 		this.memberInfo.setAlignment(Pos.TOP_CENTER);
 
+		
 		BorderPane.setAlignment(this.memberInfo, Pos.CENTER);
 		BorderPane.setAlignment(this.buttons, Pos.TOP_CENTER);
 		BorderPane.setMargin(this.buttons, new Insets(50,50,50,50));
