@@ -1,5 +1,6 @@
 package javabeans;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -105,16 +106,19 @@ public class PasswordTable {
 	}
 	
 	// Salt generating function
-	public static byte[] getSalt() {
+	public static String getSalt() {
 		// Declare the byte array - this is the salt
-		byte[] salt = new byte[16];
-
+		String salt;
+		SecureRandom r = new SecureRandom();
+		salt = new BigInteger(64,r).toString();
+		System.out.println(salt);
 		// Use an instance of SecureRandom to create the random salt and store it in the byte array salt
-		try {
-			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
-		} catch (NoSuchAlgorithmException e1) {
-			e1.printStackTrace();
-		}
+//		try {
+//			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
+//		} catch (NoSuchAlgorithmException e1) {
+//			e1.printStackTrace();
+//		}
+//		System.out.println(salt.toString(16));
 		return salt;
 	}
 	

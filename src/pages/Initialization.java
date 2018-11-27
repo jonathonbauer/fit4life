@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
@@ -78,7 +79,7 @@ public class Initialization {
 
 	// Constructor
 	public Initialization() {
-//		PasswordTable pwTable = new PasswordTable();
+		//		PasswordTable pwTable = new PasswordTable();
 		// Initialize the console Text so it can be set later
 		this.message = new Text();
 
@@ -211,17 +212,23 @@ public class Initialization {
 				}
 
 				db.createTables();
-				
+
 				UserTable userTable = new UserTable();
-				
-				
+
+
 				String username = this.userField.getText();
-				byte[] salt = PasswordTable.getSalt();
-				String password = PasswordTable.hashPassword(this.passwordField.getText(), new String(salt));
-				
-				userTable.createUser(new User(username));								
-				PasswordTable.insertPassword(password, new String(salt), userTable.newestUser());
-				
+				String salt = PasswordTable.getSalt();
+				String password = null;
+
+				password = PasswordTable.hashPassword(this.passwordField.getText(), salt);
+
+
+				userTable.createUser(new User(username));	
+				if(password != null) {
+
+					PasswordTable.insertPassword(password, salt, userTable.newestUser());
+
+				}
 				LogInMenu loginMenu = new LogInMenu();
 				Main.mainStage.setScene(loginMenu.getScene());
 			}
@@ -298,40 +305,40 @@ public class Initialization {
 
 	}
 
-//	// Password encryption
-//	public static String hashPassword(String password, byte[] salt) {
-//		// Declare the string builder - this will be used to build the hashed password from bytes into a string
-//		StringBuilder stringBuild = new StringBuilder();
-//
-//		try {
-//			MessageDigest msgDig = MessageDigest.getInstance("sha-256");
-//			msgDig.update(salt);
-//			byte[] hashBytes = msgDig.digest(password.getBytes());
-//
-//			for(int i=0; i < hashBytes.length; i++) {
-//				stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
-//			}
-//
-//		} catch (NoSuchAlgorithmException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return stringBuild.toString();
-//	}
-//
-//	public static byte[] getSalt() {
-//		// Declare the byte array - this is the salt
-//		byte[] salt = new byte[16];
-//
-//		// Use an instance of SecureRandom to create the random salt and store it in the byte array salt
-//		try {
-//			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
-//		} catch (NoSuchAlgorithmException e1) {
-//			e1.printStackTrace();
-//		}
-//		System.out.println(salt);
-//		return salt;
-//	}
+	//	// Password encryption
+	//	public static String hashPassword(String password, byte[] salt) {
+	//		// Declare the string builder - this will be used to build the hashed password from bytes into a string
+	//		StringBuilder stringBuild = new StringBuilder();
+	//
+	//		try {
+	//			MessageDigest msgDig = MessageDigest.getInstance("sha-256");
+	//			msgDig.update(salt);
+	//			byte[] hashBytes = msgDig.digest(password.getBytes());
+	//
+	//			for(int i=0; i < hashBytes.length; i++) {
+	//				stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
+	//			}
+	//
+	//		} catch (NoSuchAlgorithmException e) {
+	//			e.printStackTrace();
+	//		}
+	//
+	//		return stringBuild.toString();
+	//	}
+	//
+	//	public static byte[] getSalt() {
+	//		// Declare the byte array - this is the salt
+	//		byte[] salt = new byte[16];
+	//
+	//		// Use an instance of SecureRandom to create the random salt and store it in the byte array salt
+	//		try {
+	//			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
+	//		} catch (NoSuchAlgorithmException e1) {
+	//			e1.printStackTrace();
+	//		}
+	//		System.out.println(salt);
+	//		return salt;
+	//	}
 
 	// Getters & Setter for the scene
 
