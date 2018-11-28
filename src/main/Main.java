@@ -37,6 +37,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
+	
 	public static void logoAnimate(ImageView logoIV) {
 		FadeTransition logoFadeIn = new FadeTransition(Duration.millis(1000), logoIV);
 		logoFadeIn.setFromValue(0.5);
