@@ -84,7 +84,7 @@ public class LogInMenu {
 		this.logoIV.setFitWidth(250);
 				
 		// Logo Animation
-		Main.logoAnimate(logoIV);
+		Main.logoAnimate(this.logoIV);
 		
 		//Error Text
 
@@ -159,13 +159,6 @@ public class LogInMenu {
 		
 		//this.bottom.getChildren().add(login);
 		
-
-
-		this.top.getChildren().add(title);
-
-		this.middle.getChildren().addAll(userName, passWord, errorText);
-
-		this.bottom.getChildren().add(login);
 
 
 		this.pane.setTop(top);
