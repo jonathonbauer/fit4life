@@ -3,42 +3,42 @@ package tabs;
 import java.util.ArrayList;
 
 import database.Database;
-import javabeans.AmenityTable;
+import javabeans.CityTable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import tables.Amenity;
+import tables.City;
 
-public class CreateAmenityTab extends Tab {
 
+
+public class CreateCitiesTab extends Tab {
 	Database db = Database.getInstance();
-	AmenityTable amenityTable;
-	ArrayList<Amenity> amenities;
-	Amenity amenity;
+	CityTable cityTable;
 	
-	public static CreateAmenityTab instance = null;
+	ArrayList<City> cities;
+	City city;
 	
+	public static CreateCitiesTab instance = null;
 	private GridPane root;
 	
-	private Label amenName;
+	private Label cityName;
 	
-	private TextField amenBox;
+	private TextField cityBox;
 	
 	private Button create;
 	
-	public CreateAmenityTab() {
+	public CreateCitiesTab() {
 		
 		//Get All Amenities from the Table
-		this.amenityTable = new AmenityTable();
-		//this.amenities = ArrayList<>();
-		this.amenities = this.amenityTable.getAllAmenities();
+		this.cityTable = new CityTable();
+		this.cities = new ArrayList<>();
+		this.cities = this.cityTable.getAllCities();
 		
-		this.setText("Create an Amenity");
+		this.setText("Create A City");	
 		
 		this.root = new GridPane();
 		
@@ -48,27 +48,31 @@ public class CreateAmenityTab extends Tab {
 		this.root.setVgap(10);
 		this.root.setPadding(new Insets(25,25,25,25));
 		
-		this.amenName = new Label("Amenity Name:");
+		this.cityName = new Label("City Name:");
 		
-		this.amenBox = new TextField();
+		this.cityBox = new TextField();
 		
-		this.create = new Button("Create Amenity");
+		this.create = new Button("Create City");
 		
-		this.root.add(amenName, 0, 1);
-		this.root.add(amenBox, 1, 1);
+		this.root.add(cityName, 0, 1);
+		this.root.add(cityBox, 1, 1);
 		
 		this.root.add(create, 1, 15);
+		
+		
+		
 
 		this.setContent(root);
 	}
 
-	public static CreateAmenityTab getInstance() {
+	public static CreateCitiesTab getInstance() {
 		if(instance == null) {
-			instance = new CreateAmenityTab();
+			instance = new CreateCitiesTab();
 			return instance;
 		} else {
 			return instance;
 		}
 		
 	}
-	}
+
+}

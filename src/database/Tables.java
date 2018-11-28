@@ -17,7 +17,12 @@ public class Tables {
 	public static final String TABLE_USERS = "users";
 	public static final String USERS_COLUMN_ID = "id";
 	public static final String USERS_COLUMN_USERNAME = "username";
-	public static final String USERS_COLUMN_PASSWORD = "password";
+	
+	
+	public static final String TABLE_PASSWORDS = "passwords";
+	public static final String PASSWORDS_COLUMN_PASSWORD = "password";
+	public static final String PASSWORDS_COLUMN_SALT = "salt";
+	public static final String PASSWORDS_COLUMN_USER_ID = "user_id";
 	
 	
 	// Members Table
@@ -86,11 +91,15 @@ public class Tables {
 	
 	public static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS +
 			 "(" + USERS_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
-			 	USERS_COLUMN_USERNAME + " VARCHAR(50), " +
-			 // TODO: Revisit the storing of the password to make it secure
-			 	USERS_COLUMN_PASSWORD + " VARCHAR(50), " + 			 	
+			 	USERS_COLUMN_USERNAME + " VARCHAR(50), " +		 	
 			     "PRIMARY KEY(" + USERS_COLUMN_ID + "));";
 	
+	public static final String CREATE_TABLE_PASSWORDS = "CREATE TABLE " + TABLE_PASSWORDS +
+			 "(" + PASSWORDS_COLUMN_PASSWORD + " VARCHAR(100), " +
+			 	PASSWORDS_COLUMN_SALT + " VARCHAR(100), " +
+			 	PASSWORDS_COLUMN_USER_ID + " int NOT NULL, " + 			 	
+			 	"FOREIGN KEY (" + PASSWORDS_COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + USERS_COLUMN_ID + "));";
+
 	
 	
 	public static final String CREATE_TABLE_MEMBERS = "CREATE TABLE " + TABLE_MEMBERS +

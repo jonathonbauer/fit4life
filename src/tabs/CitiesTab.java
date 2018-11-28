@@ -22,7 +22,7 @@ public class CitiesTab extends TabTemplate {
 			this.tabPane.getTabs().add(ViewCities.getInstance());
 //			this.tabPane.getTabs().add(UpdateCitiesTab.getInstance());
 //			this.tabPane.getTabs().add(CreateCitiesTab.getInstance());	
-//			this.tabPane.getTabs().add(ReportCitiesTab.getInstance());
+			this.tabPane.getTabs().add(ReportCitiesTab.getInstance());
 		}
 		
 		// Declare the borderpane and set the inner tabPane to its center
