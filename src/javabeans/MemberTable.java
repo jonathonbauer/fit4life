@@ -131,7 +131,9 @@ public class MemberTable implements MemberDAO {
 		}
 		
 	}
+	
 	public ArrayList<Member> getMemberLocation(int locationID) {
+		ArrayList<Member> members = new ArrayList<>();
 		String query = "SELECT * FROM " + Tables.TABLE_MEMBERS + 
 				" WHERE " + Tables.MEMBERS_COLUMN_LOCATION + " = " + locationID;
 		try {

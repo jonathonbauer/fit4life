@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -42,6 +44,10 @@ public class LogInMenu {
 	private Button login;
 
 	private CheckBox remember;
+	
+	private Image logo;
+	
+	private ImageView logoIV;
 
 	public LogInMenu() {
 
@@ -70,12 +76,17 @@ public class LogInMenu {
 		//Adding in a new font
 		this.titleFont = Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 40);
 
-		//Adding in Text Nodes
-		this.title = new Text("Fit4Life");
-		this.title.setFont(titleFont);
-
-
-
+		
+		// Logo
+		this.logo = new Image("main/fit4lifelogo.png");
+		this.logoIV = new ImageView(logo);
+		this.logoIV.setFitHeight(250);
+		this.logoIV.setFitWidth(250);
+				
+		// Logo Animation
+		Main.logoAnimate(this.logoIV);
+		
+		//Error Text
 
 		this.errorText = new Text();
 
@@ -141,11 +152,14 @@ public class LogInMenu {
 		 * Adding the userName and passWord TextArea fields to the "Middle" VBox
 		 */
 
-		this.top.getChildren().add(title);
+		
+		//this.top.getChildren().add(logoIV);
+		
+		this.middle.getChildren().addAll(logoIV, userName, passWord,/*remember,*/ errorText, login);
+		
+		//this.bottom.getChildren().add(login);
+		
 
-		this.middle.getChildren().addAll(userName, passWord, errorText);
-
-		this.bottom.getChildren().add(login);
 
 		this.pane.setTop(top);
 		this.pane.setBottom(bottom);		
@@ -266,6 +280,20 @@ public class LogInMenu {
 	public void setRemember(CheckBox remember) {
 		this.remember = remember;
 	}
+	public Image getLogo() {
+		return logo;
+	}
 
+	public void setLogo(Image logo) {
+		this.logo = logo;
+	}
+
+	public ImageView getLogoIV() {
+		return logoIV;
+	}
+
+	public void setLogoIV(ImageView logoIV) {
+		this.logoIV = logoIV;
+	}
 }
 
