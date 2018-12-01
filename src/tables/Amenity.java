@@ -15,6 +15,10 @@ public class Amenity {
 		this.amenity = amenity;
 	}
 	
+	public Amenity() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -24,6 +24,10 @@ public class Location {
 		this.city = city;
 	}
 	
+	public Location() {
+		
+	}
+	
 	public String toString() {
 		return this.name;
 	}

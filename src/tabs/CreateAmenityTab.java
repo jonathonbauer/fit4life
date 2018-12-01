@@ -1,5 +1,7 @@
 package tabs;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import database.Database;
@@ -12,6 +14,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import tables.Amenity;
+import tables.Member;
 
 public class CreateAmenityTab extends Tab {
 
@@ -52,6 +55,13 @@ public class CreateAmenityTab extends Tab {
 		this.amenBox = new TextField();
 		
 		this.create = new Button("Create Amenity");
+		
+		this.create.setOnAction(e->{
+            Amenity newAmenity = new Amenity();
+            newAmenity.setAmenity(this.amenBox.getText());
+            
+            this.amenityTable.updateAmenity(newAmenity);
+        });
 		
 		this.root.add(amenName, 0, 1);
 		this.root.add(amenBox, 1, 1);

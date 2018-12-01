@@ -1,5 +1,7 @@
 package tabs;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import database.Database;
@@ -16,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import tables.City;
 import tables.Manager;
+import tables.Member;
 
 
 public class CreateManagersTab extends Tab {
@@ -81,6 +84,18 @@ public class CreateManagersTab extends Tab {
 		
 		
 		this.create = new Button("Create Manager");
+		
+		this.create.setOnAction(e->{
+          Manager newManager = new Manager();
+          newManager.setFname(this.fNameBox.getText());
+          newManager.setLname(this.lNameBox.getText());
+          newManager.setAddress(this.addressBox.getText());
+          newManager.setCity(this.citiesBox.getSelectionModel().getSelectedItem());
+          newManager.setPostalCode(this.postalBox.getText());
+          
+          this.managerTable.updateManager(newManager);
+          System.out.print("The Create Manager Button Was Clicked");
+        });
 		
 		
 		this.root.add(firstName, 0, 1);

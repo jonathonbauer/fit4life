@@ -33,6 +33,10 @@ public class Manager {
 		
 		}
 		
+		public Manager() {
+			
+		}
+		
 		// Getters and Setters
 
 		public int getId() {

@@ -1,5 +1,7 @@
 package tabs;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import database.Database;
@@ -12,6 +14,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import tables.City;
+import tables.Member;
 
 
 
@@ -53,6 +56,16 @@ public class CreateCitiesTab extends Tab {
 		this.cityBox = new TextField();
 		
 		this.create = new Button("Create City");
+		
+		this.create.setOnAction(e->{
+           City newCity = new City();
+           
+           newCity.setCity(this.cityBox.getText());
+           
+           this.cityTable.updateCity(newCity);
+           System.out.print("Create City Button clicked");
+       
+        });
 		
 		this.root.add(cityName, 0, 1);
 		this.root.add(cityBox, 1, 1);
