@@ -2,6 +2,7 @@ package tabs;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 import database.Database;
 import javabeans.CityTable;
@@ -11,7 +12,10 @@ import javabeans.MemberTable;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -26,11 +30,12 @@ import tables.City;
 import tables.Location;
 import tables.Member;
 import tables.MemberLevel;
+
 /**
  * 
- *  This class is used to display the all members in the Member Database
- *  It utilizes a TableView to display all information
- *  This class follows the Singleton design pattern
+ * This class is used to display the all members in the Member Database It
+ * utilizes a TableView to display all information This class follows the
+ * Singleton design pattern
  *
  */
 public class ViewMemberTab extends Tab {
@@ -40,7 +45,8 @@ public class ViewMemberTab extends Tab {
 	MemberLevelTable memberLevelTable;
 	LocationTable locationTable;
 	ArrayList<Member> members;
-	Member member;	
+	Member member;
+	Boolean confirm = false;
 
 	public static ViewMemberTab instance = null;
 	private TableView<Member> table;
@@ -94,7 +100,6 @@ public class ViewMemberTab extends Tab {
 
 	private BorderPane root;
 
-
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ViewMemberTab() {
 		// Get all the members from the database
@@ -108,8 +113,8 @@ public class ViewMemberTab extends Tab {
 		// Declare the Columns and give them titles
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");
-		this.idCol.setMaxWidth(1500);		
-		
+		this.idCol.setMaxWidth(1500);
+
 		this.fnameCol = new TableColumn<>();
 		this.fnameCol.setText("First Name");
 
@@ -142,7 +147,7 @@ public class ViewMemberTab extends Tab {
 		this.table.setItems(FXCollections.observableArrayList(this.members));
 		this.table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-		// Get the values for the columns 
+		// Get the values for the columns
 		this.idCol.setCellValueFactory(new PropertyValueFactory("id"));
 		this.fnameCol.setCellValueFactory(new PropertyValueFactory("fname"));
 		this.lnameCol.setCellValueFactory(new PropertyValueFactory("lname"));
@@ -154,16 +159,12 @@ public class ViewMemberTab extends Tab {
 		this.locationCol.setCellValueFactory(new PropertyValueFactory("location"));
 		this.regDateCol.setCellValueFactory(new PropertyValueFactory("registrationDate"));
 
-
 		// Add the columns to the table
-		table.getColumns().setAll(this.idCol, this.fnameCol, this.lnameCol, this.addressCol, this.postalCodeCol, this.cityCol,
-				this.activeMemberCol, this.memberLevelCol, this.locationCol, this.regDateCol);
-
-
+		table.getColumns().setAll(this.idCol, this.fnameCol, this.lnameCol, this.addressCol, this.postalCodeCol,
+				this.cityCol, this.activeMemberCol, this.memberLevelCol, this.locationCol, this.regDateCol);
 
 		// Information Beneath Table
 		this.memberInfo = new GridPane();
-
 
 		// Column 1
 		this.id = new Text("Member ID:");
@@ -189,20 +190,20 @@ public class ViewMemberTab extends Tab {
 		this.cityTable = new CityTable();
 		ArrayList<City> cities = this.cityTable.getAllCities();
 		ArrayList<String> cityValues = new ArrayList<>();
-		for(int i=0; i<cities.size(); i++) {
+		for (int i = 0; i < cities.size(); i++) {
 			cityValues.add(cities.get(i).getCity());
 		}
-		
+
 		this.city = new Text("City:");
 		this.cityCombo = new ComboBox(FXCollections.observableArrayList(this.cityTable.getAllCities()));
 
 		this.locationTable = new LocationTable();
 		ArrayList<Location> locations = this.locationTable.getAllLocations();
 		ArrayList<String> locationValues = new ArrayList<>();
-		for(int i=0; i<locations.size(); i++) {
+		for (int i = 0; i < locations.size(); i++) {
 			locationValues.add(locations.get(i).getName());
 		}
-		
+
 		this.location = new Text("Location:");
 		this.locationCombo = new ComboBox(FXCollections.observableArrayList(this.locationTable.getAllLocations()));
 		this.postalCode = new Text("Postal Code:");
@@ -237,7 +238,6 @@ public class ViewMemberTab extends Tab {
 		this.memberInfo.add(this.location, 2, 4);
 		this.memberInfo.add(this.locationCombo, 3, 4);
 
-
 		// Create the buttons and add them to the HBox
 		this.update = new Button("Update");
 		this.delete = new Button("Delete");
@@ -249,9 +249,9 @@ public class ViewMemberTab extends Tab {
 		this.memberInfo.add(this.buttons, 0, 5, 4, 1);
 
 		// Set the values when a user is selected
-		this.table.getSelectionModel().selectedItemProperty().addListener(e->{
+		this.table.getSelectionModel().selectedItemProperty().addListener(e -> {
 			Member selected = this.table.getSelectionModel().getSelectedItem();
-			if(selected != null) {
+			if (selected != null) {
 				this.fnameTf.setText(selected.getFname());
 				this.lnameTf.setText(selected.getLname());
 				this.memberId.setText(selected.getId() + "");
@@ -265,12 +265,33 @@ public class ViewMemberTab extends Tab {
 			}
 		});
 
-
 		// Button Event Handlers
 
-		this.update.setOnAction(e->{
+		this.update.setOnAction(e -> {
 			Member selected = this.table.getSelectionModel().getSelectedItem();
-			if(selected != null) {
+			if (selected != null) {
+				selected.setFname(this.fnameTf.getText());
+				selected.setLname(this.lnameTf.getText());
+				selected.setMembershipLevel(this.levelCombo.getSelectionModel().getSelectedItem());
+				selected.setAddress(this.addressTf.getText());
+				selected.setCity(this.cityCombo.getSelectionModel().getSelectedItem());
+				selected.setPostalCode(this.postalCodeTF.getText());
+				selected.setActiveMembership(this.activeCombo.getSelectionModel().getSelectedItem());
+				selected.setLocation(this.locationCombo.getSelectionModel().getSelectedItem());
+
+				this.memberTable.updateMember(selected);
+				this.members.removeAll(this.members);
+				this.members = this.memberTable.getAllMembers();
+				this.table.setItems(FXCollections.observableArrayList(this.members));
+				this.table.getSelectionModel().select(selected);
+			} else {
+				System.out.println("Nothing was selected!");
+			}
+		});
+
+		this.delete.setOnAction(e -> {
+			Member selected = this.table.getSelectionModel().getSelectedItem();
+			if (selected != null) {
 				selected.setFname(this.fnameTf.getText());
 				selected.setLname(this.lnameTf.getText());
 				selected.setMembershipLevel(this.levelCombo.getSelectionModel().getSelectedItem());
@@ -280,11 +301,22 @@ public class ViewMemberTab extends Tab {
 				selected.setActiveMembership(this.activeCombo.getSelectionModel().getSelectedItem());
 				selected.setLocation(this.locationCombo.getSelectionModel().getSelectedItem());
 				
-				this.memberTable.updateMember(selected);
-				this.members.removeAll(this.members);
-				this.members = this.memberTable.getAllMembers();
-				this.table.setItems(FXCollections.observableArrayList(this.members));
-				this.table.getSelectionModel().select(selected);
+				Alert confirmation = new Alert(AlertType.CONFIRMATION);
+				confirmation.setHeaderText(null);
+				confirmation.setTitle("Confirm Deletion");
+				confirmation.setContentText("Are you sure you wish to delete the member " + selected.getFname() + " " + selected.getLname() + "?");
+				
+				Optional<ButtonType> confirmResult = confirmation.showAndWait();
+				if(confirmResult.get() == ButtonType.OK) {
+					this.memberTable.deleteMember(selected);
+					this.members.removeAll(this.members);
+					this.members = this.memberTable.getAllMembers();
+					this.table.setItems(FXCollections.observableArrayList(this.members));
+					this.table.getSelectionModel().select(0);
+				} else {
+					System.out.println("Nothing deleted");
+				}
+				
 			} else {
 				System.out.println("Nothing was selected!");
 			}
@@ -298,20 +330,28 @@ public class ViewMemberTab extends Tab {
 		// Styling
 		this.memberInfo.setHgap(25);
 		this.memberInfo.setVgap(10);
-		this.memberInfo.setPadding(new Insets(20,20,20,20));
+		this.memberInfo.setPadding(new Insets(20, 20, 20, 20));
 		this.memberInfo.setAlignment(Pos.TOP_CENTER);
 		this.memberInfo.setMaxWidth(600);
-		
+
 		BorderPane.setAlignment(this.memberInfo, Pos.CENTER);
 		BorderPane.setMargin(this.memberInfo, new Insets(0, 10, 10, 10));
-		BorderPane.setMargin(this.table, new Insets(10,10,10,10));
-		
+		BorderPane.setMargin(this.table, new Insets(10, 10, 10, 10));
+
 		this.setContent(root);
+	}
+
+	public Boolean getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(Boolean confirm) {
+		this.confirm = confirm;
 	}
 
 	// getInstance method used to get or create the ViewMemberTab
 	public static ViewMemberTab getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new ViewMemberTab();
 			return instance;
 		} else {

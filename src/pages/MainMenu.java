@@ -52,7 +52,6 @@ public class MainMenu {
 		this.scene = new Scene(this.root, 1024, 768);
 		this.scene.getStylesheets().add("style/style.css");
 		this.tabPane.getStylesheets().add("style/syle.css");
-
 	}
 
 
