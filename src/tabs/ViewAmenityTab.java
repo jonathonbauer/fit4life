@@ -52,7 +52,7 @@ public class ViewAmenityTab extends Tab {
 		//this.amenities = ArrayList<>();
 		this.amenities = this.amenityTable.getAllAmenities();
 
-		this.setText("View Amenities");
+		this.setText("All Amenities");
 
 		this.idCol = new TableColumn<>();
 		this.idCol.setText("ID");

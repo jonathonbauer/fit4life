@@ -37,6 +37,7 @@ public class MemberRegistrationReport extends Tab {
 	private BorderPane root;
 	
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public MemberRegistrationReport() {
 		
 		//Gets each Location and puts it into an arraylist

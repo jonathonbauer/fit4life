@@ -4,6 +4,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import main.Main;
+import main.Session;
 
 public class menuBar extends MenuBar {
 
@@ -59,6 +60,7 @@ public class menuBar extends MenuBar {
 			System.out.println("Logout MenuItem Clicked");
 			System.out.println("Returning to Login Page...");
 			
+			Session.getInstance().logOut();
 			logInMenu = new LogInMenu();
 			Main.mainStage.setScene(logInMenu.getScene());
 			Main.mainStage.setTitle("Fit4Life Member Management");

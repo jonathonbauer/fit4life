@@ -55,7 +55,12 @@ public class Session {
 		} else {
 			return true;
 		}
-		
 	}
+	
+	public void logOut() {
+		this.loggedInUser = null;
+		System.out.println("User successfully logged out.");
+	}
+	
 	
 }

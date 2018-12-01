@@ -73,7 +73,7 @@ public class ViewManagerTab extends Tab {
 		this.managers = new ArrayList<>();
 		this.managers = this.managerTable.getAllManagers();
 
-		this.setText("View Managers");
+		this.setText("All Managers");
 
 
 		this.idCol = new TableColumn<>();

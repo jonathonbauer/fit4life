@@ -10,12 +10,15 @@ import tabs.CitiesTab;
 import tabs.LocationsTab;
 import tabs.ManagersTab;
 import tabs.MembersTab;
-import tabs.UsersTab;
 
 /**
  * 
- * The Main Menu
- * 
+ * The Main Menu is the page that is displayed after the user is successfully authenticated.
+ * <br/>
+ * It contains a Scene that hosts a BorderPane, which hosts a MenuBar and a TabPane
+ * <br/>
+ * It hosts a TabPane that displays all of the tabs within the application, as well as the MenuBar.
+ *  
  *
  */
 public class MainMenu {
@@ -41,14 +44,13 @@ public class MainMenu {
 			this.tabPane.getTabs().add(LocationsTab.getInstance());
 			this.tabPane.getTabs().add(CitiesTab.getInstance());
 			this.tabPane.getTabs().add(AmenitiesTab.getInstance());
-			this.tabPane.getTabs().add(UsersTab.getInstance());
 		}
 
 		this.root.setTop(this.menuBar);
 		this.root.setCenter(this.tabPane);
 		
 		this.scene = new Scene(this.root, 1024, 768);
-
+		this.scene.getStylesheets().add("style/style.css");
 
 	}
 
@@ -61,13 +63,7 @@ public class MainMenu {
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
-
-
-
-	//	public static void main(String[] args) {
-	//		// TODO Auto-generated method stub
-	//
-	//	}
+	
 
 
 

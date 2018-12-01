@@ -35,6 +35,7 @@ public class ReportLocationTab extends Tab {
 	private BorderPane root;
 	
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ReportLocationTab() {
 		
 		//Gets each Location and puts it into an arraylist
