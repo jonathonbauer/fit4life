@@ -48,7 +48,7 @@ public class CreateLocationTab extends Tab {
 		this.locations = new ArrayList<>();
 		this.locations = this.locationTable.getAllLocations();
 		
-		this.setText("Create A Location");
+		this.setText("New Location");
 		
 		this.root = new GridPane();
 		this.root.setAlignment(Pos.TOP_CENTER);

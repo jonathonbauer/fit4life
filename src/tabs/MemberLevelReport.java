@@ -34,6 +34,7 @@ public class MemberLevelReport extends Tab {
 		private BorderPane root;
 		
 		
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		public MemberLevelReport() {
 			
 			//gets each member and puts it into an arraylist

@@ -50,7 +50,7 @@ public class CreateManagersTab extends Tab {
 		this.managers = new ArrayList<>();
 		this.managers = this.managerTable.getAllManagers();
 		
-		this.setText("Create a Manager");	
+		this.setText("New Manager");	
 		this.root = new GridPane();
 		
 		this.root.setAlignment(Pos.TOP_CENTER);

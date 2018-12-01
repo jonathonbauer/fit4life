@@ -38,7 +38,7 @@ public class CreateCitiesTab extends Tab {
 		this.cities = new ArrayList<>();
 		this.cities = this.cityTable.getAllCities();
 		
-		this.setText("Create A City");	
+		this.setText("New City");	
 		
 		this.root = new GridPane();
 		

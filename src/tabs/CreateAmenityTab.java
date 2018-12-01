@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import tables.Amenity;
 
@@ -38,7 +37,7 @@ public class CreateAmenityTab extends Tab {
 		//this.amenities = ArrayList<>();
 		this.amenities = this.amenityTable.getAllAmenities();
 		
-		this.setText("Create an Amenity");
+		this.setText("New Amenity");
 		
 		this.root = new GridPane();
 		

@@ -52,7 +52,7 @@ public class ViewCities extends Tab {
 		this.cities = new ArrayList<>();
 		this.cities = this.cityTable.getAllCities();
 
-		this.setText("View Cities");
+		this.setText("All Cities");
 
 
 		this.idCol = new TableColumn<>();

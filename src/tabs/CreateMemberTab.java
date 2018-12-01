@@ -46,7 +46,6 @@ public class CreateMemberTab extends Tab {
 	private Label active;
 	
 	private Button create;
-	private Button clear;
 	
 	
 	private TextField fNameBox;
@@ -65,7 +64,7 @@ public class CreateMemberTab extends Tab {
 		this.members = this.memberTable.getAllMembers();
 		
 		//Set the title of the Tab
-		this.setText("Create A Member");	
+		this.setText("New Member");	
 		
 		//Create GridPane which all of the nodes are added too
 		this.root = new GridPane();

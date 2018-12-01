@@ -34,6 +34,7 @@ public class ReportCitiesTab extends Tab {
 
 	private BorderPane root;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ReportCitiesTab() {
 		
 		//Gets each City and puts it into an arraylist

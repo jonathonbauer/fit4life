@@ -69,7 +69,7 @@ public class ViewLocationTab extends Tab {
 		//this.locations = ArrayList<>();
 		this.locations = this.locationTable.getAllLocations();
 
-		this.setText("View a Location");
+		this.setText("All Locations");
 
 		// Declare columns & Give columns names
 		this.idCol = new TableColumn<>();

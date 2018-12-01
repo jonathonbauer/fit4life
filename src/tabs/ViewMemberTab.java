@@ -103,7 +103,7 @@ public class ViewMemberTab extends Tab {
 		this.members = this.memberTable.getAllMembers();
 
 		// Set the title text of the tab
-		this.setText("View Members");
+		this.setText("All Members");
 
 		// Declare the Columns and give them titles
 		this.idCol = new TableColumn<>();
@@ -246,6 +246,7 @@ public class ViewMemberTab extends Tab {
 		this.buttons.getChildren().addAll(this.update, this.delete);
 		this.buttons.setAlignment(Pos.CENTER);
 		this.buttons.setSpacing(50);
+		this.memberInfo.add(this.buttons, 0, 5, 4, 1);
 
 		// Set the values when a user is selected
 		this.table.getSelectionModel().selectedItemProperty().addListener(e->{
@@ -293,19 +294,18 @@ public class ViewMemberTab extends Tab {
 		this.root = new BorderPane();
 		this.root.setTop(this.table);
 		this.root.setCenter(this.memberInfo);
-		this.root.setBottom(this.buttons);
 
 		// Styling
 		this.memberInfo.setHgap(25);
 		this.memberInfo.setVgap(10);
-		this.memberInfo.setPadding(new Insets(10,10,10,10));
+		this.memberInfo.setPadding(new Insets(20,20,20,20));
 		this.memberInfo.setAlignment(Pos.TOP_CENTER);
-
+		this.memberInfo.setMaxWidth(600);
+		
 		BorderPane.setAlignment(this.memberInfo, Pos.CENTER);
-		BorderPane.setAlignment(this.buttons, Pos.TOP_CENTER);
-		BorderPane.setMargin(this.buttons, new Insets(50,50,50,50));
+		BorderPane.setMargin(this.memberInfo, new Insets(0, 10, 10, 10));
 		BorderPane.setMargin(this.table, new Insets(10,10,10,10));
-
+		
 		this.setContent(root);
 	}
 
