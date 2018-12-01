@@ -1,4 +1,4 @@
-php.scweb.ca
-jbauerdb
-jbauer
-x3gw6x3gw60whvk0whvk
+localhost
+fit4life
+root
+password

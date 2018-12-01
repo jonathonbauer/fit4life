@@ -27,9 +27,13 @@ public class PasswordTable {
 		try {
 			Statement getItem = db.getConnection().createStatement();
 			ResultSet data = getItem.executeQuery(userQuery);
-			data.next();
+			if(!data.next()) {
+				return false;
+			}
 			user = new User(data.getInt(Tables.USERS_COLUMN_ID),
 					data.getString(Tables.USERS_COLUMN_USERNAME));
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("User could not be found.");
@@ -39,7 +43,6 @@ public class PasswordTable {
 		String passQuery = "SELECT * FROM " + Tables.TABLE_PASSWORDS + 
 				" WHERE " + Tables.PASSWORDS_COLUMN_USER_ID + " = " + user.getId();
 		try {
-			System.out.println(passQuery);
 			Statement getItem = db.getConnection().createStatement();
 			ResultSet data = getItem.executeQuery(passQuery);
 			data.next();
