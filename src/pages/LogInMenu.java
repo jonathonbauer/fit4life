@@ -42,7 +42,6 @@ public class LogInMenu {
 
 	private Button login;
 
-
 	private Image logo;
 
 	private ImageView logoIV;
@@ -91,7 +90,6 @@ public class LogInMenu {
 
 		this.login = new Button("Log In");
 
-
 		// Adding in TextField and PasswordField to store username and password
 
 		this.userName = new TextField();
@@ -115,14 +113,17 @@ public class LogInMenu {
 
 			// Verify that the users login information is correct
 			if (PasswordTable.verifyLogin(this.userName.getText(), this.passWord.getText())) {
+				PauseTransition login = new PauseTransition(Duration.seconds(1));
+
+				login.setOnFinished(event -> {
+					Session.getInstance().setLoggedInUser(new User(this.userName.getText()));
+					mainMenu = new MainMenu();
+					Main.mainStage.setScene(mainMenu.getScene());
+					Main.mainStage.setTitle("Fit4Life Member Management");
+				});
+
 				this.errorText.setText("Login Successful");
-				Session.getInstance().setLoggedInUser(new User(this.userName.getText()));
-				
-				
-				
-				mainMenu = new MainMenu();
-				Main.mainStage.setScene(mainMenu.getScene());
-				Main.mainStage.setTitle("Fit4Life Member Management");
+				login.play();
 			} else {
 				this.errorText.setText("Incorrect Login Information");
 			}
@@ -133,17 +134,17 @@ public class LogInMenu {
 			// Verify that the users login information is correct
 			if (PasswordTable.verifyLogin(this.userName.getText(), this.passWord.getText())) {
 				PauseTransition login = new PauseTransition(Duration.seconds(1));
-				
-				login.setOnFinished(event->{
+
+				login.setOnFinished(event -> {
 					Session.getInstance().setLoggedInUser(new User(this.userName.getText()));
 					mainMenu = new MainMenu();
 					Main.mainStage.setScene(mainMenu.getScene());
 					Main.mainStage.setTitle("Fit4Life Member Management");
 				});
-				
+
 				this.errorText.setText("Login Successful");
 				login.play();
-				
+
 			} else {
 				this.errorText.setText("Incorrect Login Information");
 			}
