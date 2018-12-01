@@ -1,11 +1,10 @@
 package pages;
 
-
 import javabeans.PasswordTable;
+import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -16,12 +15,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import main.Main;
 import main.Session;
 import tables.User;
 
 public class LogInMenu {
-
 
 	public MainMenu mainMenu;
 
@@ -43,24 +42,23 @@ public class LogInMenu {
 
 	private Button login;
 
-	private CheckBox remember;
-	
+
 	private Image logo;
-	
+
 	private ImageView logoIV;
 
 	public LogInMenu() {
 
 		/*
-		 * This section of the code is what will run after the program has launched and has no existing profiles logged in.
-		 * it will prompt the user for their user name and password and attempt to log them into the database.
-		 */ 
+		 * This section of the code is what will run after the program has launched and
+		 * has no existing profiles logged in. it will prompt the user for their user
+		 * name and password and attempt to log them into the database.
+		 */
 
-
-		//BorderPane initialization
+		// BorderPane initialization
 		this.pane = new BorderPane();
 
-		//Creating VBox's for positioning TextFields
+		// Creating VBox's for positioning TextFields
 		this.top = new VBox();
 		this.top.setAlignment(Pos.CENTER);
 
@@ -73,35 +71,28 @@ public class LogInMenu {
 		this.baseline = new VBox();
 		this.baseline.setAlignment(Pos.BASELINE_CENTER);
 
-		//Adding in a new font
+		// Adding in a new font
 		this.titleFont = Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 40);
 
-		
 		// Logo
 		this.logo = new Image("main/fit4lifelogo.png");
 		this.logoIV = new ImageView(logo);
 		this.logoIV.setFitHeight(250);
 		this.logoIV.setFitWidth(250);
-				
+
 		// Logo Animation
 		Main.logoAnimate(this.logoIV);
-		
-		//Error Text
+
+		// Error Text
 
 		this.errorText = new Text();
 
-
-		//Adding in Button Nodes
+		// Adding in Button Nodes
 
 		this.login = new Button("Log In");
 
-		//Adding in CheckBox Nodes
-		//		this.remember = new CheckBox("Remember me?");
 
-		//Setting default checkbox values
-		//		this.remember.setIndeterminate(false);
-
-		//Adding in TextField and PasswordField to store username and password
+		// Adding in TextField and PasswordField to store username and password
 
 		this.userName = new TextField();
 		this.userName.setMaxHeight(30);
@@ -115,18 +106,20 @@ public class LogInMenu {
 		this.passWord.setMaxWidth(300);
 		this.passWord.setPromptText("PASSWORD");
 
-
 		/*
 		 * login Button Event Handler
 		 * 
 		 */
 
-		this.login.setOnAction(e->{
+		this.login.setOnAction(e -> {
 
 			// Verify that the users login information is correct
-			if(PasswordTable.verifyLogin(this.userName.getText(), this.passWord.getText())) {
+			if (PasswordTable.verifyLogin(this.userName.getText(), this.passWord.getText())) {
 				this.errorText.setText("Login Successful");
 				Session.getInstance().setLoggedInUser(new User(this.userName.getText()));
+				
+				
+				
 				mainMenu = new MainMenu();
 				Main.mainStage.setScene(mainMenu.getScene());
 				Main.mainStage.setTitle("Fit4Life Member Management");
@@ -136,33 +129,35 @@ public class LogInMenu {
 		});
 
 		// Enter key event handler
-		this.passWord.setOnAction(e->{
+		this.passWord.setOnAction(e -> {
 			// Verify that the users login information is correct
-			if(PasswordTable.verifyLogin(this.userName.getText(), this.passWord.getText())) {
+			if (PasswordTable.verifyLogin(this.userName.getText(), this.passWord.getText())) {
+				PauseTransition login = new PauseTransition(Duration.seconds(1));
+				
+				login.setOnFinished(event->{
+					Session.getInstance().setLoggedInUser(new User(this.userName.getText()));
+					mainMenu = new MainMenu();
+					Main.mainStage.setScene(mainMenu.getScene());
+					Main.mainStage.setTitle("Fit4Life Member Management");
+				});
+				
 				this.errorText.setText("Login Successful");
-				Session.getInstance().setLoggedInUser(new User(this.userName.getText()));
-				mainMenu = new MainMenu();
-				Main.mainStage.setScene(mainMenu.getScene());
-				Main.mainStage.setTitle("Fit4Life Member Management");
+				login.play();
+				
 			} else {
 				this.errorText.setText("Incorrect Login Information");
 			}
-		});;
+		});
+		;
+
 		/*
 		 * Adding the userName and passWord TextArea fields to the "Middle" VBox
 		 */
 
-		
-		//this.top.getChildren().add(logoIV);
-		
-		this.middle.getChildren().addAll(logoIV, userName, passWord,/*remember,*/ errorText, login);
-		
-		//this.bottom.getChildren().add(login);
-		
-
+		this.middle.getChildren().addAll(logoIV, userName, passWord, errorText, login);
 
 		this.pane.setTop(top);
-		this.pane.setBottom(bottom);		
+		this.pane.setBottom(bottom);
 		this.pane.setCenter(middle);
 
 		this.scene = new Scene(this.pane, 1024, 768);
@@ -273,13 +268,6 @@ public class LogInMenu {
 		this.login = login;
 	}
 
-	public CheckBox getRemember() {
-		return remember;
-	}
-
-	public void setRemember(CheckBox remember) {
-		this.remember = remember;
-	}
 	public Image getLogo() {
 		return logo;
 	}
@@ -296,4 +284,3 @@ public class LogInMenu {
 		this.logoIV = logoIV;
 	}
 }
-
