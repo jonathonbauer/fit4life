@@ -33,6 +33,7 @@ public class Reports {
 		this.reportButtonBox.setAlignment(Pos.CENTER);
 		
 		this.scene = new Scene(this.reportButtonBox, 1024, 768);
+		this.scene.getStylesheets().add("style/style.css");
 	}
 	
 
