@@ -162,6 +162,7 @@ public class LogInMenu {
 		this.pane.setCenter(middle);
 
 		this.scene = new Scene(this.pane, 1024, 768);
+		this.scene.getStylesheets().add("style/style.css");
 
 	}
 

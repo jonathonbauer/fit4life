@@ -41,6 +41,7 @@ public class Main extends Application {
 		Application.launch(args);
 	}
 	
+	//Logo Animation
 	public static void logoAnimate(ImageView logoIV) {
 		FadeTransition logoFadeIn = new FadeTransition(Duration.millis(1000), logoIV);
 		logoFadeIn.setFromValue(0.5);
@@ -81,6 +82,7 @@ public class Main extends Application {
 		
 		
 		mainMenu = new MainMenu();
+
 
 		logInMenu = new LogInMenu();
 		init = new Initialization();
