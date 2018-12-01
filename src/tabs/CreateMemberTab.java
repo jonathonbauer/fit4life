@@ -1,6 +1,10 @@
 package tabs;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 import database.Database;
 import javabeans.CityTable;
@@ -17,6 +21,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import tables.City;
+import tables.Location;
 import tables.Member;
 import tables.MemberLevel;
 
@@ -44,6 +49,7 @@ public class CreateMemberTab extends Tab {
 	private Label level;
 	private Label postal;
 	private Label active;
+	private Label location;
 	
 	private Button create;
 	
@@ -53,6 +59,7 @@ public class CreateMemberTab extends Tab {
 	private TextField addressBox;
 	private TextField postalBox;
 	
+	private ComboBox<Location> locationBox;
 	private ComboBox<City> citiesBox;
 	private ComboBox<MemberLevel> levelBox;
 	private ComboBox<Boolean> activeBox;
@@ -84,6 +91,7 @@ public class CreateMemberTab extends Tab {
 		this.level = new Label("Membership Level:");
 		this.postal = new Label("Postal Code:");
 		this.active = new Label("Active Membership:");
+		this.location = new Label("Location:");
 		
 		//TextField Creation
 		this.fNameBox = new TextField();
@@ -101,6 +109,17 @@ public class CreateMemberTab extends Tab {
 		for(int i=0; i<cities.size(); i++) {
 			cityValues.add(cities.get(i).getCity());
 		}
+		
+
+		//Get locations from the database
+		this.locationTable = new LocationTable();
+        ArrayList<Location> locations = this.locationTable.getAllLocations();
+        ArrayList<String> locationValues = new ArrayList<>();
+        for(int i=0; i<locations.size(); i++) {
+            locationValues.add(locations.get(i).getName());
+        }
+		
+		
 		//Get membership status from the database
 		ArrayList<Boolean> activeValues = new ArrayList<>();
 		activeValues.add(true);
@@ -110,11 +129,30 @@ public class CreateMemberTab extends Tab {
 		this.activeBox = new ComboBox<Boolean>(FXCollections.observableArrayList(activeValues));
 		this.citiesBox = new ComboBox<City>(FXCollections.observableArrayList(this.cityTable.getAllCities()));
 		this.levelBox = new ComboBox<MemberLevel>(FXCollections.observableArrayList(this.memberLevelTable.getAllMemberLevels()));
+		this.locationBox = new ComboBox<Location>(FXCollections.observableArrayList(this.locationTable.getAllLocations()));
 		
 	
 		//Creating button which will push new data to the database
 		this.create = new Button("Create Member");
 		
+		this.create.setOnAction(e->{
+            Member newMember = new Member();
+          
+            DateTimeFormatter goodFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
+            LocalDateTime now = LocalDateTime.now();  
+            
+            newMember.setFname(this.fNameBox.getText());
+            newMember.setLname(this.lNameBox.getText());
+            newMember.setMembershipLevel(this.levelBox.getSelectionModel().getSelectedItem());
+            newMember.setAddress(this.addressBox.getText());
+            newMember.setCity(this.citiesBox.getSelectionModel().getSelectedItem());
+            newMember.setPostalCode(this.postalBox.getText());
+            newMember.setActiveMembership(this.activeBox.getSelectionModel().getSelectedItem());
+            newMember.setLocation(this.locationBox.getSelectionModel().getSelectedItem());
+            newMember.setRegistrationDate(goodFormat.format(now));
+            this.memberTable.updateMember(newMember);
+            System.out.println("Current Date is: " +  goodFormat.format(now));
+        });
 		
 		//Adding all the nodes to the GridPane
 		this.root.add(firstName, 0, 1);
@@ -138,10 +176,13 @@ public class CreateMemberTab extends Tab {
 		this.root.add(active, 0, 7);
 		this.root.add(activeBox, 1, 7);
 		
+		this.root.add(location, 0, 8);
+		this.root.add(locationBox, 1, 8);
+		
 
 		this.root.add(create, 1, 15);
 		
-		
+
 		
 		
 		

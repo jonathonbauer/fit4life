@@ -40,7 +40,7 @@ public class MemberTable implements MemberDAO {
 						data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 						this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
 						this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
-						data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)
+						data.getString(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)
 						));
 			}
 		} catch (SQLException e) {
@@ -66,7 +66,7 @@ public class MemberTable implements MemberDAO {
 					data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 					this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
 					this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
-					data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE));
+					data.getString(Tables.MEMBERS_COLUMN_REGISTRATION_DATE));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -150,7 +150,7 @@ public class MemberTable implements MemberDAO {
 					data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 					this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
 					this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
-					data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)));
+					data.getString(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -12,11 +12,11 @@ public class Member {
 	private Boolean activeMembership;
 	private MemberLevel membershipLevel;
 	private Location location;
-	private Date registrationDate;
+	private String registrationDate;
 	
 	// Constructors
 	public Member(int id, String fname, String lname, String address, String postalCode, City city, Boolean activeMembership,
-			MemberLevel membershipLevel, Location location, Date registrationDate) {
+			MemberLevel membershipLevel, Location location, String registrationDate) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -31,7 +31,7 @@ public class Member {
 	}
 
 	public Member(String fname, String lname, String address, String postalCode, City city, Boolean activeMembership,
-			MemberLevel membershipLevel, Location location, Date registrationDate) {
+			MemberLevel membershipLevel, Location location, String registrationDate) {
 		super();
 		this.fname = fname;
 		this.lname = lname;
@@ -123,11 +123,11 @@ public class Member {
 		this.location = location;
 	}
 
-	public Date getRegistrationDate() {
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
