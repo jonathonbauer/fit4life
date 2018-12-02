@@ -21,7 +21,7 @@ INSERT MOCKUPS HERE
 
 ## Database Design
 
-![Database Design](https://github.com/jonathonbauer/fit4life/raw/master/src/images/databaseSchema.png) "Database Design")
+![Database Design](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/databaseSchema.png) "Database Design")
 
 
 
