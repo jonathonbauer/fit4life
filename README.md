@@ -15,6 +15,25 @@ You will be asked to input your database information and create a user.
 
 You will need to have a database created and ready to go, and you will need the credentials for the server.
 
+## Creating Records and Sample Data
+
+When you first begin to use the software, you will need to input your City records first, followed by the Location records. 
+<br/>
+This will then allow you to input your Member records, as a Member record requires both a City and a Location.
+<br/>
+Here is some sample data to be imported into the database. You will need to import them in the order listed.
+<br/>
+
+[Cities](https://github.com/jonathonbauer/fit4life/raw/readMe/src/sampledata/cities.sql)
+<br/>
+[Locations](https://github.com/jonathonbauer/fit4life/raw/readMe/src/sampledata/locations.sql) 
+<br/>
+[Managers](https://github.com/jonathonbauer/fit4life/raw/readMe/src/sampledata/managers.sql) 
+<br/>
+[Members](https://github.com/jonathonbauer/fit4life/raw/readMe/src/sampledata/members.sql) 
+<br/>
+[Amenities](https://github.com/jonathonbauer/fit4life/raw/readMe/src/sampledata/amenities.sql)  
+
 ## Mockup
 
 INSERT MOCKUPS HERE

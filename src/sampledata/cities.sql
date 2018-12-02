@@ -1,0 +1,10 @@
+insert into cities (id, city) values (1, 'Windsor');
+insert into cities (id, city) values (2, 'Amherstburg');
+insert into cities (id, city) values (3, 'Detroit');
+insert into cities (id, city) values (4, 'Misssissauga');
+insert into cities (id, city) values (5, 'Toronto');
+insert into cities (id, city) values (6, 'Tecumseh');
+insert into cities (id, city) values (7, 'Kingsville');
+insert into cities (id, city) values (8, 'Barrie');
+insert into cities (id, city) values (9, 'Harrow');
+insert into cities (id, city) values (10, 'Essex');
