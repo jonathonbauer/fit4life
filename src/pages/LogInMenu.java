@@ -66,7 +66,7 @@ public class LogInMenu {
 		this.titleFont = Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 40);
 
 		// Logo
-		this.logo = new Image("main/fit4lifelogo.png");
+		this.logo = new Image("images/fit4lifelogo.png");
 		this.logoIV = new ImageView(logo);
 		this.logoIV.setFitHeight(450);
 		this.logoIV.setFitWidth(450);
