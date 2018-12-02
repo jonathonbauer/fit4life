@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javabeans.MemberLevelTable;
+import tables.MemberLevel;
+
 /**
  * 
  * This class will be used to represent the connection to the Database. It will
@@ -70,11 +73,15 @@ public class Database {
 			createTable(Tables.TABLE_LOCATIONS, Tables.CREATE_TABLE_LOCATIONS, connection);
 			createTable(Tables.TABLE_MEMBERS, Tables.CREATE_TABLE_MEMBERS, connection);
 			createTable(Tables.TABLE_MANAGERS, Tables.CREATE_TABLE_MANAGERS, connection);
-			createTable(Tables.TABLE_LOCATION_AMENITIES, Tables.CREATE_TABLE_LOCATION_AMENITIES, connection);
-			createTable(Tables.TABLE_MEMBER_AMENITIES, Tables.CREATE_TABLE_MEMBER_AMENITIES, connection);
-			createTable(Tables.TABLE_MANAGER_LOCATIONS, Tables.CREATE_TABLE_MANAGER_LOCATIONS, connection);
 			createTable(Tables.TABLE_USERS, Tables.CREATE_TABLE_USERS, connection);
 			createTable(Tables.TABLE_PASSWORDS, Tables.CREATE_TABLE_PASSWORDS, connection);
+			
+			MemberLevelTable memLevTable = new MemberLevelTable();
+			memLevTable.createMemberLevel(new MemberLevel("Gold"));
+			memLevTable.createMemberLevel(new MemberLevel("Silver"));
+			memLevTable.createMemberLevel(new MemberLevel("Bronze"));
+			
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

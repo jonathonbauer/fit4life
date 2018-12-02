@@ -69,21 +69,6 @@ public class Tables {
 	public static final String MANAGERS_COLUMN_POSTALCODE = "postal_code";
 	public static final String MANAGERS_COLUMN_CITY = "city";
 
-	// Location Amenities Table
-	public static final String TABLE_LOCATION_AMENITIES = "location_amenities";
-	public static final String LOCATION_AMENITIES_COLUMN_LOCATION = "location";
-	public static final String LOCATION_AMENITIES_COLUMN_AMENITY = "amenity";
-
-	// Member Amenities Table
-	public static final String TABLE_MEMBER_AMENITIES = "member_amenities";
-	public static final String MEMBER_AMENITIES_COLUMN_MEMBER_LEVEL = "member_level";
-	public static final String MEMBER_AMENITIES_COLUMN_AMENITY = "amenity";
-
-	// Manager Locations
-	public static final String TABLE_MANAGER_LOCATIONS = "manager_locations";
-	public static final String MANAGER_LOCATIONS_COLUMN_MANAGER = "manager";
-	public static final String MANAGER_LOCATIONS_COLUMN_LOCATION = "location";
-
 	// Create Table Queries
 
 	public static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS + "(" + USERS_COLUMN_ID
@@ -131,22 +116,5 @@ public class Tables {
 			+ ") REFERENCES " + TABLE_CITIES + "(" + CITIES_COLUMN_ID + ")," + "PRIMARY KEY(" + MANAGERS_COLUMN_ID
 			+ "));";
 
-	public static final String CREATE_TABLE_LOCATION_AMENITIES = "CREATE TABLE " + TABLE_LOCATION_AMENITIES + "("
-			+ LOCATION_AMENITIES_COLUMN_LOCATION + " int NOT NULL, " + LOCATION_AMENITIES_COLUMN_AMENITY
-			+ " int NOT NULL, " + "FOREIGN KEY (" + LOCATION_AMENITIES_COLUMN_LOCATION + ") REFERENCES "
-			+ TABLE_LOCATIONS + "(" + LOCATIONS_COLUMN_ID + ")," + "FOREIGN KEY (" + LOCATION_AMENITIES_COLUMN_AMENITY
-			+ ") REFERENCES " + TABLE_AMENITIES + "(" + AMENITIES_COLUMN_ID + "));";
-
-	public static final String CREATE_TABLE_MEMBER_AMENITIES = "CREATE TABLE " + TABLE_MEMBER_AMENITIES + "("
-			+ MEMBER_AMENITIES_COLUMN_MEMBER_LEVEL + " int NOT NULL, " + MEMBER_AMENITIES_COLUMN_AMENITY
-			+ " int NOT NULL, " + "FOREIGN KEY (" + MEMBER_AMENITIES_COLUMN_MEMBER_LEVEL + ") REFERENCES "
-			+ TABLE_MEMBER_LEVEL + "(" + MEMBER_LEVELS_COLUMN_ID + ")," + "FOREIGN KEY ("
-			+ MEMBER_AMENITIES_COLUMN_AMENITY + ") REFERENCES " + TABLE_AMENITIES + "(" + AMENITIES_COLUMN_ID + "));";
-
-	public static final String CREATE_TABLE_MANAGER_LOCATIONS = "CREATE TABLE " + TABLE_MANAGER_LOCATIONS + "("
-			+ MANAGER_LOCATIONS_COLUMN_MANAGER + " int NOT NULL, " + MANAGER_LOCATIONS_COLUMN_LOCATION
-			+ " int NOT NULL, " + "FOREIGN KEY (" + MANAGER_LOCATIONS_COLUMN_MANAGER + ") REFERENCES " + TABLE_MANAGERS
-			+ "(" + MANAGERS_COLUMN_ID + ")," + "FOREIGN KEY (" + MANAGER_LOCATIONS_COLUMN_LOCATION + ") REFERENCES "
-			+ TABLE_LOCATIONS + "(" + LOCATIONS_COLUMN_ID + "));";
 
 }
