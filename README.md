@@ -36,7 +36,11 @@ Here is some sample data to be imported into the database. You will need to impo
 
 ## Mockup
 
-INSERT MOCKUPS HERE
+![Initialization Page](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/initialization.PNG)
+![Login Page](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/login.PNG)
+![View Records](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/viewMember.PNG)
+![New Record](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/newMember.PNG)
+![Report](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/locationReport.PNG)
 
 ## Database Design
 
