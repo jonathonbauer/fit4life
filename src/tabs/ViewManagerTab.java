@@ -41,7 +41,7 @@ public class ViewManagerTab extends Tab {
 	Manager manager;	
 
 	public static ViewManagerTab instance = null;
-	private TableView<Manager> table;
+	TableView<Manager> table;
 	private TableColumn<Manager, Integer> idCol;
 	private TableColumn<Manager, String> fnameCol;
 	private TableColumn<Manager, String> lnameCol;

@@ -122,11 +122,15 @@ public class ManagerTable implements ManagerDAO {
 	 * 
 	 */
 	public void createManager(Manager manager) {
-		String query = "INSERT INTO " + Tables.TABLE_MANAGERS + "(" + Tables.MANAGERS_COLUMN_FNAME + ", "
-				+ Tables.MANAGERS_COLUMN_LNAME + ", " + Tables.MANAGERS_COLUMN_ADDRESS + ", "
-				+ Tables.MANAGERS_COLUMN_POSTALCODE + ", " + Tables.MANAGERS_COLUMN_CITY + ") VALUES ('"
-				+ manager.getFname() + "','" + manager.getLname() + "','" + manager.getAddress() + "','"
-				+ manager.getPostalCode() + manager.getCity().getId() + "');";
+		String query = "INSERT INTO " + Tables.TABLE_MANAGERS + "("
+				+ Tables.MANAGERS_COLUMN_FNAME + ", "
+				+ Tables.MANAGERS_COLUMN_LNAME + ", "
+				+ Tables.MANAGERS_COLUMN_ADDRESS + ", "
+				+ Tables.MANAGERS_COLUMN_POSTALCODE + ", "
+				+ Tables.MANAGERS_COLUMN_CITY + ") VALUES ('" 
+				+ manager.getFname() + "','" + manager.getLname() + "','" + manager.getAddress()
+				+ "','" + manager.getPostalCode() + "','" + manager.getCity().getId() + "');";
+
 		try {
 			db.getConnection().createStatement().execute(query);
 			System.out.println("Manager has been created.");

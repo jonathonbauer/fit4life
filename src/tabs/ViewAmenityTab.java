@@ -37,7 +37,7 @@ public class ViewAmenityTab extends Tab {
 	Amenity amenity;
 
 	public static ViewAmenityTab instance = null;
-	private TableView<Amenity> table;
+	TableView<Amenity> table;
 	private TableColumn<Amenity, Integer> idCol;
 	private TableColumn<Amenity, String> amenityCol;
 

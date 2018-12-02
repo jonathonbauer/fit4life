@@ -34,7 +34,7 @@ public class ViewCities extends Tab {
 	City city;	
 
 	public static ViewCities instance = null;
-	private TableView<City> table;
+	TableView<City> table;
 	private TableColumn<City, Integer> idCol;
 	private TableColumn<City, String> cityCol;
 

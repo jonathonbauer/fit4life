@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import tables.City;
 import tables.Location;
+import tables.Manager;
 
 public class CreateLocationTab extends Tab {
 	Database db = Database.getInstance();
@@ -51,7 +52,7 @@ public class CreateLocationTab extends Tab {
 		this.setText("New Location");
 		
 		this.root = new GridPane();
-		this.root.setAlignment(Pos.TOP_CENTER);
+		this.root.setAlignment(Pos.CENTER);
 		this.root.setHgap(10);
 		this.root.setVgap(10);
 		this.root.setPadding(new Insets(25,25,25,25));
@@ -75,6 +76,23 @@ public class CreateLocationTab extends Tab {
 		this.citiesBox = new ComboBox<City>(FXCollections.observableArrayList(this.cityTable.getAllCities()));
 		
 		this.create = new Button("Create Location");
+		
+		this.create.setOnAction(e->{
+			Location newLocation = new Location();
+			
+			newLocation.setName(this.nameBox.getText());
+			newLocation.setAddress(this.addressBox.getText());
+			newLocation.setPostalCode(this.postalBox.getText());
+			newLocation.setCity(this.citiesBox.getSelectionModel().getSelectedItem());
+			
+			this.locationTable.createLocation(newLocation);
+			System.out.println("Create Location Button clicked");
+			
+			 ViewLocationTab viewLocationTab = ViewLocationTab.getInstance();
+			 viewLocationTab.locations.removeAll(viewLocationTab.locations);
+			 viewLocationTab.locations = viewLocationTab.locationTable.getAllLocations();
+			 viewLocationTab.table.setItems(FXCollections.observableArrayList(viewLocationTab.locations));
+	        });
 		
 		this.root.add(locName, 0, 1);
 		this.root.add(nameBox, 1, 1);
