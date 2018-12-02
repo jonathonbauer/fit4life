@@ -1,10 +1,8 @@
 package tabs;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 import database.Database;
 import javabeans.CityTable;
@@ -150,8 +148,16 @@ public class CreateMemberTab extends Tab {
             newMember.setActiveMembership(this.activeBox.getSelectionModel().getSelectedItem());
             newMember.setLocation(this.locationBox.getSelectionModel().getSelectedItem());
             newMember.setRegistrationDate(goodFormat.format(now));
-            this.memberTable.updateMember(newMember);
+            this.memberTable.createMember(newMember);
             System.out.println("Current Date is: " +  goodFormat.format(now));
+            
+            // Refresh the table
+            ViewMemberTab viewMemberTab = ViewMemberTab.getInstance();
+            viewMemberTab.members.removeAll(viewMemberTab.members);
+            viewMemberTab.members = viewMemberTab.memberTable.getAllMembers();
+            viewMemberTab.table.setItems(FXCollections.observableArrayList(viewMemberTab.members));
+            
+            
         });
 		
 		//Adding all the nodes to the GridPane

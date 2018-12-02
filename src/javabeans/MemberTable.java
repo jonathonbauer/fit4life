@@ -119,11 +119,13 @@ public class MemberTable implements MemberDAO {
 				+ Tables.MEMBERS_COLUMN_CITY + ", "
 				+ Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP + ", "
 				+ Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL + ", "
+				+ Tables.MEMBERS_COLUMN_LOCATION + ", "
 				+ Tables.MEMBERS_COLUMN_REGISTRATION_DATE + ") VALUES ('" 
-				+ member.getFname() + "','" + member.getLname() + "','" + member.getAddress() + "','" + member.getPostalCode()
-				+ member.getCity() + "','" + member.getActiveMembership() + "','" + member.getMembershipLevel()
-				+ "','" + member.getRegistrationDate() +"');";
+				+ member.getFname() + "','" + member.getLname() + "','" + member.getAddress() + "','" + member.getPostalCode() + "','"
+				+ member.getCity().getId() + "','" + "1" + "','" + member.getMembershipLevel().getId()
+				+ "','" + member.getLocation().getId() + "','" + member.getRegistrationDate() +"');";
 		try {
+			System.out.println(query);
 			db.getConnection().createStatement().execute(query);
 			System.out.println("Member has been created.");
 		} catch (SQLException e) {

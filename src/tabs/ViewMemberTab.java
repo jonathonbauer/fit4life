@@ -43,7 +43,7 @@ public class ViewMemberTab extends Tab {
 	Member member;	
 
 	public static ViewMemberTab instance = null;
-	private TableView<Member> table;
+	TableView<Member> table;
 	private TableColumn<Member, Integer> idCol;
 	private TableColumn<Member, String> fnameCol;
 	private TableColumn<Member, String> lnameCol;
