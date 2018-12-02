@@ -1,6 +1,4 @@
-![Logo](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/fit4lifelogo.png)
-
-# Gym Membership Management Software
+# Fit4Life <br/> Gym Membership Management Software
 
 Fit4Life is a database management software used to maintain the members of a fitness center.
 <br/>
