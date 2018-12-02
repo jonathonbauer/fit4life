@@ -44,14 +44,13 @@ public class Credits {
 	
 	this.title = new Text ("Fit4Life");
 	
-	this.email1 = new Text ("jonny@hotmail.com");
-	this.email2 = new Text ("cody@hotmail.com");
-	this.email3 = new Text ("joe@hotmail.com");
-	this.email4 = new Text ("grant@hotmail.com");
+	this.email1 = new Text ("jonathon.bauer01@stclairconnect.ca");
+	this.email2 = new Text ("cody.pollard01@stclairconnect.ca");
+	this.email3 = new Text ("joseph.bumbacco01@stclairconnect.ca");
+	this.email4 = new Text ("grant.norris01@stclairconnect.ca");
 	
-	this.image = new Text ("Image Used: NameHere");
-	this.logo = new Text ("Logo Created By: NameHere");
-	this.font = new Text ("Font Used: NameHere");
+	this.logo = new Text ("Logo Created By: Cody Pollard");
+	this.font = new Text ("Font Used: Verdana");
 	
 	//This HBox Holds The information of Cody, Jonny, Joe & Grant
 	this.developersBox = new HBox();
