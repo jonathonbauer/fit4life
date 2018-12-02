@@ -1,102 +1,137 @@
 package pages;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import main.Main;
 
 public class Credits {
-	
+
 	public MainMenu mainMenu;
-	
+
+	private Text devText;
 	private Text name1;
 	private Text name2;
 	private Text name3;
 	private Text name4;
-	
+
 	private Text title;
 	private Text logo;
 	private Text font;
-	private Text image;
-	
+
 	private Text email1; 
 	private Text email2; 
 	private Text email3; 
 	private Text email4; 
-	
-	
+
+
 	private Scene scene;
 	private GridPane pane;
-	private HBox developersBox;
-	private HBox emailBox;
+	private BorderPane root;
+	private VBox developersBox;
+	private VBox emailBox;
 	private VBox infoBox;
-	
+
+	private Image logoImg;
+
+	private ImageView logoIV;
+
+
 	private Button menuButton;
-	
+
 	public Credits(){
-	this.name1 = new Text ("Jonny Bauer");
-	this.name2 = new Text ("Cody Pollard");
-	this.name3 = new Text ("Joe B");
-	this.name4 = new Text ("Grant");
-	
-	this.title = new Text ("Fit4Life");
-	
-	this.email1 = new Text ("jonny@hotmail.com");
-	this.email2 = new Text ("cody@hotmail.com");
-	this.email3 = new Text ("joe@hotmail.com");
-	this.email4 = new Text ("grant@hotmail.com");
-	
-	this.image = new Text ("Image Used: NameHere");
-	this.logo = new Text ("Logo Created By: NameHere");
-	this.font = new Text ("Font Used: NameHere");
-	
-	//This HBox Holds The information of Cody, Jonny, Joe & Grant
-	this.developersBox = new HBox();
-	this.developersBox.getChildren().addAll(name1, name2, name3, name4);
-	this.developersBox.setSpacing(5);
-	this.developersBox.setAlignment(Pos.CENTER);
+		
+		this.devText = new Text("Developers");
+		this.name1 = new Text ("Jonathon Bauer");
+		this.name2 = new Text ("Cody Pollard");
+		this.name3 = new Text ("Joseph Bumbacco");
+		this.name4 = new Text ("Grant Norris");
 
-	//This HBox Holds the Email of Cody, Jonny, & Joe, Grant
-	this.emailBox = new HBox();
-	this.emailBox.getChildren().addAll(this.email1, this.email2, this.email3, this.email4);
-	this.emailBox.setSpacing(5);
-	this.emailBox.setAlignment(Pos.CENTER);
+		this.title = new Text ("Fit4Life");
 
-	//This VBox Holds the information of the font,logo,images
-	this.infoBox = new VBox();
-	this.infoBox.getChildren().addAll(this.title, this.image, this.logo, this.font);
-	this.infoBox.setSpacing(5);
-	this.infoBox.setAlignment(Pos.CENTER);
+		this.email1 = new Text ("jonathon.bauer01@stclairconnect.ca");
+		this.email2 = new Text ("cody.pollard01@stclairconnect.ca");
+		this.email3 = new Text ("joseph.bumbacco01@stclairconnect.ca");
+		this.email4 = new Text ("grant.norris01@stclairconnect.ca");
 
-	//This button will send you to the main menu
-	this.menuButton = new Button("Main Menu");
-	this.menuButton.setAlignment(Pos.BOTTOM_RIGHT);
-	
-	//Button functionality
-//	this.mainMenu = new MainMenu();
-//	this.menuButton.setOnAction(e->{
-//	Main.mainStage.setScene(mainMenu.getScene());
-//	});
-	
-	//Create The Gridpane
-	this.pane = new GridPane();
-	//this.pane.setGridLinesVisible(true);
-	
-	this.pane.setAlignment(Pos.CENTER);
-	//Setting all of the information onto the screen
-	this.pane.add(this.infoBox, 1, 1, 1, 1);
-	this.pane.add(this.developersBox, 1, 2, 1, 1);
-	this.pane.add(this.emailBox, 1, 3, 1, 1);
-	this.pane.add(this.menuButton, 1, 4, 1, 1);
-	this.scene = new Scene(this.pane, 1024, 768);
-	this.scene.getStylesheets().add("style/style.css");
-	
-	
-}
-	
+		// Logo
+		logoImg = new Image("main/fit4lifelogo.png");
+		this.logoIV = new ImageView(logoImg);
+		this.logoIV.setFitHeight(250);	
+		this.logoIV.setFitWidth(250);
+
+
+		this.logo = new Text ("Logo Created By: Cody Pollard");
+		this.font = new Text ("Font Used: Verdana");
+
+		//This HBox Holds The information of Cody, Jonny, Joe & Grant
+		this.developersBox = new VBox();
+		this.developersBox.getChildren().addAll(name1, name2, name3, name4);
+		this.developersBox.setSpacing(10);
+		this.developersBox.setAlignment(Pos.CENTER);
+
+		//This HBox Holds the Email of Cody, Jonny, & Joe, Grant
+		this.emailBox = new VBox();
+		this.emailBox.getChildren().addAll(this.email1, this.email2, this.email3, this.email4);
+		this.emailBox.setSpacing(10);
+		this.emailBox.setAlignment(Pos.CENTER);
+
+		//This VBox Holds the information of the font,logo,images
+		this.infoBox = new VBox();
+		this.infoBox.getChildren().addAll(this.logoIV, this.logo, this.font, this.devText);
+		this.infoBox.setSpacing(10);
+		this.infoBox.setAlignment(Pos.TOP_CENTER);
+
+		//This button will send you to the main menu
+		this.menuButton = new Button("Main Menu");
+		this.menuButton.setAlignment(Pos.CENTER);
+
+		//Button functionality
+		this.mainMenu = new MainMenu();
+		this.menuButton.setOnAction(e->{
+			Main.mainStage.setScene(mainMenu.getScene());
+		});
+
+		//Create The Gridpane
+		this.pane = new GridPane();
+
+		
+
+		//Setting all of the information onto the screen
+		this.pane.add(this.infoBox, 1, 1, 2, 1);
+		this.pane.add(this.developersBox, 1, 2, 1, 1);
+		this.pane.add(this.emailBox, 2, 2, 1, 1);
+		this.pane.add(this.menuButton, 1, 3, 2, 1);
+		
+
+		GridPane.setHalignment(this.menuButton, HPos.CENTER);
+		this.pane.setAlignment(Pos.CENTER);
+		this.pane.setVgap(25);
+		
+		this.root = new BorderPane();
+
+		menuBar menuBar = new menuBar();
+
+		this.root.setTop(menuBar);
+		this.root.setCenter(this.pane);
+//		this.root.setBottom(this.menuButton);
+
+
+//		BorderPane.setMargin(this.menuButton, new Insets(0,0,25,0));
+
+		this.scene = new Scene(this.root, 1024, 768);
+		this.scene.getStylesheets().add("style/style.css");
+
+
+	}
+
 	public Scene getScene() {
 		return scene;
 	}
@@ -113,19 +148,19 @@ public class Credits {
 		this.pane = pane;
 	}
 
-	public HBox getDevelopersBox() {
+	public VBox getDevelopersBox() {
 		return developersBox;
 	}
 
-	public void setDevelopersBox(HBox developersBox) {
+	public void setDevelopersBox(VBox developersBox) {
 		this.developersBox = developersBox;
 	}
 
-	public HBox getEmailBox() {
+	public VBox getEmailBox() {
 		return emailBox;
 	}
 
-	public void setEmailBox(HBox emailBox) {
+	public void setEmailBox(VBox emailBox) {
 		this.emailBox = emailBox;
 	}
 
@@ -200,13 +235,6 @@ public class Credits {
 		this.font = font;
 	}
 
-	public Text getImage() {
-		return image;
-	}
-
-	public void setImage(Text image) {
-		this.image = image;
-	}
 
 	public Text getEmail1() {
 		return email1;
@@ -239,6 +267,6 @@ public class Credits {
 	public void setEmail4(Text email4) {
 		this.email4 = email4;
 	}
-	
+
 }
 

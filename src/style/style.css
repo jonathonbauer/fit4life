@@ -1,8 +1,12 @@
 .root{
 	-fx-background-color: #eceff1;
+	-fx-font-family: Verdana;
+	-fx-font-size: 12px;
 }
 .pane{
 	-fx-background-color: #eceff1;
+	-fx-font-family: Verdana;
+	-fx-font-size: 12px;
 }
 .tab{
 	-fx-background-color: #ffffff;
@@ -18,4 +22,8 @@
 	-fx-background-color: #e0e0e0;
 	-fx-border-radius: 10;
 
+}
+.table{
+	-fx-font-family: Cambria;
+	
 }

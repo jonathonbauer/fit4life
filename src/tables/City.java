@@ -25,6 +25,10 @@ public class City {
 		this.city = city;
 	
 	}
+	
+	public City() {
+		
+	}
 	//getters and setters
 	public int getId() {
 		return id;

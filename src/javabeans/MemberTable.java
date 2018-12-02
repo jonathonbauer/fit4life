@@ -47,7 +47,9 @@ public class MemberTable implements MemberDAO {
 						data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 						this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
 						this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
-						data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)));
+						data.getString(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)
+						));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,7 +78,7 @@ public class MemberTable implements MemberDAO {
 					data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
 					this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
 					this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
-					data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE));
+					data.getString(Tables.MEMBERS_COLUMN_REGISTRATION_DATE));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -132,14 +134,21 @@ public class MemberTable implements MemberDAO {
 	 * 
 	 */
 	public void createMember(Member member) {
-		String query = "INSERT INTO " + Tables.TABLE_MEMBERS + "(" + Tables.MEMBERS_COLUMN_FNAME + ", "
-				+ Tables.MEMBERS_COLUMN_LNAME + ", " + Tables.MEMBERS_COLUMN_ADDRESS + ", "
-				+ Tables.MEMBERS_COLUMN_POSTALCODE + ", " + Tables.MEMBERS_COLUMN_CITY + ", "
-				+ Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP + ", " + Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL + ", "
-				+ Tables.MEMBERS_COLUMN_REGISTRATION_DATE + ") VALUES ('" + member.getFname() + "','"
-				+ member.getLname() + "','" + member.getAddress() + "','" + member.getPostalCode() + member.getCity()
-				+ "','" + member.getActiveMembership() + "','" + member.getMembershipLevel() + "','"
-				+ member.getRegistrationDate() + "');";
+
+		String query = "INSERT INTO " + Tables.TABLE_MEMBERS + "("
+				+ Tables.MEMBERS_COLUMN_FNAME + ", "
+				+ Tables.MEMBERS_COLUMN_LNAME + ", "
+				+ Tables.MEMBERS_COLUMN_ADDRESS + ", "
+				+ Tables.MEMBERS_COLUMN_POSTALCODE + ", "
+				+ Tables.MEMBERS_COLUMN_CITY + ", "
+				+ Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP + ", "
+				+ Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL + ", "
+				+ Tables.MEMBERS_COLUMN_LOCATION + ", "
+				+ Tables.MEMBERS_COLUMN_REGISTRATION_DATE + ") VALUES ('" 
+				+ member.getFname() + "','" + member.getLname() + "','" + member.getAddress() + "','" + member.getPostalCode() + "','"
+				+ member.getCity().getId() + "','" + "1" + "','" + member.getMembershipLevel().getId()
+				+ "','" + member.getLocation().getId() + "','" + member.getRegistrationDate() +"');";
+
 		try {
 			db.getConnection().createStatement().execute(query);
 			System.out.println("Member has been created.");
@@ -163,16 +172,19 @@ public class MemberTable implements MemberDAO {
 		try {
 			Statement getMemberLocation = db.getConnection().createStatement();
 			ResultSet data = getMemberLocation.executeQuery(query);
-			// data.next();
-			while (data.next()) {
-				members.add(new Member(data.getInt(Tables.MEMBERS_COLUMN_ID),
-						data.getString(Tables.MEMBERS_COLUMN_FNAME), data.getString(Tables.MEMBERS_COLUMN_LNAME),
-						data.getString(Tables.MEMBERS_COLUMN_ADDRESS), data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
-						this.cityTable.getCity(data.getInt(Tables.MEMBERS_COLUMN_CITY)),
-						data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
-						this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
-						this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
-						data.getDate(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)));
+			//data.next();
+			while(data.next()) {
+			 members.add(new Member(data.getInt(Tables.MEMBERS_COLUMN_ID),
+					data.getString(Tables.MEMBERS_COLUMN_FNAME),
+					data.getString(Tables.MEMBERS_COLUMN_LNAME),
+					data.getString(Tables.MEMBERS_COLUMN_ADDRESS),
+					data.getString(Tables.MEMBERS_COLUMN_POSTALCODE),
+					this.cityTable.getCity(data.getInt(Tables.MEMBERS_COLUMN_CITY)),
+					data.getBoolean(Tables.MEMBERS_COLUMN_ACTIVE_MEMBERSHIP),
+					this.memberLevelTable.getMemberLevel(data.getInt(Tables.MEMBERS_COLUMN_MEMBERSHIP_LEVEL)),
+					this.locationTable.getLocation(data.getInt(Tables.MEMBERS_COLUMN_LOCATION)),
+					data.getString(Tables.MEMBERS_COLUMN_REGISTRATION_DATE)));
+			 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

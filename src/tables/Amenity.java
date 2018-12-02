@@ -21,7 +21,11 @@ public class Amenity {
 		super();
 		this.amenity = amenity;
 	}
-
+	
+	public Amenity() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

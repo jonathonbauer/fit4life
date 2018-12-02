@@ -39,7 +39,7 @@ public class ViewLocationTab extends Tab {
 
 	public static ViewLocationTab instance = null;
 
-	private TableView<Location> table;
+	TableView<Location> table;
 	private TableColumn<Location, Integer> idCol;
 	private TableColumn<Location, String> nameCol;
 	private TableColumn<Location, String> addressCol;
