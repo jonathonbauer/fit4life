@@ -10,65 +10,54 @@ import tabs.CitiesTab;
 import tabs.LocationsTab;
 import tabs.ManagersTab;
 import tabs.MembersTab;
-import tabs.UsersTab;
 
 /**
  * 
- * The Main Menu
+ * The Main Menu is the page that is displayed after the user is successfully
+ * authenticated. <br/>
+ * It contains a Scene that hosts a BorderPane, which hosts a MenuBar and a
+ * TabPane <br/>
+ * It hosts a TabPane that displays all of the tabs within the application, as
+ * well as the MenuBar.
  * 
- *
  */
 public class MainMenu {
-
 
 	private Scene scene;
 	private TabPane tabPane;
 	private menuBar menuBar;
 	private BorderPane root;
 
-	public MainMenu() {	
+	public MainMenu() {
 
-		
-		this.menuBar =  new menuBar();
+		this.menuBar = new menuBar();
 
 		this.tabPane = new TabPane();
 		this.tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
-		
+
 		this.root = new BorderPane();
-		if(Session.isLoggedIn()) {
+		if (Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(MembersTab.getInstance());
 			this.tabPane.getTabs().add(ManagersTab.getInstance());
 			this.tabPane.getTabs().add(LocationsTab.getInstance());
 			this.tabPane.getTabs().add(CitiesTab.getInstance());
 			this.tabPane.getTabs().add(AmenitiesTab.getInstance());
-			this.tabPane.getTabs().add(UsersTab.getInstance());
 		}
 
 		this.root.setTop(this.menuBar);
 		this.root.setCenter(this.tabPane);
-		
+
 		this.scene = new Scene(this.root, 1024, 768);
-
-
+		this.scene.getStylesheets().add("style/style.css");
+		this.tabPane.getStylesheets().add("style/style.css");
 	}
-
 
 	public Scene getScene() {
 		return scene;
 	}
 
-
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
-
-
-
-	//	public static void main(String[] args) {
-	//		// TODO Auto-generated method stub
-	//
-	//	}
-
-
 
 }

@@ -8,8 +8,7 @@ import main.Session;
 
 /**
  * 
- *  This class is used to display all CRUD tabs for the Member Database
- *  This class follows the Singleton design pattern
+ *  This class is used to display all CRUD and Report tabs for the Member Database
  *
  */
 public class MembersTab extends Tab{
@@ -29,8 +28,9 @@ public class MembersTab extends Tab{
 		// If there is a session logged in, then display the CRUD tabs for the users
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(ViewMemberTab.getInstance());
-			this.tabPane.getTabs().add(UpdateMemberTab.getInstance());
-			this.tabPane.getTabs().add(CreateMemberTab.getInstance());				
+			this.tabPane.getTabs().add(CreateMemberTab.getInstance());	
+			//this.tabPane.getTabs().add(MemberRegistrationReport.getInstance());
+			//this.tabPane.getTabs().add(MemberLevelReport.getInstance());
 		}
 		
 		// Declare the borderpane and set the inner tabPane to its center

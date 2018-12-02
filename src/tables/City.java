@@ -1,5 +1,12 @@
 package tables;
 
+
+/**
+ * 
+ * This class represents a City object from within the database. <br/>
+ * It contains the ID of the city, and the name of the city.
+ * 
+ */
 public class City {
 	private int id;
 	private String city;
@@ -18,6 +25,10 @@ public class City {
 		this.city = city;
 	
 	}
+	
+	public City() {
+		
+	}
 	//getters and setters
 	public int getId() {
 		return id;
@@ -33,6 +44,10 @@ public class City {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	public String toString() {
+		return this.city;
 	}
 
 }

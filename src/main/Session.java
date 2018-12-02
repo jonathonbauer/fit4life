@@ -17,12 +17,20 @@ public class Session {
 	private static Session session = null;
 	private User loggedInUser;
 	
-	
+	/**
+	 * This constructor instantiates the logged in user and creates a new Session
+	 * 
+	 * @param user The user that is to be logged in to the application
+	 */
 	public Session(User user) {
 		this.loggedInUser = user;
 	}
 	
-	// Get instance method used to create a session with a user at log in
+	/**
+	 * This method is used to return the Session, and if it doesn't exist it will create one
+	 * @param user The user to be logged in to the application
+	 * @return The active Session object
+	 */
 	public static Session getInstance(User user) {
 		if(session == null) {
 			session = new Session(user);
@@ -32,11 +40,14 @@ public class Session {
 		}
 	}
 	
-	// Get instance method used to get the instance that has already been created at log in
+	/**
+	 * This method is used to return the Session if it has already been created and doesn't require
+	 * a user to be logged in
+	 * @return The active Session object
+	 */
 	public static Session getInstance() {
 		if(session == null) {
-			session = new Session(new User("null", "null"));
-			System.out.println("There is no active session.");
+			session = new Session(new User("null"));
 		}
 		return session;
 	}
@@ -49,14 +60,24 @@ public class Session {
 		this.loggedInUser = loggedInUser;
 	}
 	
-	// Method to check if the session is logged in 
+	/**
+	 * This method is used to determine if there is currently a user logged into the session.
+	 * @return True or false depending on whether or not there is a user logged into the session.
+	 */
 	public static Boolean isLoggedIn() {
 		if(session == null || session.getLoggedInUser().getUsername().equals("null")) {
 			return false;
 		} else {
 			return true;
 		}
-		
 	}
+	/**
+	 * This is method is used to disconnect the user from the session.
+	 */
+	public void logOut() {
+		this.loggedInUser = null;
+		System.out.println("User successfully logged out.");
+	}
+	
 	
 }

@@ -4,7 +4,11 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import main.Session;
-
+/**
+ * 
+ *  This class is used to display all CRUD and Report tabs for the City Database
+ *
+ */
 public class CitiesTab extends TabTemplate {
 	public static CitiesTab instance = null;
 	
@@ -20,8 +24,8 @@ public class CitiesTab extends TabTemplate {
 		// If there is a session logged in, then display the CRUD tabs for the users
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(ViewCities.getInstance());
-//			this.tabPane.getTabs().add(UpdateCitiesTab.getInstance());
-//			this.tabPane.getTabs().add(CreateCitiesTab.getInstance());				
+			this.tabPane.getTabs().add(CreateCitiesTab.getInstance());	
+			//this.tabPane.getTabs().add(ReportCitiesTab.getInstance());
 		}
 		
 		// Declare the borderpane and set the inner tabPane to its center

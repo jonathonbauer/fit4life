@@ -1,21 +1,17 @@
 package tabs;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import main.Session;
-import pages.Reports;
 
 public class TabTemplate extends Tab{
+	
 	public static TabTemplate instance = null;
 	
-	private Text currentUser;
-	public Reports reportMenu;
 	private Button createButton;
 	private Button updateButton;
 	private Button viewButton;
@@ -31,8 +27,6 @@ public class TabTemplate extends Tab{
 	// Constructor
 	public TabTemplate() {
 		this.setText("Members");
-
-//		this.currentUser = new Text("Current User: " + Session.getInstance().getLoggedInUser().getUsername());
 
 		this.tabPane = new TabPane();
 		this.tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);

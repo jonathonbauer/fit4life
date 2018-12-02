@@ -1,13 +1,18 @@
 package tables;
-
+/**
+ * 
+ * This class represents a Location object from within the database. <br/>
+ * It contains the ID, the name, the address, the postal code and the city of the location.
+ * 
+ */
 public class Location {
 	private int id;
 	private String name;
 	private String address;
 	private String postalCode;
-	private String city;
+	private City city;
 	
-	public Location(int id, String name, String address, String postalCode, String city) {
+	public Location(int id, String name, String address, String postalCode, City city) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -16,12 +21,20 @@ public class Location {
 		this.city = city;
 	}
 	
-	public Location(String name, String address, String postalCode, String city) {
+	public Location(String name, String address, String postalCode, City city) {
 		super();
 		this.name = name;
 		this.address = address;
 		this.postalCode = postalCode;
 		this.city = city;
+	}
+	
+	public Location() {
+		
+	}
+	
+	public String toString() {
+		return this.name;
 	}
 	
 	public int getId() {
@@ -48,10 +61,10 @@ public class Location {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-	public String getCity() {
+	public City getCity() {
 		return city;
 	}
-	public void setCity(String city) {
+	public void setCity(City city) {
 		this.city = city;
 	}
 

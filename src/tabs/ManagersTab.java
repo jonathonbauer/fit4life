@@ -4,7 +4,11 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import main.Session;
-
+/**
+ * 
+ *  This class is used to display all CRUD and Report tabs for the Manager Database
+ *
+ */
 public class ManagersTab extends TabTemplate {
 	public static ManagersTab instance = null;
 	
@@ -20,8 +24,8 @@ public class ManagersTab extends TabTemplate {
 		// If there is a session logged in, then display the CRUD tabs for the users
 		if(Session.isLoggedIn()) {
 			this.tabPane.getTabs().add(ViewManagerTab.getInstance());
-//			this.tabPane.getTabs().add(UpdateManagerTab.getInstance());
-//			this.tabPane.getTabs().add(CreateManagerTab.getInstance());				
+			this.tabPane.getTabs().add(CreateManagersTab.getInstance());	
+//			this.tabPane.getTabs().add(ReportManagerTab.getInstance());
 		}
 		
 		// Declare the borderpane and set the inner tabPane to its center
