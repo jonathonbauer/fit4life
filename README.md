@@ -21,32 +21,34 @@ INSERT MOCKUPS HERE
 
 ## Database Design
 
-![Database Design](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/databaseSchema.png) "Database Design")
+![Database Design](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/databaseSchema.png)
 
-
-
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+| Name             | Github                                              |                           Email     |
+| -------------    | --------------------------------------------------- | ----------------------------------- |
+| Jonathon Bauer   | [jonathonbauer](https://github.com/jonathonbauer)   | jonathon.bauer01@stclairconnect.ca  |
+| Cody Pollard     | [CPollard187](https://github.com/CPollard187)       | cody.pollard01@stclairconnect.ca    |
+| Joseph Bumbacco  | [josephbumbacco](https://github.com/josephbumbacco) | joseph.bumbacco01@stclairconnect.ca |
+| Grant Norris     | [jonathonbauer](https://github.com/Grant-Norris)    | grant.norris01@stclairconnect.ca    |
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
+```
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+   http://www.apache.org/licenses/LICENSE-2.0
 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+```
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+ [Mockaroo](https://mockaroo.com/) - used to create sample data while working on the application.
