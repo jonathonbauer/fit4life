@@ -111,23 +111,20 @@ public class LocationTable implements LocationDAO {
 		
 	}
 
-	@Override
-	public void createLocation(Location location) {
-		// TODO Auto-generated method stub
-		 String query = "INSERT INTO " + Tables.TABLE_LOCATIONS + "("
-                 + Tables.LOCATIONS_COLUMN_NAME
-                 + Tables.LOCATIONS_COLUMN_ADDRESS
-                 + Tables.LOCATIONS_COLUMN_POSTAL
-                 + Tables.LOCATIONS_COLUMN_CITY
-                 + ") VALUES ('" + location.getName() + "," + location.getAddress() + ","  
-                 + location.getPostalCode() + "," + location.getCity() + "');";
-		 	try {
-		 		db.getConnection().createStatement().execute(query);
-		 		System.out.println("Location successfully created.");
-		 	} catch (SQLException e) {
-		 		e.printStackTrace();
-		 	}
-		
-	}
+	  public void createLocation(Location location) {
+	        // TODO Auto-generated method stub
+	        String query = "INSERT INTO " + Tables.TABLE_LOCATIONS + "(" + Tables.LOCATIONS_COLUMN_NAME
+	                + "," + Tables.LOCATIONS_COLUMN_ADDRESS + "," + Tables.LOCATIONS_COLUMN_POSTAL + "," + Tables.LOCATIONS_COLUMN_CITY
+	                + ") VALUES ('" + location.getName() + "','" + location.getAddress() + "','" + location.getPostalCode()
+	                + "','" + location.getCity().getId() + "');";
+	        try {
+	        	System.out.println(query);
+	            db.getConnection().createStatement().execute(query);
+	            System.out.println("Location successfully created.");
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	    }   
 
 }

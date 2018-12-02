@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import database.Database;
 import javabeans.CityTable;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -62,8 +63,12 @@ public class CreateCitiesTab extends Tab {
            
            newCity.setCity(this.cityBox.getText());
            
-           this.cityTable.updateCity(newCity);
+           this.cityTable.createCity(newCity);
            System.out.print("Create City Button clicked");
+           ViewCities viewCities = ViewCities.getInstance();
+           viewCities.cities.removeAll(viewCities.cities);
+           viewCities.cities = viewCities.cityTable.getAllCities();
+           viewCities.table.setItems(FXCollections.observableArrayList(viewCities.cities));
        
         });
 		

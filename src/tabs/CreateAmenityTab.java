@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import database.Database;
 import javabeans.AmenityTable;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -60,7 +61,12 @@ public class CreateAmenityTab extends Tab {
             Amenity newAmenity = new Amenity();
             newAmenity.setAmenity(this.amenBox.getText());
             
-            this.amenityTable.updateAmenity(newAmenity);
+            this.amenityTable.createAmenity(newAmenity);
+            
+            ViewAmenityTab viewAmenityTab = ViewAmenityTab.getInstance();
+            viewAmenityTab.amenities.removeAll(viewAmenityTab.amenities);
+            viewAmenityTab.amenities = viewAmenityTab.amenityTable.getAllAmenities();
+            viewAmenityTab.table.setItems(FXCollections.observableArrayList(viewAmenityTab.amenities));
         });
 		
 		this.root.add(amenName, 0, 1);

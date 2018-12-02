@@ -100,7 +100,7 @@ public class ManagerTable implements ManagerDAO {
 				+ Tables.MANAGERS_COLUMN_POSTALCODE + ", "
 				+ Tables.MANAGERS_COLUMN_CITY + ") VALUES ('" 
 				+ manager.getFname() + "','" + manager.getLname() + "','" + manager.getAddress()
-				+ "','" + manager.getPostalCode() + manager.getCity().getId() + "');";
+				+ "','" + manager.getPostalCode() + "','" + manager.getCity().getId() + "');";
 		try {
 			db.getConnection().createStatement().execute(query);
 			System.out.println("Manager has been created.");

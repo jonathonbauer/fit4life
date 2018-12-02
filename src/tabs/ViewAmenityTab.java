@@ -1,13 +1,17 @@
 package tabs;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import database.Database;
 import javabeans.AmenityTable;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,7 +30,7 @@ public class ViewAmenityTab extends Tab {
 	Amenity amenity;
 
 	public static ViewAmenityTab instance = null;
-	private TableView<Amenity> table;
+	TableView<Amenity> table;
 	private TableColumn<Amenity, Integer> idCol;
 	private TableColumn<Amenity, String> amenityCol;
 
@@ -127,6 +131,33 @@ public class ViewAmenityTab extends Tab {
 			}
 		});
 
+		this.delete.setOnAction(e -> {
+			Amenity selected = this.table.getSelectionModel().getSelectedItem();
+			if (selected != null) {
+				selected.setAmenity(this.nameTf.getText());
+
+				Alert confirmation = new Alert(AlertType.CONFIRMATION);
+				confirmation.setHeaderText(null);
+				confirmation.setTitle("Confirm Deletion");
+				confirmation.setContentText("Are you sure you wish to delete the amenity " + selected.getAmenity() + "?");
+				
+				Optional<ButtonType> confirmResult = confirmation.showAndWait();
+				if(confirmResult.get() == ButtonType.OK) {
+					this.amenityTable.deleteAmenity(selected);
+					this.amenities.removeAll(this.amenities);
+					this.amenities = this.amenityTable.getAllAmenities();
+					this.table.setItems(FXCollections.observableArrayList(this.amenities));
+					this.table.getSelectionModel().select(0);
+				} else {
+					System.out.println("Nothing deleted");
+				}
+				
+			} else {
+				System.out.println("Nothing was selected!");
+			}
+		});
+		
+		
 		this.root = new BorderPane();
 		this.root.setTop(this.table);
 		this.root.setCenter(this.amenityInfo);

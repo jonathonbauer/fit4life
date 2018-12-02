@@ -56,7 +56,7 @@ public class CreateManagersTab extends Tab {
 		this.setText("New Manager");	
 		this.root = new GridPane();
 		
-		this.root.setAlignment(Pos.TOP_CENTER);
+		this.root.setAlignment(Pos.CENTER);
 		
 		this.root.setHgap(10);
 		this.root.setVgap(10);
@@ -93,7 +93,13 @@ public class CreateManagersTab extends Tab {
           newManager.setCity(this.citiesBox.getSelectionModel().getSelectedItem());
           newManager.setPostalCode(this.postalBox.getText());
           
-          this.managerTable.updateManager(newManager);
+          this.managerTable.createManager(newManager);
+          
+          ViewManagerTab viewManagerTab = ViewManagerTab.getInstance();
+          viewManagerTab.managers.removeAll(viewManagerTab.managers);
+          viewManagerTab.managers = viewManagerTab.managerTable.getAllManagers();
+          viewManagerTab.table.setItems(FXCollections.observableArrayList(viewManagerTab.managers));
+          
           System.out.print("The Create Manager Button Was Clicked");
         });
 		

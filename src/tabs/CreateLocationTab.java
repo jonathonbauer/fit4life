@@ -85,8 +85,13 @@ public class CreateLocationTab extends Tab {
 			newLocation.setPostalCode(this.postalBox.getText());
 			newLocation.setCity(this.citiesBox.getSelectionModel().getSelectedItem());
 			
-			this.locationTable.updateLocation(newLocation);
+			this.locationTable.createLocation(newLocation);
 			System.out.println("Create Location Button clicked");
+			
+			 ViewLocationTab viewLocationTab = ViewLocationTab.getInstance();
+			 viewLocationTab.locations.removeAll(viewLocationTab.locations);
+			 viewLocationTab.locations = viewLocationTab.locationTable.getAllLocations();
+			 viewLocationTab.table.setItems(FXCollections.observableArrayList(viewLocationTab.locations));
 	        });
 		
 		this.root.add(locName, 0, 1);
