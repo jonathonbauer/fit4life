@@ -12,13 +12,10 @@ public class menuBar extends MenuBar {
 	public LogInMenu logInMenu;
 	public Credits creditsPage;
 	
-	private Menu menuFile;
-	private Menu menuGoto;
-	
+	private Menu menuFile;	
 	private MenuItem exit;
 	private MenuItem logOut;
-	private MenuItem back;
-	private MenuItem settings;
+
 	private MenuItem credits;
 	
 	
@@ -26,9 +23,7 @@ public class menuBar extends MenuBar {
 		
 		//Adding Values to Menus
 		this.menuFile = new Menu("File");
-		
-		
-		
+
 		//Adding Values to MenuItems
 		this.exit = new MenuItem("Exit");
 		this.logOut = new MenuItem("Log Out");
@@ -45,17 +40,11 @@ public class menuBar extends MenuBar {
 		
 		//EXIT - Exits the program
 		this.exit.setOnAction(e->{
-			System.out.println("Exit MenuItem Clicked");
-			System.out.print("Exiting the program...");
-			
 			System.exit(0);
-			
 		});
 		
 		//LOGOUT - Brings the user to the login page with no information saved
 		this.logOut.setOnAction(e->{
-			System.out.println("Logout MenuItem Clicked");
-			System.out.println("Returning to Login Page...");
 			
 			Session.getInstance().logOut();
 			logInMenu = new LogInMenu();
@@ -65,9 +54,6 @@ public class menuBar extends MenuBar {
 		
 		//CREDITS - Brings user to Credits Menu
 		this.credits.setOnAction(e->{
-			System.out.println("Credits MenuItem Clicked");
-			System.out.println("Heading to Credits Page...");
-			
 			creditsPage = new Credits();
 			Main.mainStage.setScene(creditsPage.getScene());
 			Main.mainStage.setTitle("Fit4Life Member Management");
@@ -108,12 +94,5 @@ public class menuBar extends MenuBar {
 		this.menuFile = menuFile;
 	}
 
-	public Menu getMenuGoto() {
-		return menuGoto;
-	}
-
-	public void setMenuGoto(Menu menuGoto) {
-		this.menuGoto = menuGoto;
-	}
 
 }
