@@ -1,5 +1,4 @@
-<center>
-![Database Design](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/fit4lifelogo.png)
+![Logo](https://github.com/jonathonbauer/fit4life/raw/readMe/src/images/fit4lifelogo.png)
 
 # Gym Membership Management Software
 
@@ -55,5 +54,3 @@ limitations under the License.
 ## Acknowledgments
 
  [Mockaroo](https://mockaroo.com/) - used to create sample data while working on the application.
- 
- </center>
