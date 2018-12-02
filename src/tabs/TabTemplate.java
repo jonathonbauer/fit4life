@@ -7,13 +7,11 @@ import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import main.Session;
-import pages.Reports;
 
 public class TabTemplate extends Tab{
 	
 	public static TabTemplate instance = null;
 	
-	public Reports reportMenu;
 	private Button createButton;
 	private Button updateButton;
 	private Button viewButton;
@@ -29,8 +27,6 @@ public class TabTemplate extends Tab{
 	// Constructor
 	public TabTemplate() {
 		this.setText("Members");
-
-//		this.currentUser = new Text("Current User: " + Session.getInstance().getLoggedInUser().getUsername());
 
 		this.tabPane = new TabPane();
 		this.tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);

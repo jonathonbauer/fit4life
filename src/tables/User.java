@@ -1,5 +1,10 @@
 package tables;
-
+/**
+ * 
+ * This class represents a User object from within the database. <br/>
+ * It contains the ID and the username of the user.
+ * 
+ */
 public class User {
 	private int id;
 	private String username;
