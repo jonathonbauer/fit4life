@@ -2,6 +2,7 @@ package tabs;
 
 import java.util.ArrayList;
 
+
 import database.Database;
 import javabeans.CityTable;
 import javabeans.MemberTable;
@@ -13,6 +14,12 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import tables.City;
 import tables.Member;
+/**
+ * 
+ *  This class is used to display the charts to the Cities Report Page. 
+ *  It displays how many members are in each city
+ *
+ */
 
 public class ReportCitiesTab extends Tab {
 	Database db = Database.getInstance();
@@ -54,9 +61,6 @@ public class ReportCitiesTab extends Tab {
 		BarChart<String, Number> barChart = new BarChart<String, Number>(XAxis, YAxis);
 		XAxis.setLabel("City");
 		YAxis.setLabel("Members");
-		
-		
-		//Managers here
 		
 		//Getting the info to the Chart
 		XYChart.Series chart = new XYChart.Series<>();

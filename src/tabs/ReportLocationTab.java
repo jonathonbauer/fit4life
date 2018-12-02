@@ -14,6 +14,13 @@ import javafx.scene.layout.BorderPane;
 import tables.Location;
 import tables.Member;
 
+/**
+ * 
+ *  This class is used to display the charts to the Locations Report Page. 
+ *  It displays how many members are at each location
+ *
+ */
+
 public class ReportLocationTab extends Tab {
 	Database db = Database.getInstance();
 	LocationTable locationTable;
