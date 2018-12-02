@@ -1,0 +1,15 @@
+insert into locations (id, name, address, postal_code, city) values (1, 'Teal', '3429 Londonderry Street', 'H3O3S7', 3);
+insert into locations (id, name, address, postal_code, city) values (2, 'Blue', '67467 Chive Trail', 'S6S5J2', 8);
+insert into locations (id, name, address, postal_code, city) values (3, 'Mauv', '367 Montana Crossing', 'R8U6Z9', 3);
+insert into locations (id, name, address, postal_code, city) values (4, 'Crimson', '69880 Trailsway Court', 'V9G2I2', 1);
+insert into locations (id, name, address, postal_code, city) values (5, 'Orange', '3 Autumn Leaf Road', 'D9X6U5', 2);
+insert into locations (id, name, address, postal_code, city) values (6, 'Fuscia', '9 Pankratz Park', 'K8C0S3', 10);
+insert into locations (id, name, address, postal_code, city) values (7, 'Maroon', '59 Surrey Avenue', 'P2U5R3', 1);
+insert into locations (id, name, address, postal_code, city) values (8, 'Violet', '31 Parkside Terrace', 'H7L4A2', 1);
+insert into locations (id, name, address, postal_code, city) values (9, 'Fuschia', '234 Independence Way', 'A2D0Q3', 4);
+insert into locations (id, name, address, postal_code, city) values (10, 'Turquoise', '05783 Laurel Hill', 'V5V9M3', 5);
+insert into locations (id, name, address, postal_code, city) values (11, 'Indigo', '10994 Forest Run Road', 'B5W3P1', 6);
+insert into locations (id, name, address, postal_code, city) values (12, 'Pink', '1 Thackeray Place', 'Y0A9V6', 8);
+insert into locations (id, name, address, postal_code, city) values (13, 'Yellow', '7942 Barby Street', 'T7C2I6', 3);
+insert into locations (id, name, address, postal_code, city) values (14, 'Red', '532 Anzinger Place', 'A5O4Y3', 4);
+insert into locations (id, name, address, postal_code, city) values (15, 'Purple', '26611 Ridge Oak Lane', 'A8I1R9', 3);
