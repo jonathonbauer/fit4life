@@ -156,6 +156,7 @@ public class ViewCities extends Tab {
 		this.root.setPadding(new Insets(10,10,10,10));
 
 		this.setContent(root);
+		//this.table.getStylesheets().add("style/style.css");
 	}
 
 	public static ViewCities getInstance() {
