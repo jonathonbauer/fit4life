@@ -33,9 +33,11 @@ import tables.MemberLevel;
 
 /**
  * 
- * This class is used to display the all members in the Member Database It
- * utilizes a TableView to display all information This class follows the
- * Singleton design pattern
+ * This class is used to display the all members in the Member Database.
+ * <br/>
+ * It utilizes a TableView to display all information.
+ * <br/>
+ * It contains buttons to update and delete records.
  *
  */
 public class ViewMemberTab extends Tab {
@@ -300,14 +302,15 @@ public class ViewMemberTab extends Tab {
 				selected.setPostalCode(this.postalCodeTF.getText());
 				selected.setActiveMembership(this.activeCombo.getSelectionModel().getSelectedItem());
 				selected.setLocation(this.locationCombo.getSelectionModel().getSelectedItem());
-				
+
 				Alert confirmation = new Alert(AlertType.CONFIRMATION);
 				confirmation.setHeaderText(null);
 				confirmation.setTitle("Confirm Deletion");
-				confirmation.setContentText("Are you sure you wish to delete the member " + selected.getFname() + " " + selected.getLname() + "?");
-				
+				confirmation.setContentText("Are you sure you wish to delete the member " + selected.getFname() + " "
+						+ selected.getLname() + "?");
+
 				Optional<ButtonType> confirmResult = confirmation.showAndWait();
-				if(confirmResult.get() == ButtonType.OK) {
+				if (confirmResult.get() == ButtonType.OK) {
 					this.memberTable.deleteMember(selected);
 					this.members.removeAll(this.members);
 					this.members = this.memberTable.getAllMembers();
@@ -316,7 +319,7 @@ public class ViewMemberTab extends Tab {
 				} else {
 					System.out.println("Nothing deleted");
 				}
-				
+
 			} else {
 				System.out.println("Nothing was selected!");
 			}

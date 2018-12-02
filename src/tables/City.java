@@ -1,5 +1,12 @@
 package tables;
 
+
+/**
+ * 
+ * This class represents a City object from within the database. <br/>
+ * It contains the ID of the city, and the name of the city.
+ * 
+ */
 public class City {
 	private int id;
 	private String city;

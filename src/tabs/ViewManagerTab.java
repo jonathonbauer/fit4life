@@ -25,7 +25,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.City;
 import tables.Manager;
-
+/**
+ * 
+ * This class is used to display the all managers in the Manager Database It
+ * utilizes a TableView to display all information.
+ * <br/>
+ * It contains buttons to update and delete records.
+ *
+ */
 public class ViewManagerTab extends Tab {
 	Database db = Database.getInstance();
 	ManagerTable managerTable;

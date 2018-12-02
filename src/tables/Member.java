@@ -2,6 +2,14 @@ package tables;
 
 import java.util.Date;
 
+/**
+ * 
+ * This class represents a Member object from within the database. <br/>
+ * It contains the member's ID, first name, last name, address, postal code, city,
+ * membership level, location, registration date and whether or not the user is
+ * active.
+ * 
+ */
 public class Member {
 	private int id;
 	private String fname;
@@ -43,12 +51,11 @@ public class Member {
 		this.location = location;
 		this.registrationDate = registrationDate;
 	}
-	
 
 	public Member() {
-		
+
 	}
-	
+
 	// Getters and Setters
 
 	public int getId() {
@@ -66,7 +73,7 @@ public class Member {
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
-	
+
 	public String getLname() {
 		return lname;
 	}
@@ -114,7 +121,7 @@ public class Member {
 	public void setMembershipLevel(MemberLevel membershipLevel) {
 		this.membershipLevel = membershipLevel;
 	}
-	
+
 	public Location getLocation() {
 		return location;
 	}
@@ -132,12 +139,12 @@ public class Member {
 	}
 
 	public void setActiveMembership(String selectedItem) {
-		if(selectedItem.equals("true")) {
+		if (selectedItem.equals("true")) {
 			this.activeMembership = true;
 		} else {
 			this.activeMembership = false;
 		}
-		
+
 	}
-	
+
 }

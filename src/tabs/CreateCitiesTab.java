@@ -46,7 +46,7 @@ public class CreateCitiesTab extends Tab {
 		
 		this.root = new GridPane();
 		
-		this.root.setAlignment(Pos.TOP_CENTER);
+		this.root.setAlignment(Pos.CENTER);
 		//Setting padding for GridPane
 		this.root.setHgap(10);
 		this.root.setVgap(10);

@@ -46,7 +46,6 @@ public class CreateMemberTab extends Tab {
 	private Label address;
 	private Label level;
 	private Label postal;
-	private Label active;
 	private Label location;
 	
 	private Button create;

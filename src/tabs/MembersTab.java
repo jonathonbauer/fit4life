@@ -8,8 +8,7 @@ import main.Session;
 
 /**
  * 
- *  This class is used to display all CRUD tabs for the Member Database
- *  This class follows the Singleton design pattern
+ *  This class is used to display all CRUD and Report tabs for the Member Database
  *
  */
 public class MembersTab extends Tab{

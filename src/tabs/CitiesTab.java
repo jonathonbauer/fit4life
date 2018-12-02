@@ -4,7 +4,11 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import main.Session;
-
+/**
+ * 
+ *  This class is used to display all CRUD and Report tabs for the City Database
+ *
+ */
 public class CitiesTab extends TabTemplate {
 	public static CitiesTab instance = null;
 	

@@ -22,7 +22,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.Amenity;
-
+/**
+ * 
+ * This class is used to display the all amenities in the Amenity Database It
+ * utilizes a TableView to display all information.
+ * <br/>
+ * It contains buttons to update and delete records.
+ *
+ */
 public class ViewAmenityTab extends Tab {
 	Database db = Database.getInstance();
 	AmenityTable amenityTable;
