@@ -92,6 +92,7 @@ public class Credits {
 	this.pane.add(this.emailBox, 1, 3, 1, 1);
 	this.pane.add(this.menuButton, 1, 4, 1, 1);
 	this.scene = new Scene(this.pane, 1024, 768);
+	this.scene.getStylesheets().add("style/style.css");
 	
 	
 }

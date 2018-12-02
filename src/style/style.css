@@ -1,0 +1,21 @@
+.root{
+	-fx-background-color: #eceff1;
+}
+.pane{
+	-fx-background-color: #eceff1;
+}
+.tab{
+	-fx-background-color: #ffffff;
+}
+.button{
+	-fx-background-color: #ffffff;
+	-fx-border-color: #000000;
+	-fx-text-fill: #000000;
+	-fx-border-radius: 10;
+	-fx-font-size: 12pt;
+}
+.button:hover{
+	-fx-background-color: #e0e0e0;
+	-fx-border-radius: 10;
+
+}

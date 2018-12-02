@@ -1,9 +1,12 @@
 package tabs;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import database.Database;
 import javabeans.CityTable;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,6 +15,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import tables.City;
+import tables.Member;
 
 
 
@@ -42,7 +46,7 @@ public class CreateCitiesTab extends Tab {
 		
 		this.root = new GridPane();
 		
-		this.root.setAlignment(Pos.TOP_CENTER);
+		this.root.setAlignment(Pos.CENTER);
 		//Setting padding for GridPane
 		this.root.setHgap(10);
 		this.root.setVgap(10);
@@ -53,6 +57,20 @@ public class CreateCitiesTab extends Tab {
 		this.cityBox = new TextField();
 		
 		this.create = new Button("Create City");
+		
+		this.create.setOnAction(e->{
+           City newCity = new City();
+           
+           newCity.setCity(this.cityBox.getText());
+           
+           this.cityTable.createCity(newCity);
+           System.out.print("Create City Button clicked");
+           ViewCities viewCities = ViewCities.getInstance();
+           viewCities.cities.removeAll(viewCities.cities);
+           viewCities.cities = viewCities.cityTable.getAllCities();
+           viewCities.table.setItems(FXCollections.observableArrayList(viewCities.cities));
+       
+        });
 		
 		this.root.add(cityName, 0, 1);
 		this.root.add(cityBox, 1, 1);

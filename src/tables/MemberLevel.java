@@ -1,5 +1,10 @@
 package tables;
-
+/**
+ * 
+ * This class represents a Member Level object from within the database. <br/>
+ * It contains the ID and the name of the member level.
+ * 
+ */
 public class MemberLevel {
 	private int id;
 	private String level;

@@ -2,6 +2,14 @@ package tables;
 
 import java.util.Date;
 
+/**
+ * 
+ * This class represents a Member object from within the database. <br/>
+ * It contains the member's ID, first name, last name, address, postal code, city,
+ * membership level, location, registration date and whether or not the user is
+ * active.
+ * 
+ */
 public class Member {
 	private int id;
 	private String fname;
@@ -12,11 +20,11 @@ public class Member {
 	private Boolean activeMembership;
 	private MemberLevel membershipLevel;
 	private Location location;
-	private Date registrationDate;
+	private String registrationDate;
 	
 	// Constructors
 	public Member(int id, String fname, String lname, String address, String postalCode, City city, Boolean activeMembership,
-			MemberLevel membershipLevel, Location location, Date registrationDate) {
+			MemberLevel membershipLevel, Location location, String registrationDate) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -31,7 +39,7 @@ public class Member {
 	}
 
 	public Member(String fname, String lname, String address, String postalCode, City city, Boolean activeMembership,
-			MemberLevel membershipLevel, Location location, Date registrationDate) {
+			MemberLevel membershipLevel, Location location, String registrationDate) {
 		super();
 		this.fname = fname;
 		this.lname = lname;
@@ -43,12 +51,11 @@ public class Member {
 		this.location = location;
 		this.registrationDate = registrationDate;
 	}
-	
 
 	public Member() {
-		
+
 	}
-	
+
 	// Getters and Setters
 
 	public int getId() {
@@ -66,7 +73,7 @@ public class Member {
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
-	
+
 	public String getLname() {
 		return lname;
 	}
@@ -114,7 +121,7 @@ public class Member {
 	public void setMembershipLevel(MemberLevel membershipLevel) {
 		this.membershipLevel = membershipLevel;
 	}
-	
+
 	public Location getLocation() {
 		return location;
 	}
@@ -123,21 +130,21 @@ public class Member {
 		this.location = location;
 	}
 
-	public Date getRegistrationDate() {
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
 	public void setActiveMembership(String selectedItem) {
-		if(selectedItem.equals("true")) {
+		if (selectedItem.equals("true")) {
 			this.activeMembership = true;
 		} else {
 			this.activeMembership = false;
 		}
-		
+
 	}
-	
+
 }

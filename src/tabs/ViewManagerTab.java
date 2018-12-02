@@ -1,6 +1,7 @@
 package tabs;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import database.Database;
 import javabeans.CityTable;
@@ -8,7 +9,10 @@ import javabeans.ManagerTable;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -21,7 +25,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.City;
 import tables.Manager;
-
+/**
+ * 
+ * This class is used to display the all managers in the Manager Database It
+ * utilizes a TableView to display all information.
+ * <br/>
+ * It contains buttons to update and delete records.
+ *
+ */
 public class ViewManagerTab extends Tab {
 	Database db = Database.getInstance();
 	ManagerTable managerTable;
@@ -30,7 +41,7 @@ public class ViewManagerTab extends Tab {
 	Manager manager;	
 
 	public static ViewManagerTab instance = null;
-	private TableView<Manager> table;
+	TableView<Manager> table;
 	private TableColumn<Manager, Integer> idCol;
 	private TableColumn<Manager, String> fnameCol;
 	private TableColumn<Manager, String> lnameCol;
@@ -203,6 +214,36 @@ public class ViewManagerTab extends Tab {
 					}
 				});
 
+				this.delete.setOnAction(e -> {
+					Manager selected = this.table.getSelectionModel().getSelectedItem();
+					if (selected != null) {
+						selected.setFname(this.fnameTf.getText());
+						selected.setLname(this.lnameTf.getText());
+						selected.setAddress(this.addressTf.getText());
+						selected.setPostalCode(this.postalCodeTf.getText());
+						selected.setCity(this.cityCombo.getSelectionModel().getSelectedItem());
+
+						Alert confirmation = new Alert(AlertType.CONFIRMATION);
+						confirmation.setHeaderText(null);
+						confirmation.setTitle("Confirm Deletion");
+						confirmation.setContentText("Are you sure you wish to delete the manager " + selected.getFname() + " " + selected.getLname() + "?");
+						
+						Optional<ButtonType> confirmResult = confirmation.showAndWait();
+						if(confirmResult.get() == ButtonType.OK) {
+							this.managerTable.deleteManager(selected);
+							this.managers.removeAll(this.managers);
+							this.managers = this.managerTable.getAllManagers();
+							this.table.setItems(FXCollections.observableArrayList(this.managers));
+							this.table.getSelectionModel().select(0);
+						} else {
+							System.out.println("Nothing deleted");
+						}
+						
+					} else {
+						System.out.println("Nothing was selected!");
+					}
+				});
+				
 				this.root = new BorderPane();
 				this.root.setTop(this.table);
 				this.root.setCenter(this.locationInfo);

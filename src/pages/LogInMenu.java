@@ -28,9 +28,7 @@ public class LogInMenu {
 	private Scene scene;
 
 	private VBox top;
-	private VBox bottom;
 	private VBox middle;
-	private VBox baseline;
 
 	private TextField userName;
 	private PasswordField passWord;
@@ -61,14 +59,8 @@ public class LogInMenu {
 		this.top = new VBox();
 		this.top.setAlignment(Pos.CENTER);
 
-		this.bottom = new VBox();
-		this.bottom.setAlignment(Pos.BOTTOM_CENTER);
-
 		this.middle = new VBox();
-		this.middle.setAlignment(Pos.CENTER);
-
-		this.baseline = new VBox();
-		this.baseline.setAlignment(Pos.BASELINE_CENTER);
+		this.middle.setAlignment(Pos.TOP_CENTER);
 
 		// Adding in a new font
 		this.titleFont = Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 40);
@@ -76,8 +68,9 @@ public class LogInMenu {
 		// Logo
 		this.logo = new Image("main/fit4lifelogo.png");
 		this.logoIV = new ImageView(logo);
-		this.logoIV.setFitHeight(250);
-		this.logoIV.setFitWidth(250);
+		this.logoIV.setFitHeight(450);
+		this.logoIV.setFitWidth(450);
+		this.top.getChildren().add(this.logoIV);
 
 		// Logo Animation
 		Main.logoAnimate(this.logoIV);
@@ -155,13 +148,14 @@ public class LogInMenu {
 		 * Adding the userName and passWord TextArea fields to the "Middle" VBox
 		 */
 
-		this.middle.getChildren().addAll(logoIV, userName, passWord, errorText, login);
+		this.middle.getChildren().addAll(userName, passWord, errorText, login);
+		this.middle.setSpacing(25);
 
 		this.pane.setTop(top);
-		this.pane.setBottom(bottom);
 		this.pane.setCenter(middle);
 
 		this.scene = new Scene(this.pane, 1024, 768);
+		this.scene.getStylesheets().add("style/style.css");
 
 	}
 
@@ -197,28 +191,12 @@ public class LogInMenu {
 		this.top = top;
 	}
 
-	public VBox getBottom() {
-		return bottom;
-	}
-
-	public void setBottom(VBox bottom) {
-		this.bottom = bottom;
-	}
-
 	public VBox getMiddle() {
 		return middle;
 	}
 
 	public void setMiddle(VBox middle) {
 		this.middle = middle;
-	}
-
-	public VBox getBaseline() {
-		return baseline;
-	}
-
-	public void setBaseline(VBox baseline) {
-		this.baseline = baseline;
 	}
 
 	public TextField getUserName() {

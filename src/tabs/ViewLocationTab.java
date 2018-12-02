@@ -21,7 +21,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.City;
 import tables.Location;
-
+/**
+ * 
+ * This class is used to display the all locations in the Location Database.
+ * <br/>
+ * It utilizes a TableView to display all information.
+ * <br/>
+ * It contains a button to delete records.
+ *
+ */
 public class ViewLocationTab extends Tab {
 	Database db = Database.getInstance();
 	LocationTable locationTable;
@@ -31,7 +39,7 @@ public class ViewLocationTab extends Tab {
 
 	public static ViewLocationTab instance = null;
 
-	private TableView<Location> table;
+	TableView<Location> table;
 	private TableColumn<Location, Integer> idCol;
 	private TableColumn<Location, String> nameCol;
 	private TableColumn<Location, String> addressCol;
@@ -56,7 +64,6 @@ public class ViewLocationTab extends Tab {
 	private ComboBox<City> cityCombo;	
 
 	private Button update;
-	private Button delete;
 
 	private HBox buttons;
 
@@ -147,10 +154,9 @@ public class ViewLocationTab extends Tab {
 
 		// Create the buttons and add them to the HBox
 		this.update = new Button("Update");
-		this.delete = new Button("Delete");
 
 		this.buttons = new HBox();
-		this.buttons.getChildren().addAll(this.update, this.delete);
+		this.buttons.getChildren().addAll(this.update);
 		this.buttons.setAlignment(Pos.CENTER);
 		this.buttons.setSpacing(50);
 
@@ -176,7 +182,7 @@ public class ViewLocationTab extends Tab {
 				System.out.println("Nothing was selected!");
 			}
 		});
-
+		
 		this.root = new BorderPane();
 		this.root.setTop(this.table);
 		this.root.setCenter(this.locationInfo);

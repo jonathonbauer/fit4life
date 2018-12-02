@@ -1,4 +1,11 @@
 package tables;
+
+/**
+ * 
+ * This class represents a Manager object from within the database. <br/>
+ * It contains the ID, first name, last name, address, postal code and the city of the manager.
+ * 
+ */
 public class Manager {
 
 	
@@ -7,7 +14,6 @@ public class Manager {
 		private String lname;
 		private String address;
 		private String postalCode;
-//		TODO: Change to appropriate classes
 		private City city;
 
 		
@@ -31,6 +37,10 @@ public class Manager {
 			this.postalCode = postalCode;
 			this.city = city;
 		
+		}
+		
+		public Manager() {
+			
 		}
 		
 		// Getters and Setters
@@ -82,11 +92,5 @@ public class Manager {
 		public void setCity(City city) {
 			this.city = city;
 		}
-
-		
-		
-		
-		
-		
-		
-	}
+	
+}
