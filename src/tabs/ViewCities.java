@@ -18,7 +18,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import tables.City;
-
+/**
+ * 
+ * This class is used to display the all locations in the Location Database.
+ * <br/>
+ * It utilizes a TableView to display all information.
+ * <br/>
+ * It contains a button to delete records.
+ *
+ */
 public class ViewCities extends Tab {
 	Database db = Database.getInstance();
 	CityTable cityTable;

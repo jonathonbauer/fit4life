@@ -33,9 +33,11 @@ import tables.MemberLevel;
 
 /**
  * 
- * This class is used to display the all members in the Member Database It
- * utilizes a TableView to display all information This class follows the
- * Singleton design pattern
+ * This class is used to display the all members in the Member Database.
+ * <br/>
+ * It utilizes a TableView to display all information.
+ * <br/>
+ * It contains buttons to update and delete records.
  *
  */
 public class ViewMemberTab extends Tab {
