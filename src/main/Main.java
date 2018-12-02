@@ -43,21 +43,21 @@ public class Main extends Application {
 	
 	//Logo Animation
 	public static void logoAnimate(ImageView logoIV) {
-		FadeTransition logoFadeIn = new FadeTransition(Duration.millis(1000), logoIV);
+		FadeTransition logoFadeIn = new FadeTransition(Duration.millis(2000), logoIV);
 		logoFadeIn.setFromValue(0.5);
 		logoFadeIn.setToValue(1);
 		logoFadeIn.setCycleCount(1);
 
-		FadeTransition logoFadeOut = new FadeTransition(Duration.millis(1000), logoIV);
+		FadeTransition logoFadeOut = new FadeTransition(Duration.millis(2000), logoIV);
 		logoFadeOut.setFromValue(1);
 		logoFadeOut.setToValue(0.5);
 		logoFadeOut.setCycleCount(1);
 		
-		ScaleTransition logoScaleUp =	new ScaleTransition(Duration.millis(1000), logoIV);
+		ScaleTransition logoScaleUp =	new ScaleTransition(Duration.millis(2000), logoIV);
 		logoScaleUp.setByX(.03);
 		logoScaleUp.setByY(.03);
 		
-		ScaleTransition logoScaleDown =	new ScaleTransition(Duration.millis(1000), logoIV);
+		ScaleTransition logoScaleDown =	new ScaleTransition(Duration.millis(2000), logoIV);
 		logoScaleDown.setToX(1);
 		logoScaleDown.setToY(1);
 		
