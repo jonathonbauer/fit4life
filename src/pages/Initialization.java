@@ -25,6 +25,12 @@ import javafx.scene.text.Text;
 import main.Main;
 import tables.User;
 
+/**
+ * This class contains the layout and functionality of the page that is displayed the first time this application is launched.
+ * <br/>
+ * It will receive Database and user information from the user, and it will create the connection and all tables required.
+ * 
+ */
 public class Initialization {
 
 	// Headers
@@ -304,44 +310,6 @@ public class Initialization {
 		this.scene.getStylesheets().add("style/style.css");
 
 	}
-
-	// // Password encryption
-	// public static String hashPassword(String password, byte[] salt) {
-	// // Declare the string builder - this will be used to build the hashed
-	// password from bytes into a string
-	// StringBuilder stringBuild = new StringBuilder();
-	//
-	// try {
-	// MessageDigest msgDig = MessageDigest.getInstance("sha-256");
-	// msgDig.update(salt);
-	// byte[] hashBytes = msgDig.digest(password.getBytes());
-	//
-	// for(int i=0; i < hashBytes.length; i++) {
-	// stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100,
-	// 16).substring(1));
-	// }
-	//
-	// } catch (NoSuchAlgorithmException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// return stringBuild.toString();
-	// }
-	//
-	// public static byte[] getSalt() {
-	// // Declare the byte array - this is the salt
-	// byte[] salt = new byte[16];
-	//
-	// // Use an instance of SecureRandom to create the random salt and store it in
-	// the byte array salt
-	// try {
-	// SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
-	// } catch (NoSuchAlgorithmException e1) {
-	// e1.printStackTrace();
-	// }
-	// System.out.println(salt);
-	// return salt;
-	// }
 
 	// Getters & Setter for the scene
 
