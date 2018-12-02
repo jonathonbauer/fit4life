@@ -10,14 +10,12 @@ import database.Database;
 import database.Tables;
 import tables.Amenity;
 
+public class AmenityTable implements AmenityDAO {
 
-public class AmenityTable implements AmenityDAO{
-
-	//database connection
+	// database connection
 	Database db = Database.getInstance();
 	ArrayList<Amenity> amenities;
 	Amenity amenity;
-
 
 	@Override
 	public ArrayList<Amenity> getAllAmenities() {
@@ -29,45 +27,43 @@ public class AmenityTable implements AmenityDAO{
 			Statement getAmenities = db.getConnection().createStatement();
 			ResultSet data;
 			data = getAmenities.executeQuery(query);
-			while(data.next()) {
+			while (data.next()) {
 				amenities.add(new Amenity(data.getInt(Tables.AMENITIES_COLUMN_ID),
-						data.getString(Tables.AMENITIES_COLUMN_AMENITY)
-						));
+						data.getString(Tables.AMENITIES_COLUMN_AMENITY)));
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-		} 
+		}
 		return amenities;
 	}
 
 	@Override
 	public Amenity getAmenity(int amenityID) {
 		// TODO Auto-generated method stub
-		String query = "SELECT * FROM " + Tables.TABLE_AMENITIES + " WHERE "
-				+ Tables.AMENITIES_COLUMN_ID + " = " + amenityID;
+		String query = "SELECT * FROM " + Tables.TABLE_AMENITIES + " WHERE " + Tables.AMENITIES_COLUMN_ID + " = "
+				+ amenityID;
 
 		try {
 			Statement getAmenities = db.getConnection().createStatement();
 			ResultSet data;
 			data = getAmenities.executeQuery(query);
-			while(data.next()) {
+			while (data.next()) {
 				amenities.add(new Amenity(data.getInt(Tables.AMENITIES_COLUMN_ID),
-						data.getString(Tables.AMENITIES_COLUMN_AMENITY)
-						));
+						data.getString(Tables.AMENITIES_COLUMN_AMENITY)));
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-		} 
+		}
 		return amenity;
 	}
+
 	@Override
 	public void updateAmenity(Amenity amenity) {
 		// TODO Auto-generated method stub
-		String query = "UPDATE " + Tables.TABLE_AMENITIES + " SET " + 
-				Tables.AMENITIES_COLUMN_AMENITY + " = '" + amenity.getAmenity() + "'" +
-				" WHERE " + Tables.AMENITIES_COLUMN_ID + " = " + amenity.getId();
+		String query = "UPDATE " + Tables.TABLE_AMENITIES + " SET " + Tables.AMENITIES_COLUMN_AMENITY + " = '"
+				+ amenity.getAmenity() + "'" + " WHERE " + Tables.AMENITIES_COLUMN_ID + " = " + amenity.getId();
 		try {
 			Statement updateAmenities = db.getConnection().createStatement();
 			updateAmenities.execute(query);
@@ -75,11 +71,12 @@ public class AmenityTable implements AmenityDAO{
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public void deleteAmenity(Amenity amenity) {
 		// TODO Auto-generated method stub
-		String query = "DELETE FROM " + Tables.TABLE_AMENITIES + " WHERE "
-				+ Tables.AMENITIES_COLUMN_ID + " = " + amenity.getId();
+		String query = "DELETE FROM " + Tables.TABLE_AMENITIES + " WHERE " + Tables.AMENITIES_COLUMN_ID + " = "
+				+ amenity.getId();
 		System.out.println("Amenity has been deleted.");
 		try {
 			db.getConnection().createStatement().execute(query);
@@ -88,17 +85,17 @@ public class AmenityTable implements AmenityDAO{
 		}
 
 	}
+
 	@Override
 	public void createAmenity(Amenity amenity) {
 		// TODO Auto-generated method stub
-		String query = "INSERT INTO " + Tables.TABLE_AMENITIES + "("
-				+ Tables.AMENITIES_COLUMN_AMENITY
-				+ ") VALUES ('" + amenity.getAmenity() + "');";
+		String query = "INSERT INTO " + Tables.TABLE_AMENITIES + "(" + Tables.AMENITIES_COLUMN_AMENITY + ") VALUES ('"
+				+ amenity.getAmenity() + "');";
 		try {
 			db.getConnection().createStatement().execute(query);
 			System.out.println("Amenity successfully created.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}	
+	}
 }

@@ -78,7 +78,7 @@ public class Initialization {
 
 	// Constructor
 	public Initialization() {
-		//		PasswordTable pwTable = new PasswordTable();
+		// PasswordTable pwTable = new PasswordTable();
 		// Initialize the console Text so it can be set later
 		this.message = new Text();
 
@@ -88,7 +88,6 @@ public class Initialization {
 		this.userInfo = new Text("User Information");
 		this.userInfo.setFont(Font.font("Century Gothic", FontWeight.BOLD, FontPosture.REGULAR, 25));
 
-
 		// Database Information
 		this.dbHost = new Text("Database Host");
 		this.dbHostField = new TextField();
@@ -97,7 +96,6 @@ public class Initialization {
 		this.dbName = new Text("Database Name");
 		this.dbNameField = new TextField();
 		this.dbNameField.setPromptText("fit4life");
-
 
 		// User Information
 		this.dbUser = new Text("Database Username");
@@ -134,31 +132,32 @@ public class Initialization {
 		// Submit Button
 		this.submitButton = new Button("Submit");
 
-		this.submitButton.setOnAction(e->{
+		this.submitButton.setOnAction(e -> {
 			Boolean flag = true;
 
 			// Check that all fields are populated and have valid info
-			if(this.dbNameField.getText().isEmpty()) {
+			if (this.dbNameField.getText().isEmpty()) {
 				this.message.setText("Database information is incomplete.");
 				flag = false;
 			}
-			if(this.dbHostField.getText().isEmpty()) {
+			if (this.dbHostField.getText().isEmpty()) {
 				this.message.setText("Database information is incomplete.");
 				flag = false;
 			}
-			if(this.dbUserField.getText().isEmpty()) {
+			if (this.dbUserField.getText().isEmpty()) {
 				this.message.setText("Database information is incomplete.");
 				flag = false;
 			}
-			if(this.dbPassField.getText().isEmpty()) {
+			if (this.dbPassField.getText().isEmpty()) {
 				this.message.setText("Database information is incomplete.");
 				flag = false;
 			}
-			if(this.userField.getText().isEmpty()) {
+			if (this.userField.getText().isEmpty()) {
 				this.message.setText("Username not entered.");
 				flag = false;
 			}
-			if(this.passwordField.getText().isEmpty() || this.verifyPasswordField.getText().isEmpty() || !this.passwordField.getText().equals(this.verifyPasswordField.getText())) {
+			if (this.passwordField.getText().isEmpty() || this.verifyPasswordField.getText().isEmpty()
+					|| !this.passwordField.getText().equals(this.verifyPasswordField.getText())) {
 				this.message.setText("Passwords do not match.");
 				flag = false;
 			}
@@ -167,30 +166,29 @@ public class Initialization {
 			ArrayList<String> config = new ArrayList<>();
 			config.add(this.dbHostField.getText());
 			config.add(this.dbNameField.getText());
-			config.add(this.dbUserField.getText());		
-			config.add(this.dbPassField.getText());		
+			config.add(this.dbUserField.getText());
+			config.add(this.dbPassField.getText());
 
-			if(flag) {
+			if (flag) {
 				PrintWriter out;
 				try {
 					out = new PrintWriter(new FileWriter("src/main/config.txt"));
-					for(int i = 0; i < config.size(); i++) {
+					for (int i = 0; i < config.size(); i++) {
 						out.println(config.get(i));
 					}
 					out.flush();
-					out.close();  
+					out.close();
 				} catch (IOException e1) {
 					System.out.println("Config could not be saved.");
 					e1.printStackTrace();
 				}
 			}
 
-
 			// Initialize the database
 			Database db = Database.getInstance();
 
-			//			 Test the connection to the database
-			if(!db.testConnection()) {
+			// Test the connection to the database
+			if (!db.testConnection()) {
 				System.out.println("Connection could not be established");
 
 				flag = false;
@@ -198,13 +196,13 @@ public class Initialization {
 
 			// If input passes validation, change the first time launch flag,
 			// create the user in the database and set the scene to the login page
-			if(flag) {
+			if (flag) {
 				BufferedWriter out;
 				try {
 					out = new BufferedWriter(new FileWriter("src/main/hasLaunched.txt"));
 					out.write("true");
 					out.flush();
-					out.close();  
+					out.close();
 				} catch (IOException e1) {
 					System.out.println("File could not be modified");
 					e1.printStackTrace();
@@ -214,16 +212,14 @@ public class Initialization {
 
 				UserTable userTable = new UserTable();
 
-
 				String username = this.userField.getText();
 				String salt = PasswordTable.getSalt();
 				String password = null;
 
 				password = PasswordTable.hashPassword(this.passwordField.getText(), salt);
 
-
-				userTable.createUser(new User(username));	
-				if(password != null) {
+				userTable.createUser(new User(username));
+				if (password != null) {
 
 					PasswordTable.insertPassword(password, salt, userTable.newestUser());
 
@@ -236,15 +232,18 @@ public class Initialization {
 		// Test Connection Button
 		this.testButton = new Button("Test Connection");
 
-		this.testButton.setOnAction(e->{
-			if(this.dbNameField.getText().isEmpty() || this.dbHostField.getText().isEmpty() || this.dbUserField.getText().isEmpty() || this.dbPassField.getText().isEmpty()) {
+		this.testButton.setOnAction(e -> {
+			if (this.dbNameField.getText().isEmpty() || this.dbHostField.getText().isEmpty()
+					|| this.dbUserField.getText().isEmpty() || this.dbPassField.getText().isEmpty()) {
 				this.message.setText("Database information is incomplete.");
 			} else {
 				try {
 					Class.forName("com.mysql.jdbc.Driver");
-					DriverManager.getConnection("jdbc:mysql://" + this.dbHostField.getText() + "/" + this.dbNameField.getText() + "?useSSL=false", this.dbUserField.getText(), this.dbPassField.getText());
+					DriverManager.getConnection("jdbc:mysql://" + this.dbHostField.getText() + "/"
+							+ this.dbNameField.getText() + "?useSSL=false", this.dbUserField.getText(),
+							this.dbPassField.getText());
 					this.message.setText("Database connection has been established.");
-				} catch(Exception e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 					this.message.setText("Database connection could not be established.");
 				}
@@ -290,7 +289,8 @@ public class Initialization {
 		// Add the GridPanes to the centerBox and add some styling
 
 		this.centerBox = new VBox();
-		this.centerBox.getChildren().addAll(this.dbInfo, this.dbGP, this.testButton, this.userInfo,  this.userGP, this.submitButton, this.message);
+		this.centerBox.getChildren().addAll(this.dbInfo, this.dbGP, this.testButton, this.userInfo, this.userGP,
+				this.submitButton, this.message);
 		this.centerBox.setSpacing(25);
 		this.centerBox.setAlignment(Pos.CENTER);
 
@@ -305,40 +305,43 @@ public class Initialization {
 
 	}
 
-	//	// Password encryption
-	//	public static String hashPassword(String password, byte[] salt) {
-	//		// Declare the string builder - this will be used to build the hashed password from bytes into a string
-	//		StringBuilder stringBuild = new StringBuilder();
+	// // Password encryption
+	// public static String hashPassword(String password, byte[] salt) {
+	// // Declare the string builder - this will be used to build the hashed
+	// password from bytes into a string
+	// StringBuilder stringBuild = new StringBuilder();
 	//
-	//		try {
-	//			MessageDigest msgDig = MessageDigest.getInstance("sha-256");
-	//			msgDig.update(salt);
-	//			byte[] hashBytes = msgDig.digest(password.getBytes());
+	// try {
+	// MessageDigest msgDig = MessageDigest.getInstance("sha-256");
+	// msgDig.update(salt);
+	// byte[] hashBytes = msgDig.digest(password.getBytes());
 	//
-	//			for(int i=0; i < hashBytes.length; i++) {
-	//				stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100, 16).substring(1));
-	//			}
+	// for(int i=0; i < hashBytes.length; i++) {
+	// stringBuild.append(Integer.toString((hashBytes[i] & 0xff) + 0x100,
+	// 16).substring(1));
+	// }
 	//
-	//		} catch (NoSuchAlgorithmException e) {
-	//			e.printStackTrace();
-	//		}
+	// } catch (NoSuchAlgorithmException e) {
+	// e.printStackTrace();
+	// }
 	//
-	//		return stringBuild.toString();
-	//	}
+	// return stringBuild.toString();
+	// }
 	//
-	//	public static byte[] getSalt() {
-	//		// Declare the byte array - this is the salt
-	//		byte[] salt = new byte[16];
+	// public static byte[] getSalt() {
+	// // Declare the byte array - this is the salt
+	// byte[] salt = new byte[16];
 	//
-	//		// Use an instance of SecureRandom to create the random salt and store it in the byte array salt
-	//		try {
-	//			SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
-	//		} catch (NoSuchAlgorithmException e1) {
-	//			e1.printStackTrace();
-	//		}
-	//		System.out.println(salt);
-	//		return salt;
-	//	}
+	// // Use an instance of SecureRandom to create the random salt and store it in
+	// the byte array salt
+	// try {
+	// SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
+	// } catch (NoSuchAlgorithmException e1) {
+	// e1.printStackTrace();
+	// }
+	// System.out.println(salt);
+	// return salt;
+	// }
 
 	// Getters & Setter for the scene
 
@@ -349,7 +352,5 @@ public class Initialization {
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
-
-
 
 }
