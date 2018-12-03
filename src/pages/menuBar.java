@@ -35,7 +35,8 @@ public class menuBar extends MenuBar {
 		
 		
 		/* EVENT HANDLERS
-		 *  this represents blocks of code that is only run  once the desired MenuItem is clicked
+		 *  this represents blocks of code that is only run  
+		 *  once the desired MenuItem is clicked
 		 */
 		
 		//EXIT - Exits the program
@@ -51,7 +52,6 @@ public class menuBar extends MenuBar {
 			Main.mainStage.setScene(logInMenu.getScene());
 			Main.mainStage.setTitle("Fit4Life Member Management");
 		});
-		
 		//CREDITS - Brings user to Credits Menu
 		this.credits.setOnAction(e->{
 			creditsPage = new Credits();
