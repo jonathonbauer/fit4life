@@ -1,4 +1,0 @@
-localhost
-fit4life
-root
-password
