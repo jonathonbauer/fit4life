@@ -125,7 +125,6 @@ public class UserTable implements UserDAO {
 		int newestId = 0;
 		String query = "SELECT MAX(id) AS 'id' FROM " + Tables.TABLE_USERS;
 		try {
-			System.out.println(query);
 			Statement getUser = db.getConnection().createStatement();
 			ResultSet data = getUser.executeQuery(query);
 			data.next();

@@ -54,7 +54,7 @@ Here is some sample data to be imported into the database. You will need to impo
 | Jonathon Bauer   | [jonathonbauer](https://github.com/jonathonbauer)   | jonathon.bauer01@stclairconnect.ca  |
 | Cody Pollard     | [CPollard187](https://github.com/CPollard187)       | cody.pollard01@stclairconnect.ca    |
 | Joseph Bumbacco  | [josephbumbacco](https://github.com/josephbumbacco) | joseph.bumbacco01@stclairconnect.ca |
-| Grant Norris     | [jonathonbauer](https://github.com/Grant-Norris)    | grant.norris01@stclairconnect.ca    |
+| Grant Norris     | [Grant-Norris](https://github.com/Grant-Norris)    | grant.norris01@stclairconnect.ca    |
 
 
 ## License
