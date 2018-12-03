@@ -59,6 +59,16 @@ public class CreateMemberTab extends Tab {
 	private ComboBox<Location> locationBox;
 	private ComboBox<City> citiesBox;
 	private ComboBox<MemberLevel> levelBox;
+	/**
+	 * 
+	 * This class is used to add new 'Members' to the fit4life database
+	 * <br/>
+	 * It contains all the form elements needed to make a 'Member' object
+	 * and insert it into the Database
+	 * 
+	 * It also refreshes the table to make it visible on the viewMembersTab
+	 *
+	 */
 
 	public CreateMemberTab() {
 		//Get all members from the database
@@ -132,7 +142,10 @@ public class CreateMemberTab extends Tab {
 		this.create.setOnAction(e->{
             Member newMember = new Member();
           
+            //Create new date format Object
             DateTimeFormatter goodFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
+           
+            //Create Time object with current time
             LocalDateTime now = LocalDateTime.now();  
             
             newMember.setFname(this.fNameBox.getText());
@@ -182,14 +195,6 @@ public class CreateMemberTab extends Tab {
 		this.root.add(create, 1, 15);
 		
 
-		
-		
-		
-		
-		
-		
-		
-		
 		//Adding the GridPane to the Tab
 		this.setContent(root);
 	}
