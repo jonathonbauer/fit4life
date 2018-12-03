@@ -50,6 +50,9 @@ public class LogInMenu {
 		 * This section of the code is what will run after the program has launched and
 		 * has no existing profiles logged in. it will prompt the user for their user
 		 * name and password and attempt to log them into the database.
+		 * 
+		 * @author  Joe Bumbacco
+		 * @since   2018-12-02 
 		 */
 
 		// BorderPane initialization
@@ -103,7 +106,6 @@ public class LogInMenu {
 		 */
 
 		this.login.setOnAction(e -> {
-
 			// Verify that the users login information is correct
 			if (PasswordTable.verifyLogin(this.userName.getText(), this.passWord.getText())) {
 				PauseTransition login = new PauseTransition(Duration.seconds(1));
