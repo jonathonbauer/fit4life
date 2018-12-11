@@ -208,5 +208,26 @@ public class CreateMemberTab extends Tab {
 		}
 
 	}
+	public ComboBox<Location> getLocationBox() {
+		return locationBox;
+	}
+	public void setLocationBox(ComboBox<Location> locationBox) {
+		this.locationBox = locationBox;
+	}
+	public ComboBox<City> getCitiesBox() {
+		return citiesBox;
+	}
+	public void setCitiesBox(ComboBox<City> citiesBox) {
+		this.citiesBox = citiesBox;
+	}
+	public ComboBox<MemberLevel> getLevelBox() {
+		return levelBox;
+	}
+	public void setLevelBox(ComboBox<MemberLevel> levelBox) {
+		this.levelBox = levelBox;
+	}
 
+	
+	
+	
 }

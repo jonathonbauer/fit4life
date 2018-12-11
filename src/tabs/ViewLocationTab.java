@@ -211,5 +211,13 @@ public class ViewLocationTab extends Tab {
 		}
 
 	}
+	public ComboBox<City> getCityCombo() {
+		return cityCombo;
+	}
+	public void setCityCombo(ComboBox<City> cityCombo) {
+		this.cityCombo = cityCombo;
+	}
 
+	
+	
 }
