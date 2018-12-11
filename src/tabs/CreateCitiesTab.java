@@ -1,7 +1,5 @@
 package tabs;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import database.Database;
@@ -15,7 +13,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import tables.City;
-import tables.Member;
 
 
 
@@ -62,7 +59,7 @@ public class CreateCitiesTab extends Tab {
 		//Setting padding for GridPane
 		this.root.setHgap(10);
 		this.root.setVgap(10);
-		this.root.setPadding(new Insets(25,25,25,25));
+		this.root.setPadding(new Insets(25,25,25,25));               
 		
 		//Label Creation
 		this.cityName = new Label("City Name:");
@@ -82,6 +79,15 @@ public class CreateCitiesTab extends Tab {
            viewCities.cities.removeAll(viewCities.cities);
            viewCities.cities = viewCities.cityTable.getAllCities();
            viewCities.table.setItems(FXCollections.observableArrayList(viewCities.cities));
+           
+          
+           CreateMemberTab.getInstance().getCitiesBox().setItems(FXCollections.observableArrayList(this.cityTable.getAllCities()));
+           CreateManagersTab.getInstance().getCitiesBox().setItems(FXCollections.observableArrayList(this.cityTable.getAllCities()));
+           CreateLocationTab.getInstance().getCitiesBox().setItems(FXCollections.observableArrayList(this.cityTable.getAllCities()));
+           ViewLocationTab.getInstance().getCityCombo().setItems(FXCollections.observableArrayList(this.cityTable.getAllCities()));
+           ViewMemberTab.getInstance().getCityCombo().setItems(FXCollections.observableArrayList(this.cityTable.getAllCities()));
+           ViewManagerTab.getInstance().getCityCombo().setItems(FXCollections.observableArrayList(this.cityTable.getAllCities()));
+          
        
         });
 		

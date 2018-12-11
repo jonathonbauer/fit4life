@@ -151,5 +151,13 @@ public class CreateManagersTab extends Tab {
 		}
 		
 	}
+	public ComboBox<City> getCitiesBox() {
+		return citiesBox;
+	}
+	public void setCitiesBox(ComboBox<City> citiesBox) {
+		this.citiesBox = citiesBox;
+	}
 
+	
+	
 }

@@ -109,6 +109,10 @@ public class CreateLocationTab extends Tab {
 			 viewLocationTab.locations.removeAll(viewLocationTab.locations);
 			 viewLocationTab.locations = viewLocationTab.locationTable.getAllLocations();
 			 viewLocationTab.table.setItems(FXCollections.observableArrayList(viewLocationTab.locations));
+			 
+			 CreateMemberTab.getInstance().getLocationBox().setItems(FXCollections.observableArrayList(this.locationTable.getAllLocations()));
+			 ViewMemberTab.getInstance().getLocationCombo().setItems(FXCollections.observableArrayList(this.locationTable.getAllLocations()));
+			 
 	        });
 		
 		//Adding all the nodes to the GridPane
@@ -142,4 +146,13 @@ public class CreateLocationTab extends Tab {
 		
 	}
 
+	public ComboBox<City> getCitiesBox() {
+		return citiesBox;
+	}
+
+	public void setCitiesBox(ComboBox<City> citiesBox) {
+		this.citiesBox = citiesBox;
+	}
+
+	
 }
