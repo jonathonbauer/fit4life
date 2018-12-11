@@ -363,4 +363,23 @@ public class ViewMemberTab extends Tab {
 
 	}
 
+	public ComboBox<City> getCityCombo() {
+		return cityCombo;
+	}
+
+	public void setCityCombo(ComboBox<City> cityCombo) {
+		this.cityCombo = cityCombo;
+	}
+
+	public ComboBox<Location> getLocationCombo() {
+		return locationCombo;
+	}
+
+	public void setLocationCombo(ComboBox<Location> locationCombo) {
+		this.locationCombo = locationCombo;
+	}
+
+	
+	
+	
 }
